@@ -1,0 +1,46 @@
+.done-button{
+    display: inline-block;
+    font-size: 0.8em;
+    background-color: #d9dfe1;
+    color: #363639;
+    padding: 3px 6px;
+    border: 0;
+    opacity: 0.4;
+}
+
+.todolist li, .todo-add .input{
+    border: 0;
+    border-bottom: 1px dashed #ccc;
+    padding: 15px 0; 
+}
+
+.input:focus{
+    outline: none;
+}
+
+.todolist .todo.done{
+    text-decoration: line-through;
+}
+
+.todolist li:hover .done-button{
+    opacity: 1;
+}
+
+.input{
+    width: 100%;
+}
+
+.submit{
+    background-color: #fff;
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    width: 100%;
+    margin-top: 10px;
+    box-shadow: 3px 3px 0 #ddd;
+}
+
+.todolist{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
