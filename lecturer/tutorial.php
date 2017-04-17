@@ -52,6 +52,7 @@ require_once '../app/config.php';
                                     <li>
                                         <a href="upload/uploads/<?php echo $row['file'] ?>" target="_blank"><?php echo $row['title'] ?></a>
                                         <?php echo $row['description'] ?>
+                                        <a href="" class="delete-button"><i class="fa fa-trash-o"></i></a>
                                     </li>                      
                                 </ul>
                                 <?php

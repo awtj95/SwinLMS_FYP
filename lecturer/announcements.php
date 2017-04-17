@@ -57,9 +57,9 @@ require_once '../app/config.php';
                                                 echo $newdescription;
                                             ?>
                                         </span>
-                                        <a href="" class="delete-button"><i class="fa fa-trash-o"></i></a>
-                                        <br />
                                         <span><?php echo $row['date'] ?></span>
+                                        <br />
+                                        <a href="" class="delete-button"><i class="fa fa-trash-o"></i></a>
                                     </li>
                                 </ul>
                                 <?php
