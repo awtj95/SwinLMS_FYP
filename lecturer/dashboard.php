@@ -142,6 +142,7 @@ $todolist = $todolistQuery->rowCount() ? $todolistQuery : [];
                                     <?php if($todo['done']): ?>
                                         <a href="todo/mark.php?as=notdone&todo=<?php echo $todo['id']; ?>" class="done-button"><i class="fa fa-close"></i></a>
                                     <?php endif; ?>
+                                        <!--<a href="#" class="done-button" data-toggle="modal" data-target="#todo"><i class="fa fa-edit"></i></a>-->
                                         <a href="todo/remove.php?as=done&todo=<?php echo $todo['id']; ?>" class="done-button"><i class="fa fa-trash-o"></i></a>
                                 </li>
                             <?php endforeach; ?>

@@ -59,7 +59,7 @@ require_once '../app/config.php';
                                         </span>
                                         <span><?php echo $row['date'] ?></span>
                                         <br />
-                                        <a href="" class="delete-button"><i class="fa fa-trash-o"></i></a>
+                                        <a href="announcement/remove.php?id=<?php echo $row['id'] ?>" class="delete-button"><i class="fa fa-trash-o"></i></a>
                                     </li>
                                 </ul>
                                 <?php

@@ -2,23 +2,15 @@
 
 require_once '../../app/config.php';
 
-if(isset($_GET['as'], $_GET['description'])){
-    $as = $_GET['as'];
-    $description = $_GET['description'];
-    
-    switch($as){
-        case 'done':
-            $doneQuery = $db->prepare("
-                DELETE FROM announcements
-                WHERE id = :description
-            ");
-            
-            $doneQuery->execute([
-                'description' => $description,
-            ]);
-        break;
-    }
+if (isset($_GET['id']) && is_numeric($_GET['id']))
+
+{
+    $id = $_GET['id'];
+
+    $result = mysql_query("DELETE FROM announcements WHERE id=$id") or die(mysql_error());
+
 }
 
-header('Location: ../dashboard.php');
+header("Location: ../announcements.php");
+
 ?>
