@@ -68,8 +68,7 @@ require_once '../app/config.php';
                                 
                                 <form class="announcement-add" action="announcement/addAnnouncement.php" method="post">
                                     <div>
-                                        <textarea class="textarea" placeholder="Type a new announcements here...." style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" name="description" required></textarea>
-                                        
+                                        <textarea class="textarea" placeholder="Type a new announcements here...." style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" name="description" required></textarea>                                        
                                     </div>
                                     <div class="box-footer clearfix">
                                         <button type="submit" class="pull-right btn btn-default" name="announcement-post">Post <i class="fa fa-upload"></i></button>

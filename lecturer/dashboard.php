@@ -3,7 +3,7 @@
 require_once '../app/init.php';
 
 $todolistQuery = $db->prepare("
-    SELECT id, name, done
+    SELECT id, name, done, date
     FROM todolist
     WHERE user=:user
 
@@ -136,6 +136,7 @@ $todolist = $todolistQuery->rowCount() ? $todolistQuery : [];
                             <?php foreach($todolist as $todo): ?>
                                 <li>
                                     <span class="todo<?php echo $todo['done'] ? ' done' : '' ?>"><?php echo $todo['name']; ?></span>
+                                    
                                     <?php if(!$todo['done']): ?>
                                         <a href="todo/mark.php?as=done&todo=<?php echo $todo['id']; ?>" class="done-button"><i class="fa fa-check"></i></a>
                                     <?php endif; ?>
@@ -144,6 +145,8 @@ $todolist = $todolistQuery->rowCount() ? $todolistQuery : [];
                                     <?php endif; ?>
                                         <!--<a href="#" class="done-button" data-toggle="modal" data-target="#todo"><i class="fa fa-edit"></i></a>-->
                                         <a href="todo/remove.php?as=done&todo=<?php echo $todo['id']; ?>" class="done-button"><i class="fa fa-trash-o"></i></a>
+                                    <br />
+                                    <small class="label label-info"><i class="fa fa-clock-o"></i> <?php echo $todo['date']; ?></small>
                                 </li>
                             <?php endforeach; ?>
                         </ul>
@@ -151,7 +154,14 @@ $todolist = $todolistQuery->rowCount() ? $todolistQuery : [];
                             <p>You haven't added any things.</p>
                         <?php endif; ?>
                         <form class="todo-add" action="todo/addTodo.php" method="post">
-                            <input type="text" name="name" placeholder="Type a new things here...." class="input" autocomplete="off" required>
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <input type="text" name="name" placeholder="Type a new things here...." class="input" autocomplete="off" required>
+                                </div>
+                                <div class="col-lg-4">
+                                    <input type="date" class="input" name="date" />
+                                </div>
+                            </div>
                             <input type="submit" value="Post" class="submit" >
                         </form>
                     </div>

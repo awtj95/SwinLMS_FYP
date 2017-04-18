@@ -11,7 +11,7 @@ if(isset($_POST['announcement-post']))
 		mysql_query($sql);
 		?>
 		<script>
-		alert('successfully post');
+		alert('Successfully post');
         window.location.href='../announcements.php?success';
         </script>
 		<?php
@@ -20,7 +20,7 @@ if(isset($_POST['announcement-post']))
 	{
 		?>
 		<script>
-		alert('error while post');
+		alert('Error while post');
         window.location.href='../announcements.php?fail';
         </script>
 		<?php

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 17, 2017 at 03:35 AM
+-- Generation Time: Apr 18, 2017 at 02:39 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -32,13 +32,6 @@ CREATE TABLE `announcements` (
   `description` varchar(255) NOT NULL,
   `date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `announcements`
---
-
-INSERT INTO `announcements` (`id`, `course`, `description`, `date`) VALUES
-(17, '', '<p>lisdhc</p><p>fsa;cxzlnk</p>', '2017-04-17 09:32:35');
 
 -- --------------------------------------------------------
 
@@ -99,8 +92,16 @@ CREATE TABLE `todolist` (
   `name` text NOT NULL,
   `user` int(11) DEFAULT NULL,
   `done` tinyint(1) DEFAULT NULL,
-  `created` datetime DEFAULT NULL
+  `created` datetime DEFAULT NULL,
+  `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `todolist`
+--
+
+INSERT INTO `todolist` (`id`, `name`, `user`, `done`, `created`, `date`) VALUES
+(17, 'zsncuab', 3, 0, '2017-04-18 20:39:18', '2017-04-27');
 
 -- --------------------------------------------------------
 
@@ -192,7 +193,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `announcements`
 --
 ALTER TABLE `announcements`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `assessment`
 --
@@ -212,7 +213,7 @@ ALTER TABLE `lecture`
 -- AUTO_INCREMENT for table `todolist`
 --
 ALTER TABLE `todolist`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `tutorial`
 --
