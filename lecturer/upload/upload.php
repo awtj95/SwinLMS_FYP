@@ -14,7 +14,7 @@ if(isset($_POST['lecture-upload']))
     $description = $_POST['description'];
 	
 	// new file size in KB
-	$new_size = $file_size/1024;  
+	$new_size = $file_size/1024;
 	// new file size in KB
 	
 	// make file name in lower case

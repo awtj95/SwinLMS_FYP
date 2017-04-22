@@ -2,9 +2,9 @@
 
 session_start();
 
-$_SESSION['user_id'] =3;
+$_SESSION['user_id'] =4;
 
-$db = new PDO('mysql:dbname=lms;host=localhost','root','');
+$db = new PDO('mysql:dbname=swinlms;host=localhost','root','');
 
 //Handle this in some other way
 if(!isset($_SESSION['user_id'])){

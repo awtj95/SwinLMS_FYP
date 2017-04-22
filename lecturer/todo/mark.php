@@ -12,12 +12,12 @@ if(isset($_GET['as'], $_GET['todo'])){
                 UPDATE todolist
                 SET done = 1
                 WHERE id = :todo
-                AND user = :user
+                AND user_id = :user_id
             ");
             
             $doneQuery->execute([
                 'todo' => $todo,
-                'user' => $_SESSION['user_id']
+                'user_id' => $_SESSION['user_id']
             ]);
         break;
             case 'notdone':
@@ -25,12 +25,12 @@ if(isset($_GET['as'], $_GET['todo'])){
                 UPDATE todolist
                 SET done = 0
                 WHERE id = :todo
-                AND user = :user
+                AND user_id = :user_id
             ");
             
             $doneQuery->execute([
                 'todo' => $todo,
-                'user' => $_SESSION['user_id']
+                'user_id' => $_SESSION['user_id']
             ]);
         break;
     }

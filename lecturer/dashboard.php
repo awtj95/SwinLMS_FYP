@@ -5,12 +5,12 @@ require_once '../app/init.php';
 $todolistQuery = $db->prepare("
     SELECT id, name, done, date
     FROM todolist
-    WHERE user=:user
+    WHERE user_id=:user_id
 
 ");
 
 $todolistQuery->execute([
-    'user' => $_SESSION['user_id']
+    'user_id' => $_SESSION['user_id']
 ]);
 
 $todolist = $todolistQuery->rowCount() ? $todolistQuery : [];

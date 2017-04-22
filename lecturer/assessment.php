@@ -49,8 +49,8 @@ require_once '../app/config.php';
                                 ?>
                                 <ul class="course-list">
                                     <li>
-                                        <a href="upload/uploads/<?php echo $row['file'] ?>" target="_blank"><?php echo $row['title'] ?></a>
-                                        <?php echo $row['description'] ?>
+                                        <?php echo $row['title'] ?>
+                                        <a href="upload/uploads/<?php echo $row['file'] ?>" target="_blank"><?php echo $row['description'] ?></a>
                                         <a href="assessment/remove.php?id=<?php echo $row['id'] ?>" class="delete-button"><i class="fa fa-trash-o"></i></a>
                                     </li>                      
                                 </ul>

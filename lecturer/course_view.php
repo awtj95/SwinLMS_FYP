@@ -19,12 +19,12 @@ require_once '../app/config.php';
             <!-- Content Header (Page header) -->
             <section class="content-header">
               <h1>
-                Course Name
+                  <?php echo $_GET['id']; ?>
               </h1>
               <ol class="breadcrumb">
                 <li><a href="dashboard.php"><i class="fa fa-dashboard"></i> Home</a></li>
                 <li class="active">Course</li>
-                <li class="active">Course Name</li>
+                <li class="active"><?php echo $_GET['id']; ?></li>
               </ol>
             </section>
             
@@ -125,7 +125,7 @@ require_once '../app/config.php';
                                     <th>Email</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <!--<tbody>
                                 <tr>
                                     <td>asd</td>
                                     <td>asd</td>
@@ -133,7 +133,7 @@ require_once '../app/config.php';
                                     <td>asd</td>
                                     <td>asd</td>
                                 </tr>
-                            </tbody>
+                            </tbody>-->
                             <tfoot>
                                 <tr>
                                     <th>#</th>
@@ -173,7 +173,7 @@ require_once '../app/config.php';
                                     <th>Delete</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <!--<tbody>
                                 <tr>
                                     <td>asd</td>
                                     <td>asd</td>
@@ -183,7 +183,7 @@ require_once '../app/config.php';
                                         <a href="remove.php?id=<?php echo $row['id'] ?>" class="done-button"><i class="fa fa-trash-o"></i></a>
                                     </td>
                                 </tr>
-                            </tbody>
+                            </tbody>-->
                             <tfoot>
                                 <tr>
                                     <th>#</th>

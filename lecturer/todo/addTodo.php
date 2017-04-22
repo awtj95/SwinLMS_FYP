@@ -8,14 +8,14 @@ if(isset($_POST['name'])){
     
     if(!empty($name)){
         $addedQuery = $db->prepare("
-        INSERT INTO todolist (name, user, done, created, date)
-        VALUES (:name, :user, 0, NOW(), :date)
+        INSERT INTO todolist (name, user_id, done, created, date)
+        VALUES (:name, :user_id, 0, NOW(), :date)
         ");
         
         $addedQuery->execute([
             'name' => $name,
             'date' => $date,
-            'user' => $_SESSION[user_id]
+            'user_id' => $_SESSION[user_id]
         ]);
     }
 }
