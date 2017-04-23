@@ -3,6 +3,8 @@
 require_once '../app/config.php';
 
 
+
+
 ?>
 
 <!DOCTYPE html>
@@ -206,12 +208,12 @@ require_once '../app/config.php';
         <div class="modal fade" id="lecture" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title custom_align" id="Heading">Upload Lecture Note File</h4>
-                    </div>
                     <form action="upload/upload.php" method="post" enctype="multipart/form-data">
+                        <div class="modal-header">
+                            <h4 class="modal-title custom_align" name="unit" id="Heading"><?php echo $_GET['id']; ?></h4>
+                        </div>
+                    
                         <div class="modal-body">
-
 
                             <div class="form-group">
                                 <input type="text" name="title" class="form-control" placeholder="Title:">
@@ -246,7 +248,7 @@ require_once '../app/config.php';
                     <form action="upload/upload.php" method="post" enctype="multipart/form-data">
                         <div class="modal-body">
 
-
+                            
                             <div class="form-group">
                                 <input type="text" name="title" class="form-control" placeholder="Title:">
                             </div>

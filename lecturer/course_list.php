@@ -3,8 +3,10 @@
 require_once '../app/init.php';
 
 $courselistQuery = $db->prepare("
-    SELECT id, unit_id
-    FROM class
+    SELECT c.id, u.name, u.description
+    FROM class c
+    JOIN unit u
+    ON c.unit_id = u.id
     WHERE user_id=:user_id
 
 ");
@@ -61,10 +63,10 @@ $courselist = $courselistQuery->rowCount() ? $courselistQuery : [];
                                 <ul class="courselist">
                                     <?php foreach($courselist as $course): ?>
                                     <li>
-                                        <a href="course_view.php?id=<?php echo $course['unit_id']; ?>">
-                                            <span class="course"><?php echo $course['unit_id']; ?></span>
+                                        <a href="course_view.php?id=<?php echo $course['name']; ?>">
+                                            <h3 class="course"><?php echo $course['name']; ?></h3>
                                         </a>
-                                        <!--<span class="course"><?php echo $course['description']; ?></span>-->
+                                        <span class="course"><?php echo $course['description']; ?></span>
                                     </li><br />
                                     <?php endforeach; ?>
                                 </ul>
