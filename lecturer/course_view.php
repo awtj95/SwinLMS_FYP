@@ -1,9 +1,21 @@
 <?php
 
-require_once '../app/config.php';
+require_once '../app/init.php';
 
+$_SESSION['unit_id'] = $_GET['id'];
 
+$contentheaderQuery = $db->prepare("
+    SELECT id, name
+    FROM unit
+    WHERE id=:id
 
+");
+
+$contentheaderQuery->execute([
+    'id' => $_SESSION['unit_id']
+]);
+
+$contentheader = $contentheaderQuery->rowCount() ? $contentheaderQuery : [];
 
 ?>
 
@@ -19,16 +31,20 @@ require_once '../app/config.php';
         
           <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-            <section class="content-header">
-              <h1>
-                  <?php echo $_GET['id']; ?>
-              </h1>
-              <ol class="breadcrumb">
-                <li><a href="dashboard.php"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active">Course</li>
-                <li class="active"><?php echo $_GET['id']; ?></li>
-              </ol>
+            <?php if(!empty($contentheader)): ?>
+            <section class="content-header contentheader">
+              <?php foreach($contentheader as $header): ?>
+                  <h1 class="header">
+                      <?php echo $header['name']; ?>
+                  </h1>
+                  <ol class="breadcrumb">
+                    <li><a href="dashboard.php"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li class="active">Course</li>
+                    <li class="active"><?php echo $header['name']; ?></li>
+                  </ol>
+              <?php endforeach; ?>
             </section>
+            <?php endif; ?>
             
              <!-- Main content -->
             <section class="content">
@@ -210,11 +226,14 @@ require_once '../app/config.php';
                 <div class="modal-content">
                     <form action="upload/upload.php" method="post" enctype="multipart/form-data">
                         <div class="modal-header">
-                            <h4 class="modal-title custom_align" name="unit" id="Heading"><?php echo $_GET['id']; ?></h4>
+                            <h4 class="modal-title custom_align" id="Heading">Upload Lecture Note File</h4>
                         </div>
                     
                         <div class="modal-body">
-
+                            
+                            <div class="form-group">
+                                <input type="hidden" name="unit" class="form-control" value="<?php echo $_SESSION['unit_id']; ?>">
+                            </div>
                             <div class="form-group">
                                 <input type="text" name="title" class="form-control" placeholder="Title:">
                             </div>
@@ -248,7 +267,9 @@ require_once '../app/config.php';
                     <form action="upload/upload.php" method="post" enctype="multipart/form-data">
                         <div class="modal-body">
 
-                            
+                            <div class="form-group">
+                                <input type="hidden" name="unit" class="form-control" value="<?php echo $_SESSION['unit_id']; ?>">
+                            </div>
                             <div class="form-group">
                                 <input type="text" name="title" class="form-control" placeholder="Title:">
                             </div>
@@ -282,7 +303,9 @@ require_once '../app/config.php';
                     <form action="upload/upload.php" method="post" enctype="multipart/form-data">
                         <div class="modal-body">
 
-
+                            <div class="form-group">
+                                <input type="hidden" name="unit" class="form-control" value="<?php echo $_SESSION['unit_id']; ?>">
+                            </div>
                             <div class="form-group">
                                 <input type="text" name="title" class="form-control" placeholder="Title:">
                             </div>
@@ -316,7 +339,9 @@ require_once '../app/config.php';
                     <form action="upload/upload.php" method="post" enctype="multipart/form-data">
                         <div class="modal-body">
 
-
+                            <div class="form-group">
+                                <input type="hidden" name="unit" class="form-control" value="<?php echo $_SESSION['unit_id']; ?>">
+                            </div>
                             <div class="form-group">
                                 <input type="text" name="title" class="form-control" placeholder="Title:">
                             </div>

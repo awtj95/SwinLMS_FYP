@@ -10,6 +10,7 @@ if(isset($_POST['lecture-upload']))
 	$file_type = $_FILES['file']['type'];
 	$folder="uploads/";
     
+    $unit = $_POST['unit'];
     $title = $_POST['title'];
     $description = $_POST['description'];
 	
@@ -25,12 +26,12 @@ if(isset($_POST['lecture-upload']))
 	
 	if(move_uploaded_file($file_loc,$folder.$final_file))
 	{
-		$sql="INSERT INTO lecture(title,file,description,type,size) VALUES('$title','$final_file','$description','$file_type','$new_size')";
+		$sql="INSERT INTO lecture(unit_id,title,file,description,type,size) VALUES('$unit','$title','$final_file','$description','$file_type','$new_size')";
 		mysql_query($sql);
 		?>
 		<script>
 		alert('successfully uploaded');
-        window.location.href='../course_view.php?success';
+        window.location.href='../course_view.php?id=<?php echo $unit; ?>&success';
         </script>
 		<?php
 	}
@@ -39,7 +40,7 @@ if(isset($_POST['lecture-upload']))
 		?>
 		<script>
 		alert('error while uploading file');
-        window.location.href='../course_view.php?fail';
+        window.location.href='../course_view.php?id=<?php echo $unit; ?>&fail';
         </script>
 		<?php
 	}
@@ -54,6 +55,7 @@ if(isset($_POST['tutorial-upload']))
 	$file_type = $_FILES['file']['type'];
 	$folder="uploads/";
     
+    $unit = $_POST['unit'];
     $title = $_POST['title'];
     $description = $_POST['description'];
 	
@@ -69,12 +71,12 @@ if(isset($_POST['tutorial-upload']))
 	
 	if(move_uploaded_file($file_loc,$folder.$final_file))
 	{
-		$sql="INSERT INTO tutorial(title,file,description,type,size) VALUES('$title','$final_file','$description','$file_type','$new_size')";
+		$sql="INSERT INTO tutorial(unit_id,title,file,description,type,size) VALUES('$unit','$title','$final_file','$description','$file_type','$new_size')";
 		mysql_query($sql);
 		?>
 		<script>
 		alert('successfully uploaded');
-        window.location.href='../course_view.php?success';
+        window.location.href='../course_view.php?id=<?php echo $unit; ?>&success';
         </script>
 		<?php
 	}
@@ -83,7 +85,7 @@ if(isset($_POST['tutorial-upload']))
 		?>
 		<script>
 		alert('error while uploading file');
-        window.location.href='../course_view.php?fail';
+        window.location.href='../course_view.php?id=<?php echo $unit; ?>&fail';
         </script>
 		<?php
 	}
@@ -98,6 +100,7 @@ if(isset($_POST['assignment-upload']))
 	$file_type = $_FILES['file']['type'];
 	$folder="uploads/";
     
+    $unit = $_POST['unit'];
     $title = $_POST['title'];
     $description = $_POST['description'];
 	
@@ -113,12 +116,12 @@ if(isset($_POST['assignment-upload']))
 	
 	if(move_uploaded_file($file_loc,$folder.$final_file))
 	{
-		$sql="INSERT INTO assignment(title,file,description,type,size) VALUES('$title','$final_file','$description','$file_type','$new_size')";
+		$sql="INSERT INTO assignment(unit_id,title,file,description,type,size) VALUES('$unit','$title','$final_file','$description','$file_type','$new_size')";
 		mysql_query($sql);
 		?>
 		<script>
 		alert('successfully uploaded');
-        window.location.href='../course_view.php?success';
+        window.location.href='../course_view.php?id=<?php echo $unit; ?>&success';
         </script>
 		<?php
 	}
@@ -127,7 +130,7 @@ if(isset($_POST['assignment-upload']))
 		?>
 		<script>
 		alert('error while uploading file');
-        window.location.href='../course_view.php?fail';
+        window.location.href='../course_view.php?id=<?php echo $unit; ?>&fail';
         </script>
 		<?php
 	}
@@ -142,6 +145,7 @@ if(isset($_POST['assessment-upload']))
 	$file_type = $_FILES['file']['type'];
 	$folder="uploads/";
     
+    $unit = $_POST['unit'];
     $title = $_POST['title'];
     $description = $_POST['description'];
 	
@@ -157,12 +161,12 @@ if(isset($_POST['assessment-upload']))
 	
 	if(move_uploaded_file($file_loc,$folder.$final_file))
 	{
-		$sql="INSERT INTO assessment(title,file,description,type,size) VALUES('$title','$final_file','$description','$file_type','$new_size')";
+		$sql="INSERT INTO assessment(unit_id,title,file,description,type,size) VALUES('$unit','$title','$final_file','$description','$file_type','$new_size')";
 		mysql_query($sql);
 		?>
 		<script>
 		alert('successfully uploaded');
-        window.location.href='../course_view.php?success';
+        window.location.href='../course_view.php?id=<?php echo $unit; ?>&success';
         </script>
 		<?php
 	}
@@ -171,7 +175,7 @@ if(isset($_POST['assessment-upload']))
 		?>
 		<script>
 		alert('error while uploading file');
-        window.location.href='../course_view.php?fail';
+        window.location.href='../course_view.php?id=<?php echo $unit; ?>&fail';
         </script>
 		<?php
 	}
