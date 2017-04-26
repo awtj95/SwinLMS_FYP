@@ -5,12 +5,26 @@ require_once '../../app/config.php';
 if (isset($_GET['id']) && is_numeric($_GET['id']))
 
 {
+    $name = $_GET['name'];
+    $unit = $_GET['unit_id'];
     $id = $_GET['id'];
 
     $result = mysql_query("DELETE FROM assignment WHERE id=$id") or die(mysql_error());
-
-}
-
-header("Location: ../assignment.php");
+    ?>
+		<script>
+		alert('successfully remove');
+        window.location.href='../assignment_view.php?id=<?php echo $unit; ?>&name=<?php echo $name; ?>&success';
+        </script>
+		<?php
+	}
+	else
+	{
+		?>
+		<script>
+		alert('error while remove file');
+        window.location.href='../assignment_view.php?id=<?php echo $unit; ?>&name=<?php echo $name; ?>&fail';
+        </script>
+		<?php
+	}
 
 ?>

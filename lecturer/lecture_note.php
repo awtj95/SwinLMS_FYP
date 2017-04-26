@@ -1,6 +1,21 @@
 <?php
 
-require_once '../app/config.php';
+require_once '../app/init.php';
+
+$courselistQuery = $db->prepare("
+    SELECT c.unit_id, u.name
+    FROM class c
+    JOIN unit u
+    ON c.unit_id = u.id
+    WHERE user_id=:user_id
+
+");
+
+$courselistQuery->execute([
+    'user_id' => $_SESSION['user_id']
+]);
+
+$courselist = $courselistQuery->rowCount() ? $courselistQuery : [];
 
 ?>
 
@@ -36,31 +51,20 @@ require_once '../app/config.php';
                     <!-- Custom tabs (Charts with tabs)-->
 
                     <!-- Lecture Note -->
-                        <div class="box box-primary">
+                        <?php if(!empty($courselist)): ?>
+                        <?php foreach($courselist as $course): ?>
+                        <div class="box box-primary courselist">
                             <div class="box-header">
-                                <i class="fa fa-book"></i>        
-                                <h3 class="box-title">Course Name</h3>                   
+                                <i class="fa fa-book"></i>
+                                <a href="lecture_view.php?id=<?php echo $course['unit_id']; ?>&name=<?php echo $course['name']; ?>">
+                                    <h3 class="box-title course"><?php echo $course['name']; ?></h3>
+                                </a>
                             </div>
-                        <!-- /.box-header -->
-                            <div class="box-body">
-                                <?php 
-                                    $sql="SELECT * FROM lecture";
-                                    $result_set=mysql_query($sql);
-                                    while($row=mysql_fetch_array($result_set))
-                                    {
-                                ?>
-                                <ul class="course-list">
-                                    <li>
-                                        <?php echo $row['title'] ?>
-                                        <a href="upload/uploads/<?php echo $row['file'] ?>" target="_blank"><?php echo $row['description'] ?></a>
-                                        <a href="lecture/remove.php?id=<?php echo $row['id'] ?>" class="delete-button"><i class="fa fa-trash-o"></i></a>
-                                    </li>                      
-                                </ul>
-                                <?php
-                                    }
-                                ?>
-                            </div>                    
                         </div>
+                        <?php endforeach; ?>
+                        <?php else: ?>
+                            <p>There is no units to display.</p>
+                        <?php endif; ?>
                     <!-- /.box -->
                     </section>
                 </div>

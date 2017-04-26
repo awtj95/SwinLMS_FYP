@@ -5,12 +5,26 @@ require_once '../../app/config.php';
 if (isset($_GET['id']) && is_numeric($_GET['id']))
 
 {
+    $name = $_GET['name'];
+    $unit = $_GET['unit_id'];
     $id = $_GET['id'];
 
     $result = mysql_query("DELETE FROM lecture WHERE id=$id") or die(mysql_error());
-
-}
-
-header("Location: ../lecture_note.php");
+    ?>
+		<script>
+		alert('successfully remove');
+        window.location.href='../lecture_view.php?id=<?php echo $unit; ?>&name=<?php echo $name; ?>&success';
+        </script>
+		<?php
+	}
+	else
+	{
+		?>
+		<script>
+		alert('error while remove file');
+        window.location.href='../lecture_view.php?id=<?php echo $unit; ?>&name=<?php echo $name; ?>&fail';
+        </script>
+		<?php
+	}
 
 ?>

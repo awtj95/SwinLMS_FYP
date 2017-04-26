@@ -1,6 +1,21 @@
 <?php
 
-require_once '../app/config.php';
+require_once '../app/init.php';
+
+$courselistQuery = $db->prepare("
+    SELECT c.unit_id, u.name
+    FROM class c
+    JOIN unit u
+    ON c.unit_id = u.id
+    WHERE user_id=:user_id
+
+");
+
+$courselistQuery->execute([
+    'user_id' => $_SESSION['user_id']
+]);
+
+$courselist = $courselistQuery->rowCount() ? $courselistQuery : [];
 
 ?>
 
@@ -35,47 +50,20 @@ require_once '../app/config.php';
                     <!-- Custom tabs (Charts with tabs)-->
 
                     <!-- Announcements -->
-                        <div class="box box-primary">
+                        <?php if(!empty($courselist)): ?>
+                        <?php foreach($courselist as $course): ?>
+                        <div class="box box-primary courselist">
                             <div class="box-header">
-                                <i class="fa fa-bell-o"></i>        
-                                <h3 class="box-title">Course Name</h3>                   
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
-                                <?php 
-                                    $sql="SELECT * FROM announcements";
-                                    $result_set=mysql_query($sql);
-                                    while($row=mysql_fetch_array($result_set))
-                                    {
-                                ?>
-                                <ul class="announcement-list">
-                                    <li>
-                                        <span class="description" style="width: 100%; height: 125px;">
-                                            <?php
-                                                $description = $row['description'];
-                                                $newdescription = wordwrap($description, 130, "<br />\n");
-                                                echo $newdescription;
-                                            ?>
-                                        </span>
-                                        <span><?php echo $row['date'] ?></span>
-                                        <br />
-                                        <a href="announcement/remove.php?id=<?php echo $row['id'] ?>" class="delete-button"><i class="fa fa-trash-o"></i></a>
-                                    </li>
-                                </ul>
-                                <?php
-                                    }
-                                ?>                                
-                                
-                                <form class="announcement-add" action="announcement/addAnnouncement.php" method="post">
-                                    <div>
-                                        <textarea class="textarea" placeholder="Type a new announcements here...." style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" name="description" required></textarea>                                        
-                                    </div>
-                                    <div class="box-footer clearfix">
-                                        <button type="submit" class="pull-right btn btn-default" name="announcement-post">Post <i class="fa fa-upload"></i></button>
-                                    </div> 
-                                </form>         
+                                <i class="fa fa-bell-o"></i>
+                                <a href="announcements_view.php?id=<?php echo $course['unit_id']; ?>&name=<?php echo $course['name']; ?>">
+                                    <h3 class="box-title course"><?php echo $course['name']; ?></h3>
+                                </a>
                             </div>
                         </div>
+                        <?php endforeach; ?>
+                        <?php else: ?>
+                            <p>There is no units to display.</p>
+                        <?php endif; ?>
                     <!-- /.box -->
                     </section>
                 </div>
