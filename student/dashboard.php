@@ -3,14 +3,14 @@
 require_once '../app/init.php';
 
 $todolistQuery = $db->prepare("
-    SELECT id, name, done
+    SELECT id, name, done, date
     FROM todolist
-    WHERE user=:user
+    WHERE user_id=:user_id
 
 ");
 
 $todolistQuery->execute([
-    'user' => $_SESSION['user_id']
+    'user_id' => $_SESSION['user_id']
 ]);
 
 $todolist = $todolistQuery->rowCount() ? $todolistQuery : [];
@@ -118,15 +118,6 @@ $todolist = $todolistQuery->rowCount() ? $todolistQuery : [];
         
                       <h3 class="box-title">To Do List</h3>
         
-                      <!--<div class="box-tools pull-right">
-                        <ul class="pagination pagination-sm inline">
-                          <li><a href="#">&laquo;</a></li>
-                          <li><a href="#">1</a></li>
-                          <li><a href="#">2</a></li>
-                          <li><a href="#">3</a></li>
-                          <li><a href="#">&raquo;</a></li>
-                        </ul>
-                      </div>-->
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
@@ -136,9 +127,17 @@ $todolist = $todolistQuery->rowCount() ? $todolistQuery : [];
                             <?php foreach($todolist as $todo): ?>
                                 <li>
                                     <span class="todo<?php echo $todo['done'] ? ' done' : '' ?>"><?php echo $todo['name']; ?></span>
+                                    
                                     <?php if(!$todo['done']): ?>
-                                        <a href="mark.php?as=done$todo=<?php echo $todo['id']; ?>" class="done-button">Mark as done</a>
+                                        <a href="todo/mark.php?as=done&todo=<?php echo $todo['id']; ?>" class="done-button"><i class="fa fa-check"></i></a>
                                     <?php endif; ?>
+                                    <?php if($todo['done']): ?>
+                                        <a href="todo/mark.php?as=notdone&todo=<?php echo $todo['id']; ?>" class="done-button"><i class="fa fa-close"></i></a>
+                                    <?php endif; ?>
+                                        <!--<a href="#" class="done-button" data-toggle="modal" data-target="#todo"><i class="fa fa-edit"></i></a>-->
+                                        <a href="todo/remove.php?as=done&todo=<?php echo $todo['id']; ?>" class="done-button"><i class="fa fa-trash-o"></i></a>
+                                    <br />
+                                    <small class="label label-info"><i class="fa fa-clock-o"></i> <?php echo $todo['date']; ?></small>
                                 </li>
                             <?php endforeach; ?>
                         </ul>
@@ -147,8 +146,15 @@ $todolist = $todolistQuery->rowCount() ? $todolistQuery : [];
                         <?php endif; ?>
                         
 
-                        <form class="todo-add" action="addTodo.php" method="post">
-                            <input type="text" name="name" placeholder="Type a new things here...." class="input" autocomplete="off" required>
+                        <form class="todo-add" action="todo/addTodo.php" method="post">
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <input type="text" name="name" placeholder="Type a new things here...." class="input" autocomplete="off" required>
+                                </div>
+                                <div class="col-lg-4">
+                                    <input type="date" class="input" name="date" />
+                                </div>
+                            </div>
                             <input type="submit" value="Post" class="submit" >
                         </form>
                     </div>
