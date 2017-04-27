@@ -1,3 +1,24 @@
+<?php
+
+require_once '../app/init.php';
+
+$courselistQuery = $db->prepare("
+    SELECT c.unit_id, u.name, u.description
+    FROM unit u
+    JOIN class c
+    ON c.unit_id = u.id
+    WHERE user_id=:user_id
+
+");
+
+$courselistQuery->execute([
+    'user_id' => $_SESSION['user_id']
+]);
+
+$courselist = $courselistQuery->rowCount() ? $courselistQuery : [];
+
+?>
+
 <!DOCTYPE html>
 <html>
 		<?php include_once('first.php') ?>
@@ -32,19 +53,26 @@
                   
                   <!-- Course List -->
                   <div class="box box-primary">
-                    <div class="box-header">
-                      <i class="fa fa-files-o"></i>        
-                      <h3 class="box-title">Course</h3>                   
-                    </div>
-                    <!-- /.box-header -->
-                    <div class="box-body">
-                      <ul class="course-list">
-                        <li>
-							<span class="text">Course List</span>
-                        </li>                      
-                      </ul>
-                    </div>                    
-                  </div>
+                            <div class="box-header">
+                                <i class="fa fa-files-o"></i>        
+                                <h3 class="box-title">List</h3>                   
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <?php if(!empty($courselist)): ?>
+                                <ul class="courselist">
+                                    <?php foreach($courselist as $course): ?>
+                                    <li>                                 
+                                            <h3 class="course"><?php echo $course['name']; ?></h3>
+                                        <span class="course"><?php echo $course['description']; ?></span>
+                                    </li><br />
+                                    <?php endforeach; ?>
+                                </ul>
+                                <?php else: ?>
+                                    <p>There is no units to display.</p>
+                                <?php endif; ?>
+                            </div>                    
+                        </div>
                   <!-- /.box -->
                 </section>
           </div>
