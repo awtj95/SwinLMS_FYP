@@ -132,7 +132,6 @@ $todolist = $todolistQuery->rowCount() ? $todolistQuery : [];
                                     <?php if($todo['done']): ?>
                                         <a href="todo/mark.php?as=notdone&todo=<?php echo $todo['id']; ?>" class="done-button"><i class="fa fa-close"></i></a>
                                     <?php endif; ?>
-                                        <!--<a href="#" class="done-button" data-toggle="modal" data-target="#todo"><i class="fa fa-edit"></i></a>-->
                                         <a href="todo/remove.php?as=done&todo=<?php echo $todo['id']; ?>" class="done-button"><i class="fa fa-trash-o"></i></a>
                                     <br />
                                     <small class="label label-info"><i class="fa fa-clock-o"></i> <?php echo $todo['date']; ?></small>
@@ -163,11 +162,8 @@ $todolist = $todolistQuery->rowCount() ? $todolistQuery : [];
                   <div class="box box-info">
                     <div class="box-header">
                       <i class="fa fa-envelope"></i>
-        
                       <h3 class="box-title">Email</h3>
                       <!-- if add 'remove button -->
-          
-                     
                     </div>
                     <div class="box-body">
                       <form action="#" method="post">
