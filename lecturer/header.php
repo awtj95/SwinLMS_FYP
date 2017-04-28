@@ -2,8 +2,6 @@
 
 require_once '../app/init.php';
 
-$id = $_SESSION['user_id'];
-
 ?>
 
 <header class="main-header">
@@ -70,7 +68,7 @@ $id = $_SESSION['user_id'];
                   </li>
                 </ul>
               </li>
-              <li class="footer"><a href="announcements.php">View all</a></li>
+              <li class="footer"><a href="all_announcements.php">View all</a></li>
             </ul>
           </li>
           

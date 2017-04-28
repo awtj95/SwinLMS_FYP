@@ -50,6 +50,12 @@
           </a>
         </li>
         <li>
+          <a href="all_announcements.php">
+            <i class="fa fa-bell-o"></i>
+            <span>All Announcements</span>
+          </a>
+        </li>
+        <li>
           <a href="attendance.php">
             <i class="fa fa-calendar-check-o"></i>
             <span>Student Attendance</span>

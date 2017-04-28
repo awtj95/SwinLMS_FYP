@@ -68,7 +68,7 @@ require_once '../app/init.php';
                   </li>
                 </ul>
               </li>
-              <li class="footer"><a href="#">View all</a></li>
+              <li class="footer"><a href="announcements.php">View all</a></li>
             </ul>
           </li>
           
