@@ -64,7 +64,7 @@ $courselist = $courselistQuery->rowCount() ? $courselistQuery : [];
                                     <li>
                                         <span class="$course"><?php echo $course['title']; ?></span>
                                         <a href="upload/uploads/<?php echo $course['file'] ?>" target="_blank"><?php echo $course['description'] ?></a>
-                                        
+                                        <a href="#" class="upload" data-toggle="modal" data-target="#tutorial">Submission Link</a>
                                     </li>
                                     <?php endforeach; ?>
                                 </ul>
@@ -78,7 +78,45 @@ $courselist = $courselistQuery->rowCount() ? $courselistQuery : [];
                     </section>
                 </div>
             </section>
-        </div>    
+        </div>
+        <div class="modal fade" id="tutorial" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form action="upload/upload.php" method="post" enctype="multipart/form-data">
+                        <div class="modal-header">
+                            <h4 class="modal-title custom_align" id="Heading">Tutorial Submission</h4>
+                        </div>
+                    
+                        <div class="modal-body">
+                            
+                            <div class="form-group">
+                                <input type="hidden" name="unit" class="form-control" value="<?php echo $_SESSION['unit_id']; ?>">
+                            </div>
+                            <div class="form-group">
+                                <input type="hidden" name="name" class="form-control" value="<?php echo $_GET['name']; ?>">
+                            </div>
+                            <div class="form-group">
+                                <input type="hidden" name="user" class="form-control" value="<?php echo $_SESSION['user_id']; ?>">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="title" class="form-control" placeholder="Title:">
+                            </div>
+                            <div class="form-group">
+                                <input type="file" name="file" />
+                                <small>Support PDF, DOC, EXE, VIDEO, MP3, ZIP,etc format</small>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer ">
+                            <button type="submit" class="btn btn-success" name="tutorial-submission" ><span class="glyphicon glyphicon-upload"></span> Upload</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            	<!-- /.modal-content --> 
+            </div>
+        	<!-- /.modal-dialog --> 
+        </div>
     <?php include_once('footer.php') ?>
     <?php include_once('script.php') ?>
     </body>

@@ -22,7 +22,7 @@ $todolist = $todolistQuery->rowCount() ? $todolistQuery : [];
 <!DOCTYPE html>
 <html>
 		<?php include_once('first.php') ?>
-    <link href="../bootstrap/css/main.css" rel="stylesheet" />
+    <link href="../bootstrap/css/todo.css" rel="stylesheet" />
     
 	<body class="hold-transition skin-blue sidebar-mini">
 	

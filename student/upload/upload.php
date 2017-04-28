@@ -180,4 +180,95 @@ if(isset($_POST['assessment-upload']))
 		<?php
 	}
 }
+
+if(isset($_POST['tutorial-submission']))
+{    
+     
+	$file = rand(1000,100000)."-".$_FILES['file']['name'];
+    $file_loc = $_FILES['file']['tmp_name'];
+	$file_size = $_FILES['file']['size'];
+	$file_type = $_FILES['file']['type'];
+	$folder="uploads/";
+    
+    $user = $_POST['user'];   
+    $unit = $_POST['unit'];
+    $name = $_POST['name'];
+    $title = $_POST['title'];
+	
+	// new file size in KB
+	$new_size = $file_size/1024;  
+	// new file size in KB
+	
+	// make file name in lower case
+	$new_file_name = strtolower($file);
+	// make file name in lower case
+	
+	$final_file=str_replace(' ','-',$new_file_name);
+	
+	if(move_uploaded_file($file_loc,$folder.$final_file))
+	{
+		$sql="INSERT INTO tutorial_submission(unit_id,user_id,title,file,type,size) VALUES('$unit','$user','$title','$final_file','$file_type','$new_size')";
+		mysql_query($sql);
+		?>
+		<script>
+		alert('Submission Successful');
+        window.location.href='../tutorial_view.php?id=<?php echo $unit; ?>&name=<?php echo $name; ?>&success';
+        </script>
+		<?php
+	}
+	else
+	{
+		?>
+		<script>
+		alert('Error While Submission, Please try again');
+        window.location.href='../tutorial_view.php?id=<?php echo $unit; ?>&name=<?php echo $name; ?>&fail';
+        </script>
+		<?php
+	}
+}
+if(isset($_POST['assignment-submission']))
+{    
+     
+	$file = rand(1000,100000)."-".$_FILES['file']['name'];
+    $file_loc = $_FILES['file']['tmp_name'];
+	$file_size = $_FILES['file']['size'];
+	$file_type = $_FILES['file']['type'];
+	$folder="uploads/";
+    
+    $user = $_POST['user'];   
+    $unit = $_POST['unit'];
+    $name = $_POST['name'];
+    $title = $_POST['title'];
+	
+	// new file size in KB
+	$new_size = $file_size/1024;  
+	// new file size in KB
+	
+	// make file name in lower case
+	$new_file_name = strtolower($file);
+	// make file name in lower case
+	
+	$final_file=str_replace(' ','-',$new_file_name);
+	
+	if(move_uploaded_file($file_loc,$folder.$final_file))
+	{
+		$sql="INSERT INTO assignment_submission(unit_id,user_id,title,file,type,size) VALUES('$unit','$user','$title','$final_file','$file_type','$new_size')";
+		mysql_query($sql);
+		?>
+		<script>
+		alert('Submission Successful');
+        window.location.href='../assignment_view.php?id=<?php echo $unit; ?>&name=<?php echo $name; ?>&success';
+        </script>
+		<?php
+	}
+	else
+	{
+		?>
+		<script>
+		alert('Error While Submission, Please try again');
+        window.location.href='../assignment_view.php?id=<?php echo $unit; ?>&name=<?php echo $name; ?>&fail';
+        </script>
+		<?php
+	}
+}
 ?>

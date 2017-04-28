@@ -63,8 +63,7 @@ $courselist = $courselistQuery->rowCount() ? $courselistQuery : [];
                                     <?php foreach($courselist as $course): ?>
                                     <li>
                                         <span class="$course"><?php echo $course['title']; ?></span>
-                                        <a href="upload/uploads/<?php echo $course['file'] ?>" target="_blank"><?php echo $course['description'] ?></a>
-                                        
+                                        <a href="upload/uploads/<?php echo $course['file']; ?>" target="_blank"><?php echo $course['description'] ?></a>
                                     </li>
                                     <?php endforeach; ?>
                                 </ul>
@@ -78,7 +77,7 @@ $courselist = $courselistQuery->rowCount() ? $courselistQuery : [];
                     </section>
                 </div>
             </section>
-        </div>    
+        </div>
     <?php include_once('footer.php') ?>
     <?php include_once('script.php') ?>
     </body>

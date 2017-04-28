@@ -72,9 +72,6 @@ $courselist = $courselistQuery->rowCount() ? $courselistQuery : [];
                                     <p>There is no units to display.</p>
                                 <?php endif; ?>
                             </div>
-							<div class="box-footer clearfix no-border">
-								<button href="#" class="upload" data-toggle="modal" data-target="#assessment" type="button" ><i class="fa fa-upload"></i> Upload</button>
-							</div>
                         </div>
 						
                     <!-- /.box -->
@@ -82,42 +79,6 @@ $courselist = $courselistQuery->rowCount() ? $courselistQuery : [];
                     </section>
                 </div>
             </section>
-        </div>
-		
-		<!-- Assessment Dialog -->
-        <div class="modal fade" id="assessment" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title custom_align" id="Heading">Upload Assessment File</h4>
-                    </div>
-                    <form action="upload/upload.php" method="post" enctype="multipart/form-data">
-                        <div class="modal-body">
-
-                            <div class="form-group">
-                                <input type="hidden" name="unit" class="form-control" value="<?php echo $_SESSION['unit_id']; ?>">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" name="title" class="form-control" placeholder="Title:">
-                            </div>
-                            <div class="form-group">
-                                <input type="file" name="file" />
-                                <small>Support PDF, DOC, EXE, VIDEO, MP3, ZIP,etc format</small>
-                            </div>
-                            <div>
-                                <textarea class="textarea" name="description" placeholder="Description" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-                            </div>
-
-                        </div>
-                        <div class="modal-footer ">
-                            <button type="submit" class="btn btn-success" name="assessment-upload"><span class="glyphicon glyphicon-upload"></span> Upload</button>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
-                        </div>
-                    </form>
-                </div>
-            	<!-- /.modal-content --> 
-            </div>
-        	<!-- /.modal-dialog --> 
         </div>
 		
     <?php include_once('footer.php') ?>

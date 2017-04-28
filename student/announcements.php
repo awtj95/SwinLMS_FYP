@@ -3,8 +3,8 @@
 require_once '../app/init.php';
 
 $courselistQuery = $db->prepare("
-    SELECT c.unit_id, u.name
-    FROM class c
+    SELECT a.unit_id, a.description, a.date, u.name
+    FROM announcements a
     JOIN unit u
     ON c.unit_id = u.id
     WHERE user_id=:user_id
@@ -32,7 +32,7 @@ $courselist = $courselistQuery->rowCount() ? $courselistQuery : [];
             <!-- Content Header (Page header) -->
             <section class="content-header">
               <h1>
-                Announcements
+                All Announcements
               </h1>
               <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -50,25 +50,24 @@ $courselist = $courselistQuery->rowCount() ? $courselistQuery : [];
                   <!-- Custom tabs (Charts with tabs)-->
                   
                   <!-- Announcements -->
-                  <?php if(!empty($courselist)): ?>
-                        <?php foreach($courselist as $course): ?>
-                        <div class="box box-primary courselist">
-                            <div class="box-header">
-                                <i class="fa fa-bell-o"></i>
-                                <a href="announcements_view.php?id=<?php echo $course['unit_id']; ?>&name=<?php echo $course['name']; ?>">
-                                    <h3 class="box-title course"><?php echo $course['name']; ?></h3>
-                                </a>
-                            </div>
+                    <div class="box box-primary courselist">
+                        <div class="box-header">
+                            <i class="fa fa-bell-o"></i>
+                            <h3 class="box-title course">Announcements List</h3>
                         </div>
-                        <?php endforeach; ?>
-                        <?php else: ?>
-                            <p>There is no units to display.</p>
-                        <?php endif; ?>
+                        <div class="box-body">
+                            <ul>
+                                <li>
+                                    
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                   <!-- /.box -->
                 </section>
-          </div>
+            </div>
           <!-- /.content-wrapper -->
-        
+            </section>
         </div>
         <?php include_once('footer.php') ?>
         <?php include_once('script.php') ?>

@@ -20,30 +20,6 @@
           </a>
         </li>
         <li>
-          <a href="lecture_note.php">
-            <i class="fa fa-book"></i>
-            <span>Lecture</span>
-          </a>
-        </li>
-        <li>
-          <a href="tutorial.php">
-            <i class="fa fa-pencil"></i>
-            <span>Tutorial</span>
-          </a>
-        </li>
-        <li>
-          <a href="assignment.php">
-            <i class="fa fa-tasks"></i>
-            <span>Assignment</span>
-          </a>
-        </li>
-        <li>
-          <a href="assessment.php">
-            <i class="fa fa-file"></i>
-            <span>Assessment</span>
-          </a>
-        </li>
-        <li>
           <a href="announcements.php">
             <i class="fa fa-bell-o"></i>
             <span>Announcements</span>
