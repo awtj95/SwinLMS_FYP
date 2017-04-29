@@ -3,6 +3,8 @@
 require_once '../app/init.php';
 
 $_SESSION['unit_id'] = $_GET['id'];
+$counter = 0; 
+$counters = 0; 
 
 $contentheaderQuery = $db->prepare("
     SELECT id, name
@@ -16,6 +18,54 @@ $contentheaderQuery->execute([
 ]);
 
 $contentheader = $contentheaderQuery->rowCount() ? $contentheaderQuery : [];
+
+$courselistQuery = $db->prepare("
+    SELECT c.user_id, u.login_id, u.first_name, u.last_name, u.email, u.type, u.contact
+    FROM class c
+    JOIN users u
+    ON c.user_id = u.id
+    WHERE unit_id=:unit_id
+
+
+");
+
+$courselistQuery->execute([
+    'unit_id' => $_SESSION['unit_id']
+]);
+
+$courselist = $courselistQuery->rowCount() ? $courselistQuery : [];
+
+$courselisttQuery = $db->prepare("
+    SELECT u.login_id, u.first_name, u.last_name, ts.id, ts.title, ts.file
+    FROM tutorial_submission ts
+    JOIN users u
+    ON ts.user_id = u.id
+    WHERE unit_id=:unit_id
+
+
+");
+
+$courselisttQuery->execute([
+    'unit_id' => $_SESSION['unit_id']
+]);
+
+$courselistt = $courselisttQuery->rowCount() ? $courselisttQuery : [];
+
+$courselisttQuery = $db->prepare("
+    SELECT u.login_id, u.first_name, u.last_name, ts.id, ts.title, ts.file
+    FROM tutorial_submission ts
+    JOIN users u
+    ON ts.user_id = u.id
+    WHERE unit_id=:unit_id
+
+
+");
+
+$courselisttQuery->execute([
+    'unit_id' => $_SESSION['unit_id']
+]);
+
+$courselistt = $courselisttQuery->rowCount() ? $courselisttQuery : [];
 
 ?>
 
@@ -125,55 +175,69 @@ $contentheader = $contentheaderQuery->rowCount() ? $contentheaderQuery : [];
         				<h3 class="box-title">Student List</h3>
                         <div class="box-tools pull-right">
                             <div class="has-feedback">
-                                <input type="text" class="form-control input-sm" placeholder="Filter List">
+                                <input type="text" class="form-control input-sm" id="myInput" onkeyup="myFunction()" placeholder="Filter List">
                                 <span class="glyphicon glyphicon-search form-control-feedback"></span>
                             </div>
                         </div>
                     </div>
                     <!-- /.box-header -->
                     
-                    <div class="box-body">
-                        <table id="student_in_course" class="table table-bordered table-hover">
+                    <div class="box-body ">
+                        <?php if(!empty($courselist)): ?>
+                        <table id="student_in_course" class="table table-bordered table-hover courselist">
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Student ID</th>
-                                    <th>Student Name</th>
-                                    <th>Gender</th>
+                                    <th>ID</th>
+                                    <th>Name</th>
                                     <th>Email</th>
+                                    <th>Contact</th>
+                                    <th>Type</th>
                                 </tr>
                             </thead>
-                            <!--<tbody>
+                            <?php foreach($courselist as $course): 
+                            {
+                                $counter++;
+                            }
+                            
+                            ?>
+                            <tbody class="$course">
                                 <tr>
-                                    <td>asd</td>
-                                    <td>asd</td>
-                                    <td>asd</td>
-                                    <td>asd</td>
-                                    <td>asd</td>
+                                    <td><?php echo $counter ?></td>
+                                    <td><?php echo $course['login_id']; ?></td>
+                                    <td><?php echo $course['first_name']. ' ' . $course['last_name']; ?></td>
+                                    <td><?php echo $course['email']; ?></td>
+                                    <td><?php echo $course['contact']; ?></td>
+                                    <td><?php echo $course['type']; ?></td>
                                 </tr>
-                            </tbody>-->
+                            </tbody>
+                            <?php endforeach; ?>
                             <tfoot>
                                 <tr>
                                     <th>#</th>
                                     <th>Student ID</th>
                                     <th>Student Name</th>
-                                    <th>Gender</th>
                                     <th>Email</th>
+                                    <th>Contact</th>
+                                    <th>Type</th>
                                 </tr>
                             </tfoot>
                         </table>
+                        <?php else: ?>
+                            <p>There is no units to display.</p>
+                        <?php endif; ?>
                     <!-- /.box-body -->
                     </div>
                   </div>
                   <!-- /.box -->
-                  <!-- Submission List -->
+                  <!-- Tutorial Submission List -->
                   <div class="box box-primary">
                     <div class="box-header">
                       <i class="fa fa-tasks"></i>
-        				<h3 class="box-title">Submission List</h3>
+        				<h3 class="box-title">Tutorial Submission List</h3>
                         <div class="box-tools pull-right">
                             <div class="has-feedback">
-                                <input type="text" class="form-control input-sm" placeholder="Filter List">
+                                <input type="text" class="form-control input-sm" id="myInput1" onkeyup="myFunction1()" placeholder="Filter List">
                                 <span class="glyphicon glyphicon-search form-control-feedback"></span>
                             </div>
                         </div>
@@ -181,40 +245,53 @@ $contentheader = $contentheaderQuery->rowCount() ? $contentheaderQuery : [];
                     <!-- /.box-header -->
                     
                     <div class="box-body">
-                        <table id="student_in_course" class="table table-bordered table-hover">
+                        <?php if(!empty($courselistt)): ?>
+                        <table id="tutorial_submission_in_course" class="table table-bordered table-hover courselistt">
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Student ID</th>
-                                    <th>Student Name</th>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Title</th>
                                     <th>Files</th>
-                                    <th>Delete</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
-                            <!--<tbody>
+                            <?php foreach($courselistt as $courses): 
+                            {
+                                $counters++;
+                            }
+                            ?>
+                            <tbody class="$courses">
                                 <tr>
-                                    <td>asd</td>
-                                    <td>asd</td>
-                                    <td>asd</td>
-                                    <td>asd</td>
+                                    <td><?php echo $counters ?></td>
+                                    <td><?php echo $courses['login_id']; ?></td>
+                                    <td><?php echo $courses['first_name']. ' ' . $course['last_name']; ?></td>
+                                    <td><?php echo $courses['title']; ?></td>
+                                    <td><a href="upload/uploads/<?php echo $courses['file'] ?>" target="_blank"><?php echo $courses['file'] ?></a></td>
                                     <td>
-                                        <a href="remove.php?id=<?php echo $row['id'] ?>" class="done-button"><i class="fa fa-trash-o"></i></a>
+                                        <a href="submission/remove.php?id=<?php echo $courses['id'] ?>&unit_id=<?php echo $_SESSION['unit_id']; ?>" class="delete-button"><i class="fa fa-trash-o"></i></a>
                                     </td>
                                 </tr>
-                            </tbody>-->
+                            </tbody>
+                            <?php endforeach; ?>
                             <tfoot>
                                 <tr>
                                     <th>#</th>
-                                    <th>Student ID</th>
-                                    <th>Student Name</th>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Title</th>
                                     <th>Files</th>
-                                    <th>Delete</th>
+                                    <th>Action</th>
                                 </tr>
                             </tfoot>
                         </table>
+                        <?php else: ?>
+                            <p>There is no submission to display.</p>
+                        <?php endif; ?>
                     <!-- /.box-body -->
                     </div>
-                  </div>        
+                  </div>
                 </section>
             </div>
         </section>
