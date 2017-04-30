@@ -25,9 +25,9 @@ require_once '../app/init.php';
 
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="../dist/img/student.png" class="user-image" alt="User Image">
-              <span class="hidden-xs"><?php echo $_SESSION['user_id'] ?></span>
+            <a href="dashboard.php" class="dropdown-toggle" data-toggle="dropdown">
+              <img src="../dist/img/admin.ico" class="user-image" alt="User Image">
+              <span class="hidden-xs"><?php echo $_SESSION['user_id']; ?></span>
             </a>
           </li>
           
@@ -68,13 +68,29 @@ require_once '../app/init.php';
                   </li>
                 </ul>
               </li>
-              <li class="footer"><a href="announcements.php">View all</a></li>
+              <li class="footer"><a href="all_announcements.php">View all</a></li>
             </ul>
           </li>
           
           <!-- Control Sidebar Toggle Button -->
-          <li>
-            <a href="index.php" data-toggle="control-sidebar"><i class="fa fa-sign-out"></i></a>
+          <li class="dropdown notifications-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-sort-down"></i>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="header">More Setting</li>
+              <li>
+                <!-- inner menu: contains the actual data -->
+                <ul class="menu">
+                  <li>
+                      <a href="setting.php"><i class="fa fa-gears"> Setting</i></a>
+                  </li>
+                  <li>
+                      <a href="../index.php"><i class="fa fa-sign-out"> Sign Out</i></a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
           </li>
         </ul>
       </div>

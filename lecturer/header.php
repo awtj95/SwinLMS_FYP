@@ -73,8 +73,24 @@ require_once '../app/init.php';
           </li>
           
           <!-- Control Sidebar Toggle Button -->
-          <li>
-            <a href="../index.php" data-toggle="control-sidebar"><i class="fa fa-sign-out"></i></a>
+          <li class="dropdown notifications-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-sort-down"></i>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="header">More Setting</li>
+              <li>
+                <!-- inner menu: contains the actual data -->
+                <ul class="menu">
+                  <li>
+                      <a href="setting.php"><i class="fa fa-gears"> Setting</i></a>
+                  </li>
+                  <li>
+                      <a href="../index.php"><i class="fa fa-sign-out"> Sign Out</i></a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
           </li>
         </ul>
       </div>
