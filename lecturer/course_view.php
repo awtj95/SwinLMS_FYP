@@ -193,6 +193,7 @@ $courselistt = $courselisttQuery->rowCount() ? $courselisttQuery : [];
                                     <th>Email</th>
                                     <th>Contact</th>
                                     <th>Type</th>
+                                    <th>Grade</th>
                                 </tr>
                             </thead>
                             <?php foreach($courselist as $course): 
@@ -209,6 +210,7 @@ $courselistt = $courselisttQuery->rowCount() ? $courselisttQuery : [];
                                     <td><?php echo $course['email']; ?></td>
                                     <td><?php echo $course['contact']; ?></td>
                                     <td><?php echo $course['type']; ?></td>
+                                    <td><?php echo $course['type']; ?></td>
                                 </tr>
                             </tbody>
                             <?php endforeach; ?>
@@ -220,6 +222,7 @@ $courselistt = $courselisttQuery->rowCount() ? $courselisttQuery : [];
                                     <th>Email</th>
                                     <th>Contact</th>
                                     <th>Type</th>
+                                    <th>Grade</th>
                                 </tr>
                             </tfoot>
                         </table>

@@ -2,6 +2,14 @@
 
 require_once '../app/init.php';
 
+require_once '../app/config.php';
+
+$id = $_SESSION['user_id'];
+$query = "select * from users where id = '$id'";
+$result = mysql_query($query);
+while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) 
+{
+
 ?>
 
 
@@ -19,7 +27,7 @@ require_once '../app/init.php';
             <!-- Content Header (Page header) -->
             <section class="content-header">
               <h1>
-                <?php echo $_SESSION['user_id'] ?>
+                <?php echo $line['login_id']; ?>
                 <small>Setting</small>
               </h1>
               <ol class="breadcrumb">
@@ -40,7 +48,7 @@ require_once '../app/init.php';
                             <!-- /.box-header -->
 
                             <div class="box-body">
-                                <form action="#" method="post" enctype="multipart/form-data">
+                                <form action="setting/update.php" method="post" enctype="multipart/form-data">
                                 <!-- /.box-body -->
                                     <div class="row">
                                         <div class="col-lg-6">
@@ -49,45 +57,44 @@ require_once '../app/init.php';
 
                                                 <div class="form-group">
                                                     <label for="sid">Student ID</label>
-                                                    <input type="text" class="form-control" id="sid" name="sid" value="" readonly>
+                                                    <input type="text" class="form-control" id="sid" name="sid" value="<?php echo $line['login_id']; ?>" readonly>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="pass">Password</label>
-                                                    <input type="text" class="form-control" id="pass" name="pass" value="">
+                                                    <input type="text" class="form-control" id="pass" name="pass" value="<?php echo $line['password']; ?>">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="fname">First Name</label>
-                                                    <input type="text" class="form-control" id="fname" name="fname" value="">
+                                                    <input type="text" class="form-control" id="fname" name="fname" value="<?php echo $line['first_name']; ?>">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="lname">Last Name</label>
-                                                    <input type="text" class="form-control" id="lname" name="lname" value="">
+                                                    <input type="text" class="form-control" id="lname" name="lname" value="<?php echo $line['last_name']; ?>">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="dob">Date of Birth</label>
-                                                    <input type="date" class="form-control" id="dob" name="dob" value="">
+                                                    <input type="date" class="form-control" id="dob" name="dob" value="<?php echo $line['dob']; ?>" readonly>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="contact">Contact</label>
-                                                    <input type="text" class="form-control" id="contact" name="contact" value="">
+                                                    <input type="text" class="form-control" id="contact" name="contact" value="<?php echo $line['contact']; ?>">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="email">Email</label>
-                                                    <input type="text" class="form-control" id="email" name="email" value="">
+                                                    <input type="text" class="form-control" id="email" name="email" value="<?php echo $line['email']; ?>">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="course">Course</label>
-                                                    <input type="text" class="form-control" id="course" name="course" value="" readonly>
+                                                    <input type="text" class="form-control" id="course" name="course" value="<?php echo $line['course_id']; ?>" readonly>
                                                 </div>
                                             </fieldset>
                                         </div>
                                         <div class="col-lg-6">
                                             <fieldset>
                                             <legend>Home Address Info</legend>
-
                                                 <div class="form-group">
                                                     <label for="address">Address</label>
-                                                    <input type="text" class="form-control" id="address" name="address" value="">
+                                                    <input type="text" class="form-control" id="address" name="address" value="<?php echo $line['address']; ?>">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="city">City</label>
@@ -105,6 +112,9 @@ require_once '../app/init.php';
                                                     <label for="phone">Phone</label>
                                                     <input type="text" class="form-control" id="phone" name="phone" value="">
                                                 </div>
+                                                <div class="form-group">
+                                                    <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $_SESSION['user_id']; ?>">
+                                                </div>
                                             </fieldset>
                                         </div>
                                     </div>
@@ -116,7 +126,7 @@ require_once '../app/init.php';
                                                     <fieldset>
                                                         <div class="form-group">
                                                             <label for="egname">Name</label>
-                                                            <input type="text" class="form-control" id="address" name="address"  value="">
+                                                            <input type="text" class="form-control" id="egname" name="egname"  value="">
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="egemail">Email</label>
@@ -141,9 +151,12 @@ require_once '../app/init.php';
                                     </div>
                                     
                                     <div class="box-footer clearfix no-border">
-                                        <button type="button" class="btn btn-default pull-right"><i class="fa fa-upload"></i> Update</button>
+                                        <button type="submit" class="btn btn-default pull-right"><i class="fa fa-upload"></i> Update</button>
                                     </div>
                                 </form>
+                                <?php
+                                    }
+                                ?>
                             </div>
                         </div> 
                     </div>
