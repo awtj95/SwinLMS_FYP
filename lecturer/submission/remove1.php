@@ -12,7 +12,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
     ?>
 		<script>
 		alert('successfully remove');
-        window.location.href='../course_view.php?id=<?php echo $unit; ?>&success';
+        window.location.href='../grade_assignment_view.php?id=<?php echo $unit; ?>&success';
         </script>
 		<?php
 	}
@@ -21,7 +21,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id']))
 		?>
 		<script>
 		alert('error while remove file');
-        window.location.href='../course_view.php?id=<?php echo $unit; ?>&fail';
+        window.location.href='../grade_assignment_view.php?id=<?php echo $unit; ?>&fail';
         </script>
 		<?php
 	}

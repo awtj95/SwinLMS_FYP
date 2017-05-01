@@ -98,19 +98,19 @@ while ($line = mysql_fetch_array($result, MYSQL_ASSOC))
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="city">City</label>
-                                                    <input type="text" class="form-control" id="city" name="city" value="">
+                                                    <input type="text" class="form-control" id="city" name="city" value="<?php echo $line['city']; ?>">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="country">Country</label>
-                                                    <input type="text" class="form-control" id="country" name="country" value="">
+                                                    <input type="text" class="form-control" id="country" name="country" value="<?php echo $line['country']; ?>">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="pcode">Postcode</label>
-                                                    <input type="text" class="form-control" id="pcode" name="pcode" value="">
+                                                    <label for="postcode">Postcode</label>
+                                                    <input type="text" class="form-control" id="postcode" name="postcode" value="<?php echo $line['postcode']; ?>">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="phone">Phone</label>
-                                                    <input type="text" class="form-control" id="phone" name="phone" value="">
+                                                    <input type="text" class="form-control" id="phone" name="phone" value="<?php echo $line['phone']; ?>">
                                                 </div>
                                                 <div class="form-group">
                                                     <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $_SESSION['user_id']; ?>">
@@ -126,11 +126,11 @@ while ($line = mysql_fetch_array($result, MYSQL_ASSOC))
                                                     <fieldset>
                                                         <div class="form-group">
                                                             <label for="egname">Name</label>
-                                                            <input type="text" class="form-control" id="egname" name="egname"  value="">
+                                                            <input type="text" class="form-control" id="egname" name="egname"  value="<?php echo $line['egname']; ?>">
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="egemail">Email</label>
-                                                            <input type="text" class="form-control" id="city" name="city"  value="">
+                                                            <input type="text" class="form-control" id="egemail" name="egemail"  value="<?php echo $line['egemail']; ?>">
                                                         </div>
                                                     </fieldset>
                                                 </div>
@@ -138,11 +138,11 @@ while ($line = mysql_fetch_array($result, MYSQL_ASSOC))
                                                     <fieldset>
                                                         <div class="form-group">
                                                             <label for="egcontact">Contact</label>
-                                                            <input type="text" class="form-control" id="country" name="country"  value="">
+                                                            <input type="text" class="form-control" id="egcontact" name="egcontact"  value="<?php echo $line['egcontact']; ?>">
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="relationship">Relationship</label>
-                                                            <input type="text" class="form-control" id="relationship" name="relationship"  value="">
+                                                            <input type="text" class="form-control" id="relationship" name="relationship"  value="<?php echo $line['relationship']; ?>">
                                                         </div>
                                                     </fieldset>
                                                 </div>

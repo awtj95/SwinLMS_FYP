@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 01, 2017 at 11:24 AM
+-- Generation Time: Apr 28, 2017 at 10:07 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -120,23 +120,16 @@ CREATE TABLE `assignment_submission` (
   `title` varchar(45) NOT NULL,
   `file` varchar(100) NOT NULL,
   `type` varchar(30) NOT NULL,
-  `size` int(11) NOT NULL,
-  `grade` varchar(10) DEFAULT NULL,
-  `feedback` varchar(255) DEFAULT NULL
+  `size` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `assignment_submission`
 --
 
-INSERT INTO `assignment_submission` (`id`, `unit_id`, `user_id`, `title`, `file`, `type`, `size`, `grade`, `feedback`) VALUES
-(2, 4, 3, 'assignment 7', '59733-admin.sql', 'application/octet-stream', 7, 'B', 'sdf werfr'),
-(3, 1, 4, 'assessment 1', '40805-index.php', 'application/octet-stream', 5, 'C', 'ajf se'),
-(4, 1, 4, 'assignment 2', '72072-swinlms.sql', 'application/octet-stream', 20, 'D', 'sdif'),
-(5, 1, 5, 'assignment 1', '62081-index.php', 'application/octet-stream', 5, 'E', 'a aojsd'),
-(6, 1, 5, 'assignment 2', '70549-swinlms.sql', 'application/octet-stream', 20, 'F', 'asjdb ioasjd'),
-(8, 1, 4, 'assignment 1', '40868-index.php', 'application/octet-stream', 5, 'H', 'sdfnb  eoijf'),
-(9, 1, 4, 'assignment 2', '58878-swinlms.sql', 'application/octet-stream', 20, 'I', 'sdjifb aoishf oisdhf');
+INSERT INTO `assignment_submission` (`id`, `unit_id`, `user_id`, `title`, `file`, `type`, `size`) VALUES
+(1, 2, 3, 'assignment 3', '72592-index.php', 'application/octet-stream', 5),
+(2, 4, 3, 'assignment 7', '59733-admin.sql', 'application/octet-stream', 7);
 
 -- --------------------------------------------------------
 
@@ -323,18 +316,15 @@ CREATE TABLE `tutorial_submission` (
   `title` varchar(45) NOT NULL,
   `file` varchar(100) NOT NULL,
   `type` varchar(30) NOT NULL,
-  `size` int(11) NOT NULL,
-  `grade` varchar(10) DEFAULT NULL,
-  `feedback` varchar(255) DEFAULT NULL
+  `size` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tutorial_submission`
 --
 
-INSERT INTO `tutorial_submission` (`id`, `unit_id`, `user_id`, `title`, `file`, `type`, `size`, `grade`, `feedback`) VALUES
-(12, 1, 4, 'tutorial 2', '39255-index.php', 'application/octet-stream', 5, '100', 'asdblk askndl'),
-(13, 1, 5, 'tutorial 1', '43599-index.php', 'application/octet-stream', 5, 'C', 'asdil asn af');
+INSERT INTO `tutorial_submission` (`id`, `unit_id`, `user_id`, `title`, `file`, `type`, `size`) VALUES
+(10, 2, 3, 'tutorial 3', '88728-admin.sql', 'application/octet-stream', 7);
 
 -- --------------------------------------------------------
 
@@ -377,33 +367,25 @@ CREATE TABLE `users` (
   `first_name` varchar(45) NOT NULL,
   `last_name` varchar(45) NOT NULL,
   `address` varchar(100) NOT NULL,
-  `city` varchar(20) DEFAULT NULL,
-  `country` varchar(20) DEFAULT NULL,
-  `postcode` int(10) DEFAULT NULL,
-  `phone` int(15) DEFAULT NULL,
   `contact` int(11) NOT NULL,
-  `course_id` int(11) DEFAULT NULL,
+  `course` varchar(50) DEFAULT NULL,
   `department` varchar(50) DEFAULT NULL,
   `dob` date DEFAULT NULL,
-  `photo` varchar(100) DEFAULT NULL,
-  `egname` varchar(50) DEFAULT NULL,
-  `egemail` varchar(50) DEFAULT NULL,
-  `egcontact` varchar(15) DEFAULT NULL,
-  `relationship` varchar(15) DEFAULT NULL
+  `photo` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `login_id`, `password`, `created`, `type`, `email`, `first_name`, `last_name`, `address`, `city`, `country`, `postcode`, `phone`, `contact`, `course_id`, `department`, `dob`, `photo`, `egname`, `egemail`, `egcontact`, `relationship`) VALUES
-(1, '123', 'qwe123', '2017-04-21 13:03:44', 'ADMIN', 'qwe@gmail.com', 'hello', 'world', 'asd12ecasd', 'kuching', 'sarawak', 93250, 1234567890, 1324567891, 1, NULL, '2017-05-10', NULL, 'sdfc', 'd@s.com', '4567', 'cousin'),
-(2, '456', 'asd456', '2017-04-21 13:03:49', 'ADMIN', 'rty@gmail.com', 'hi', 'world', 'asd12ecasd', 'kuching', 'sarawak', 93250, 1234567890, 1324567891, 2, NULL, '2017-05-10', NULL, 'uhvjhb', 'd@s.com', '876543', 'cousin'),
-(3, '78', 'zxcs', '2017-04-21 13:03:50', 'ADMIN', 'zxs@gmail.com', 'ls', 'worls', 'jalan simpang tige', 'kuching', 'sarawak', 93250, 1234567890, 1324567891, 1, NULL, '2017-04-10', NULL, 'hvjbh', 'd@s.com', '23459', 'cousin'),
-(4, '1234', 'qwe', '2017-04-22 03:27:19', 'lecturer', 'asdf@gmail.com', 'asdf', 'zxcv', 'dcffa', 'kuching', 'sarawak', 93330, 987654321, 1234567891, 2, NULL, '2017-05-17', NULL, 'hi', 'lo', '1467292591', 'cousin'),
-(5, '5678', 'tyui', '2017-04-22 09:11:29', 'student', 'zxcv@gmail.com', 'tyui', 'ghjk', 'fsd vxb', 'kuching', 'sarawak', 93250, 1234567890, 1293871263, 1, NULL, '2017-05-15', NULL, 'asdn asn', 'd@s.com', '123459', 'cousin'),
-(6, '12345', 'qfscfx', '2017-04-28 02:12:13', 'student', 'as@gmail.com', 'a', 's', 'srgvsdv', 'kuching', 'sarawak', 93250, 1234567890, 1234567891, 2, NULL, '2017-05-03', NULL, 'asdn asknd', 'd@s.com', '345865', 'cousin'),
-(7, '3463', 'gddbSg', '2017-04-28 02:22:12', 'student', 'sdf@gmail.com', 'sd', 'f', 'wrsgrsdf', 'kuching', 'sarawak', 93250, 1234567890, 1345162469, 1, NULL, '2017-05-09', NULL, 'afav', 'd@s.com', '13486', 'cousin');
+INSERT INTO `users` (`id`, `login_id`, `password`, `created`, `type`, `email`, `first_name`, `last_name`, `address`, `contact`, `course`, `department`, `dob`, `photo`) VALUES
+(1, '123', 'qwe123', '2017-04-21 13:03:44', 'ADMIN', 'qwe@gmail.com', 'hello', 'world', 'asd12ecasd', 1324567891, NULL, NULL, NULL, NULL),
+(2, '456', 'asd456', '2017-04-21 13:03:49', 'ADMIN', 'rty@gmail.com', 'hi', 'world', 'asd12ecasd', 1324567891, NULL, NULL, NULL, NULL),
+(3, '789', 'zxc789', '2017-04-21 13:03:50', 'ADMIN', 'zxc@gmail.com', 'lo', 'world', 'asd12ecasd', 1324567891, NULL, NULL, NULL, NULL),
+(4, '1234', 'qwer', '2017-04-22 03:27:19', 'lecturer', 'asdf@gmail.com', 'asdf', 'zxcv', 'dcffawf', 1234567891, NULL, NULL, NULL, NULL),
+(5, '5678', 'tyui', '2017-04-22 09:11:29', 'student', 'zxcv@gmail.com', 'tyui', 'ghjk', 'fsd vxb', 1293871263, NULL, NULL, NULL, NULL),
+(6, '12345', 'qfscfx', '2017-04-28 02:12:13', 'student', 'as@gmail.com', 'a', 's', 'srgvsdv', 1234567891, NULL, NULL, NULL, NULL),
+(7, '3463', 'gddbSg', '2017-04-28 02:22:12', 'student', 'sdf@gmail.com', 'sd', 'f', 'wrsgrsdf', 1345162469, NULL, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -511,8 +493,7 @@ ALTER TABLE `unit`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `course_id` (`course_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -537,17 +518,17 @@ ALTER TABLE `assignment`
 -- AUTO_INCREMENT for table `assignment_submission`
 --
 ALTER TABLE `assignment_submission`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `class`
 --
 ALTER TABLE `class`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `classroom`
 --
 ALTER TABLE `classroom`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `course`
 --
@@ -567,7 +548,7 @@ ALTER TABLE `lecture`
 -- AUTO_INCREMENT for table `todolist`
 --
 ALTER TABLE `todolist`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `tutorial`
 --
@@ -577,7 +558,7 @@ ALTER TABLE `tutorial`
 -- AUTO_INCREMENT for table `tutorial_submission`
 --
 ALTER TABLE `tutorial_submission`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `unit`
 --
@@ -665,12 +646,6 @@ ALTER TABLE `tutorial_submission`
 ALTER TABLE `unit`
   ADD CONSTRAINT `unit_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `unit_ibfk_3` FOREIGN KEY (`grade_id`) REFERENCES `grade` (`id`) ON UPDATE CASCADE;
-
---
--- Constraints for table `users`
---
-ALTER TABLE `users`
-  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`) ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

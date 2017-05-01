@@ -57,7 +57,7 @@ $contentheader = $contentheaderQuery->rowCount() ? $contentheaderQuery : [];
                             <div class="box box-primary courselist">
                                 <div class="box-header">
                                     <i class="fa fa-pencil"></i>
-                                    <a href="tutorial_view.php?id=<?php echo $_SESSION['unit_id'] ?>&name=<?php echo $header['name']; ?>"><h3 class="box-title">Tutorial</h3></a>
+                                    <a href="grade_tutorial_view.php?id=<?php echo $_SESSION['unit_id'] ?>&name=<?php echo $header['name']; ?>"><h3 class="box-title">Tutorial</h3></a>
                                 </div>
                             </div>
                     </section>
@@ -70,7 +70,7 @@ $contentheader = $contentheaderQuery->rowCount() ? $contentheaderQuery : [];
                             <div class="box box-primary courselist">
                                 <div class="box-header">
                                     <i class="fa fa-tasks"></i>
-                                    <a href="assignment_view.php?id=<?php echo $_SESSION['unit_id'] ?>&name=<?php echo $header['name']; ?>"><h3 class="box-title">Assignment</h3></a>
+                                    <a href="grade_assignment_view.php?id=<?php echo $_SESSION['unit_id'] ?>&name=<?php echo $header['name']; ?>"><h3 class="box-title">Assignment</h3></a>
                                 </div>
                             </div>
                     </section>
