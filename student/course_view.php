@@ -108,8 +108,21 @@ $contentheader = $contentheaderQuery->rowCount() ? $contentheaderQuery : [];
                     <!-- Lecture Note -->
                         <div class="box box-primary courselist">
                             <div class="box-header">
-                                <i class="fa fa-file"></i>
+                                <i class="fa fa-bell-o"></i>
                                 <a href="announcements_view.php?id=<?php echo $_SESSION['unit_id'] ?>&name=<?php echo $header['name']; ?>"><h3 class="box-title">Announcement</h3></a>
+                            </div>
+                        </div>
+                </section>
+            </div>
+            <div class="row">
+                <!-- Left col -->
+                <section class="col-lg-12">
+                  <!-- Custom tabs (Charts with tabs)-->
+                    <!-- Lecture Note -->
+                        <div class="box box-primary courselist">
+                            <div class="box-header">
+                                <i class="fa fa-calendar-check-o"></i>
+                                <a href="attendance_view.php?id=<?php echo $_SESSION['unit_id'] ?>&name=<?php echo $header['name']; ?>"><h3 class="box-title">Attendance</h3></a>
                             </div>
                         </div>
                 </section>

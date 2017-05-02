@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 01, 2017 at 11:24 AM
+-- Generation Time: May 02, 2017 at 12:16 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -141,6 +141,48 @@ INSERT INTO `assignment_submission` (`id`, `unit_id`, `user_id`, `title`, `file`
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `attendance`
+--
+
+CREATE TABLE `attendance` (
+  `id` int(11) NOT NULL,
+  `unit_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `attend` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `attendance`
+--
+
+INSERT INTO `attendance` (`id`, `unit_id`, `user_id`, `attend`) VALUES
+(10, 1, 4, '2017-05-02 16:52:38'),
+(11, 2, 4, '2017-05-02 16:58:56'),
+(12, 3, 4, '2017-05-02 16:59:24'),
+(13, 3, 4, '2017-05-02 16:59:34'),
+(14, 4, 4, '2017-05-02 17:00:35'),
+(15, 4, 4, '2017-05-02 17:00:45'),
+(16, 4, 4, '2017-05-02 17:01:19'),
+(17, 4, 4, '2017-05-02 17:01:30'),
+(18, 4, 4, '2017-05-02 17:01:33'),
+(19, 4, 4, '2017-05-02 17:01:34'),
+(20, 4, 4, '2017-05-02 17:01:36'),
+(21, 4, 4, '2017-05-02 17:01:38'),
+(22, 4, 4, '2017-05-02 17:01:40'),
+(23, 4, 4, '2017-05-02 17:01:54'),
+(24, 4, 4, '2017-05-02 17:01:55'),
+(25, 4, 4, '2017-05-02 17:01:56'),
+(26, 1, 4, '2017-05-02 17:14:34'),
+(27, 1, 4, '2017-04-04 17:25:59'),
+(28, 1, 3, '2017-03-01 17:26:24'),
+(29, 4, 3, '2017-05-02 18:09:16'),
+(30, 2, 3, '2017-05-02 18:09:35'),
+(31, 2, 3, '2017-05-02 18:11:06'),
+(32, 2, 3, '2017-05-02 18:12:25');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `class`
 --
 
@@ -164,7 +206,12 @@ INSERT INTO `class` (`id`, `classroom_id`, `grade_id`, `user_id`, `unit_id`, `se
 (4, 3, NULL, 4, 3, NULL),
 (5, 4, NULL, 4, 4, NULL),
 (6, 4, NULL, 3, 4, NULL),
-(7, 1, NULL, 5, 1, NULL);
+(7, 1, NULL, 5, 1, NULL),
+(8, 1, NULL, 6, 1, NULL),
+(9, 1, NULL, 7, 1, NULL),
+(10, 1, NULL, 5, 2, NULL),
+(11, 1, NULL, 6, 3, NULL),
+(12, 1, NULL, 7, 4, NULL);
 
 -- --------------------------------------------------------
 
@@ -278,7 +325,8 @@ INSERT INTO `todolist` (`id`, `name`, `user_id`, `done`, `created`, `date`) VALU
 (7, 'wfxvxcvag adfvg', 5, 0, '2017-04-22 05:27:38', '2017-04-26'),
 (11, 'do 1', 4, 0, '2017-04-26 16:13:05', '2017-04-27'),
 (12, 'do 2', 4, 0, '2017-04-26 16:13:12', '2017-04-28'),
-(15, 'asdkb', 3, 0, '2017-04-27 14:13:21', '2017-04-28');
+(15, 'asdkb', 3, 0, '2017-04-27 14:13:21', '2017-04-28'),
+(16, 'do 3', 4, 0, '2017-05-02 16:14:47', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -333,8 +381,8 @@ CREATE TABLE `tutorial_submission` (
 --
 
 INSERT INTO `tutorial_submission` (`id`, `unit_id`, `user_id`, `title`, `file`, `type`, `size`, `grade`, `feedback`) VALUES
-(12, 1, 4, 'tutorial 2', '39255-index.php', 'application/octet-stream', 5, '100', 'asdblk askndl'),
-(13, 1, 5, 'tutorial 1', '43599-index.php', 'application/octet-stream', 5, 'C', 'asdil asn af');
+(12, 1, 4, 'tutorial 2', '39255-index.php', 'application/octet-stream', 5, 'A', 'asdblk askndl'),
+(13, 1, 5, 'tutorial 1', '43599-index.php', 'application/octet-stream', 5, 'B', 'asdil asn af');
 
 -- --------------------------------------------------------
 
@@ -434,6 +482,14 @@ ALTER TABLE `assignment`
 -- Indexes for table `assignment_submission`
 --
 ALTER TABLE `assignment_submission`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `unit_id` (`unit_id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Indexes for table `attendance`
+--
+ALTER TABLE `attendance`
   ADD PRIMARY KEY (`id`),
   ADD KEY `unit_id` (`unit_id`),
   ADD KEY `user_id` (`user_id`);
@@ -539,10 +595,15 @@ ALTER TABLE `assignment`
 ALTER TABLE `assignment_submission`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
+-- AUTO_INCREMENT for table `attendance`
+--
+ALTER TABLE `attendance`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+--
 -- AUTO_INCREMENT for table `class`
 --
 ALTER TABLE `class`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `classroom`
 --
@@ -567,7 +628,7 @@ ALTER TABLE `lecture`
 -- AUTO_INCREMENT for table `todolist`
 --
 ALTER TABLE `todolist`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `tutorial`
 --
@@ -616,6 +677,13 @@ ALTER TABLE `assignment`
 ALTER TABLE `assignment_submission`
   ADD CONSTRAINT `assignment_submission_ibfk_1` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `assignment_submission_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `attendance`
+--
+ALTER TABLE `attendance`
+  ADD CONSTRAINT `attendance_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `attendance_ibfk_2` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `class`

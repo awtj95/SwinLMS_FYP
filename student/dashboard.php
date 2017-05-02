@@ -124,7 +124,7 @@ $todolist = $todolistQuery->rowCount() ? $todolistQuery : [];
                                     <input type="text" name="name" placeholder="Type a new things here...." class="input" autocomplete="off" required>
                                 </div>
                                 <div class="col-lg-4">
-                                    <input type="date" class="input" name="date" />
+                                    <input type="date" class="input" name="date"/>
                                 </div>
                             </div>
                             <input type="submit" value="Post" class="submit" >

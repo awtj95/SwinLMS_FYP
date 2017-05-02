@@ -56,19 +56,19 @@ require_once '../app/init.php';
           <li class="dropdown notifications-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-bell-o"></i>
-              <span class="label label-warning"><!--read from database--></span>
+              <span class="label label-pill label-danger count" style="border-radius:10px;"></span> 
             </a>
             <ul class="dropdown-menu">
-              <li class="header">New Notifications</li>
+              <li class="header">Announcements</li>
               <li>
                 <!-- inner menu: contains the actual data -->
                 <ul class="menu">
                   <li>
-                    <!--list-->
+                      
                   </li>
                 </ul>
               </li>
-              <li class="footer"><a href="all_announcements.php">View all</a></li>
+              <li class="footer"><a href="all_announcements.php">All Announcements</a></li>
             </ul>
           </li>
           

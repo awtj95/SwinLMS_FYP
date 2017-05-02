@@ -4,7 +4,6 @@ require_once '../app/init.php';
 
 $_SESSION['unit_id'] = $_GET['id'];
 $counter = 0; 
-$counters = 0; 
 
 $contentheaderQuery = $db->prepare("
     SELECT id, name
@@ -24,8 +23,7 @@ $courselistQuery = $db->prepare("
     FROM class c
     JOIN users u
     ON c.user_id = u.id
-    WHERE unit_id=:unit_id
-
+    WHERE unit_id=:unit_id AND u.type = 'student'
 
 ");
 
@@ -156,12 +154,11 @@ $courselist = $courselistQuery->rowCount() ? $courselistQuery : [];
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>ID</th>
-                                    <th>Name</th>
+                                    <th>Student ID</th>
+                                    <th>Student Name</th>
                                     <th>Email</th>
                                     <th>Contact</th>
                                     <th>Type</th>
-                                    <th>Grade</th>
                                 </tr>
                             </thead>
                             <?php foreach($courselist as $course): 
@@ -178,7 +175,6 @@ $courselist = $courselistQuery->rowCount() ? $courselistQuery : [];
                                     <td><?php echo $course['email']; ?></td>
                                     <td><?php echo $course['contact']; ?></td>
                                     <td><?php echo $course['type']; ?></td>
-                                    <td><?php echo $course['type']; ?></td>
                                 </tr>
                             </tbody>
                             <?php endforeach; ?>
@@ -190,7 +186,6 @@ $courselist = $courselistQuery->rowCount() ? $courselistQuery : [];
                                     <th>Email</th>
                                     <th>Contact</th>
                                     <th>Type</th>
-                                    <th>Grade</th>
                                 </tr>
                             </tfoot>
                         </table>

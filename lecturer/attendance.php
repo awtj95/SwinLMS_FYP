@@ -1,3 +1,24 @@
+<?php
+
+require_once '../app/init.php';
+
+$courselistQuery = $db->prepare("
+    SELECT c.unit_id, u.name
+    FROM class c
+    JOIN unit u
+    ON c.unit_id = u.id
+    WHERE user_id=:user_id
+
+");
+
+$courselistQuery->execute([
+    'user_id' => $_SESSION['user_id']
+]);
+
+$courselist = $courselistQuery->rowCount() ? $courselistQuery : [];
+
+?>
+
 <!DOCTYPE html>
 <html>
     <?php include_once('first.php') ?>
@@ -19,66 +40,37 @@
                 </ol>
             </section>
 
-        <!-- Main content -->
+            <!-- Main content -->
             <section class="content">
+            <!-- /.row -->
             <!-- Main row -->
                 <div class="row">
                 <!-- Left col -->
                     <section class="col-lg-12">
                     <!-- Custom tabs (Charts with tabs)-->
-                    <!-- Submission List -->
-                        <div class="box box-primary">
+
+                    <!-- Attendance -->
+                        <?php if(!empty($courselist)): ?>
+                        <?php foreach($courselist as $course): ?>
+                        <div class="box box-primary courselist">
                             <div class="box-header">
                                 <i class="fa fa-calendar-check-o"></i>
-                                <h3 class="box-title">Attendance List</h3>
-                                <div class="box-tools pull-right">
-                                    <div class="has-feedback">
-                                        <input type="text" class="form-control input-sm" placeholder="Filter List">
-                                        <span class="glyphicon glyphicon-search form-control-feedback"></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /.box-header -->
-
-                            <div class="box-body">
-                                <table id="student_in_course" class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th class="col-xs-0.5">#</th>
-                                            <th class="col-xs-1.5">Student ID</th>
-                                            <th class="col-xs-4">Student Name</th>
-                                            <th class="col-xs-3">Class Period</th>
-                                            <th class="col-xs-3">Time Attend</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>asd</td>
-                                            <td>asd</td>
-                                            <td>asd</td>
-                                            <td>asd</td>
-                                        </tr>
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Student ID</th>
-                                            <th>Student Name</th>
-                                            <th>Class Period</th>
-                                            <th>Time Attend</th>
-                                        </tr>
-                                    </tfoot>
-                                </table>
-                                <!-- /.box-body -->
+                                <a href="attendance_view.php?id=<?php echo $course['unit_id']; ?>&name=<?php echo $course['name']; ?>">
+                                    <h3 class="box-title course"><?php echo $course['name']; ?></h3>
+                                </a>
                             </div>
                         </div>
+                        <?php endforeach; ?>
+                        <?php else: ?>
+                            <p>There is no units to display.</p>
+                        <?php endif; ?>
+                    <!-- /.box -->
                     </section>
                 </div>
+            <!-- /.content-wrapper -->
             </section>
         </div>
     <?php include_once('footer.php') ?>
     <?php include_once('script.php') ?>
-
     </body>
 </html>

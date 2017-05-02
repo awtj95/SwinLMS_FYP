@@ -71,7 +71,7 @@ $courselistt = $courselisttQuery->rowCount() ? $courselisttQuery : [];
                 <section class="col-lg-12">
                   <!-- Tutorial Submission List -->
                   <div class="box box-primary">
-                    <form action="#" method="post">
+                    <form action="submission/update.php?id=<?php echo $courses['id']; ?>&unit_id=<?php echo $_SESSION['unit_id']; ?>" method="post">
                         <div class="box-header">
                           <i class="fa fa-pencil"></i>
                             <h3 class="box-title">Tutorial Submission List</h3>
@@ -114,7 +114,7 @@ $courselistt = $courselisttQuery->rowCount() ? $courselisttQuery : [];
                                         <td><input type="text" class="form-control" id="grade" name="grade" size="1" value="<?php echo $courses['grade']; ?>"></td>
                                         <td><input type="text" class="form-control" id="feedback" name="feedback" value="<?php echo $courses['feedback']; ?>"></td>
                                         <td>
-                                            <a href="submission/remove.php?id=<?php echo $courses['id'] ?>&unit_id=<?php echo $_SESSION['unit_id']; ?>" class="delete-button"><i class="fa fa-trash-o"></i></a>
+                                            <a href="submission/remove.php?id=<?php echo $courses['id']; ?>&unit_id=<?php echo $_SESSION['unit_id']; ?>" class="delete-button"><i class="fa fa-trash-o"></i></a>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -138,7 +138,7 @@ $courselistt = $courselisttQuery->rowCount() ? $courselisttQuery : [];
                         <!-- /.box-body -->
                         </div>
                         <div class="box-footer clearfix no-border">
-                          <button type="submit" class="btn btn-default pull-right"><i class="fa fa-upload"></i> Update</button>
+                          <button type="submit" class="btn btn-default pull-right" name="tutorial-update"><i class="fa fa-upload"></i> Update</button>
                         </div>
                     </form>
                   </div>
