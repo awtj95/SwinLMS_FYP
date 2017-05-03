@@ -75,8 +75,8 @@ $courselist = $courselistQuery->rowCount() ? $courselistQuery : [];
                                             <tr>
                                                 <th width="3%">#</th>
                                                 <th width="15%">Student ID</th>
-                                                <th width="32%">Student Name</th>
-                                                <th width="50%">Date & Time</th>
+                                                <th width="30%">Student Name</th>
+                                                <th width="52%">Date & Time</th>
                                             </tr>
                                         </thead>
                                         <?php foreach($courselist as $course): 

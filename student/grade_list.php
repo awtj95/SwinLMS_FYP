@@ -39,7 +39,7 @@ $contentheader = $contentheaderQuery->rowCount() ? $contentheaderQuery : [];
                   </h1>
                   <ol class="breadcrumb">
                     <li><a href="dashboard.php"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li class="active">Course</li>
+                    <li class="active">Grade</li>
                     <li class="active"><?php echo $header['name']; ?></li>
                   </ol>
               <?php endforeach; ?>

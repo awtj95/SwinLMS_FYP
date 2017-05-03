@@ -18,7 +18,7 @@ if(isset($_POST['unit_id'])){
         ]);
 	?>
 		<script>
-		alert('Submission Successful');
+		alert('Attend Successful');
         window.location.href='../attendance_view.php?id=<?php echo $unit_id; ?>&name=<?php echo $name; ?>&success';
         </script>
 		<?php
@@ -27,7 +27,7 @@ if(isset($_POST['unit_id'])){
 	{
 		?>
 		<script>
-		alert('Error While Submission, Please try again');
+		alert('Error While Attend');
         window.location.href='../attendance_view.php?id=<?php echo $unit_id; ?>&name=<?php echo $name; ?>&fail';
         </script>
 		<?php

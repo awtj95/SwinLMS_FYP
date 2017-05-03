@@ -36,8 +36,9 @@ $courselist = $courselistQuery->rowCount() ? $courselistQuery : [];
                   </h1>
                   <ol class="breadcrumb">
                     <li><a href="dashboard.php"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li class="active">Assignment</li>
+                    <li class="active">Course</li>
                     <li class="active"><?php echo $_GET['name']; ?></li>
+                    <li class="active">Assignment</li>
                   </ol>
             </section>            
 

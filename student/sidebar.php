@@ -50,6 +50,16 @@
             </span>-->
           </a>
         </li>
+        <li>
+          <a href="game.php">
+            <i class="fa fa-gamepad"></i> <span>Small Game</span>
+            <!--<span class="pull-right-container">
+              <small class="label pull-right bg-yellow"></small>
+              <small class="label pull-right bg-green"></small>
+              <small class="label pull-right bg-red"></small>
+            </span>-->
+          </a>
+        </li>
       </ul>
     </section>
     <!-- /.sidebar -->

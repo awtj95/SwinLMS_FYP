@@ -43,8 +43,9 @@ $courselist = $courselistQuery->rowCount() ? $courselistQuery : [];
                   </h1>
                   <ol class="breadcrumb">
                     <li><a href="dashboard.php"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li class="active">Attendance</li>
+                    <li class="active">Course</li>
                     <li class="active"><?php echo $_GET['name']; ?></li>
+                    <li class="active">Attendance</li>
                   </ol>
             </section>            
 
@@ -76,9 +77,9 @@ $courselist = $courselistQuery->rowCount() ? $courselistQuery : [];
                                         <thead>
                                             <tr>
                                                 <th width="3%">#</th>
-                                                <th>ID</th>
+                                                <th width="15%">ID</th>
                                                 <th width="30%">Student Name</th>
-                                                <th width="77%">Date & Time</th>
+                                                <th width="52%">Date & Time</th>
                                             </tr>
                                         </thead>
                                         <?php foreach($courselist as $course): 

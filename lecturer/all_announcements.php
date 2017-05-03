@@ -40,7 +40,7 @@ $courselist = $courselistQuery->rowCount() ? $courselistQuery : [];
               </h1>
               <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active">Announcements</li>
+                <li class="active">All Announcements</li>
               </ol>
             </section>
         
