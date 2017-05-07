@@ -111,7 +111,7 @@ $courselist = $courselistQuery->rowCount() ? $courselistQuery : [];
                                         <td><?php echo $course['login_id']; ?></td>
                                         <td><?php echo $course['first_name']. ' ' . $course['last_name']; ?></td>
                                         <td><?php echo $course['title']; ?></td>
-                                        <td><a href="upload/uploads/<?php echo $course['file'] ?>" target="_blank"><?php echo $course['file'] ?></a></td>
+                                        <td><a href="../student/upload/uploads/<?php echo $course['file'] ?>" target="_blank"><?php echo $course['file'] ?></a></td>
                                         <td><input type="text" class="form-control" id="grade" name="grade" size="1" value="<?php echo $course['grade']; ?>"></td>
                                         <td><input type="text" class="form-control" id="feedback" name="feedback" value="<?php echo $course['feedback']; ?>"></td>
                                         <td>

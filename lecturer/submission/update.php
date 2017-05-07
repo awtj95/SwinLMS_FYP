@@ -3,19 +3,20 @@ require_once '../../app/config.php';
 
 if(isset($_POST['tutorial-update']))
 {    
-    $unit = $_GET['unit_id'];
-    $id = $_GET['id'];
-    $grade = $_POST['grade'];
-    $feedback = $_POST['feedback'];
+     
+	$file = $_FILES['file']['name'];
+    $file_loc = $_FILES['file']['tmp_name'];
+	$folder="../../student/upload/uploads/";
+     
+    $unit = $_POST['unit'];
+    $name = $_POST['name'];
 	
-	if(!empty($grade))
+	if(move_uploaded_file($file_loc,$folder.$file))
 	{
-		$sql="UPDATE tutorial_submission SET grade='$grade', feedback='$feedback' WHERE id=$id";
-		mysql_query($sql);
 		?>
 		<script>
-		alert('Successfully update');
-        window.location.href='../grade_tutorial_view.php?id=<?php echo $unit; ?>&success';
+		alert('Update Successful');
+        window.location.href='../grade_tutorial_view.php?id=<?php echo $unit; ?>&name=<?php echo $name; ?>&success';
         </script>
 		<?php
 	}
@@ -23,8 +24,8 @@ if(isset($_POST['tutorial-update']))
 	{
 		?>
 		<script>
-		alert('Error while update');
-        window.location.href='../grade_tutorial_view.php?id=<?php echo $unit; ?>&fail';
+		alert('Error While Update, Please try again');
+        window.location.href='../grade_tutorial_view.php?id=<?php echo $unit; ?>&name=<?php echo $name; ?>&fail';
         </script>
 		<?php
 	}

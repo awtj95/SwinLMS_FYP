@@ -64,7 +64,7 @@ $courselist = $courselistQuery->rowCount() ? $courselistQuery : [];
                                     <?php foreach($courselist as $course): ?>
                                     <li>
                                         <span class="$course"><?php echo $course['title']; ?></span>
-                                        <a href="upload/uploads/<?php echo $course['file'] ?>" target="_blank"><?php echo $course['description'] ?></a>
+                                        <a href="../lecturer/upload/uploads/<?php echo $course['file'] ?>" target="_blank"><?php echo $course['description'] ?></a>
                                         <a href="#" class="upload" data-toggle="modal" data-target="#assignment">Submission Link</a>
                                     </li>
                                     <?php endforeach; ?>

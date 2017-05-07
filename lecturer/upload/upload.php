@@ -180,4 +180,32 @@ if(isset($_POST['assessment-upload']))
 		<?php
 	}
 }
+
+if(isset($_POST['tutorial-update']))
+{           
+    $id = $_GET['id'];
+    $unit = $_POST['unit'];
+    $name = $_POST['name'];
+    $grade = $_POST['grade'];
+    $feedback = $_POST['feedback'];
+	
+    $sql="UPDATE tutorial_submission SET grade=$grade, feedback=$feedback WHERE id=$id";
+    mysql_query($sql);
+    ?>
+    <script>
+    alert('Update Successful');
+    window.location.href='../grade_tutorial_view.php?id=<?php echo $unit; ?>&name=<?php echo $name; ?>&success';
+    </script>
+    <?php
+}
+else
+{
+    ?>
+    <script>
+    alert('Error While Update, Please try again');
+    window.location.href='../grade_tutorial_view.php?id=<?php echo $unit; ?>&name=<?php echo $name; ?>&fail';
+    </script>
+    <?php
+}
+
 ?>
