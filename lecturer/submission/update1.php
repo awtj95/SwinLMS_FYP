@@ -16,7 +16,7 @@ if(isset($_POST['file-update']))
 		?>
 		<script>
 		alert('Update Successful');
-        window.location.href='../grade_tutorial_view.php?id=<?php echo $unit; ?>&name=<?php echo $name; ?>&success';
+        window.location.href='../grade_assignment_view.php?id=<?php echo $unit; ?>&name=<?php echo $name; ?>&success';
         </script>
 		<?php
 	}
@@ -25,7 +25,7 @@ if(isset($_POST['file-update']))
 		?>
 		<script>
 		alert('Error While Update, Please try again');
-        window.location.href='../grade_tutorial_view.php?id=<?php echo $unit; ?>&name=<?php echo $name; ?>&fail';
+        window.location.href='../grade_assignment_view.php?id=<?php echo $unit; ?>&name=<?php echo $name; ?>&fail';
         </script>
 		<?php
 	}

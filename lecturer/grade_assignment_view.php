@@ -72,80 +72,109 @@ $courselist = $courselistQuery->rowCount() ? $courselistQuery : [];
                 <section class="col-lg-12">
                   <!-- Assignment Submission List -->
                   <div class="box box-primary">
-                      <form action="#" method="post">
-                        <div class="box-header">
-                          <i class="fa fa-tasks"></i>
-                            <h3 class="box-title">Assignment Submission List</h3>
-                            <div class="box-tools pull-right">
-                                <div class="has-feedback">
-                                    <input type="text" class="form-control input-sm" id="myInput2" onkeyup="myFunction2()" placeholder="Filter List">
-                                    <span class="glyphicon glyphicon-search form-control-feedback"></span>
-                                </div>
+                    <div class="box-header">
+                      <i class="fa fa-tasks"></i>
+                        <h3 class="box-title">Assignment Submission List</h3>
+                        <div class="box-tools pull-right">
+                            <div class="has-feedback">
+                                <input type="text" class="form-control input-sm" id="myInput2" onkeyup="myFunction2()" placeholder="Filter List">
+                                <span class="glyphicon glyphicon-search form-control-feedback"></span>
                             </div>
                         </div>
-                        <!-- /.box-header -->
+                    </div>
+                    <!-- /.box-header -->
 
-                        <div class="box-body">
-                            <?php if(!empty($courselist)): ?>
-                            <table id="assignment_submission_in_course" class="table table-bordered table-hover courselist">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>ID</th>
-                                        <th>Name</th>
-                                        <th>Title</th>
-                                        <th>Files (Download)</th>
-                                        <th>Grade</th>
-                                        <th>Lecturer's Feedback</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <?php foreach($courselist as $course): 
-                                {
-                                    $counter++;
-                                }
-                                ?>
-                                <tbody class="$course">
-                                    <tr>
-                                        <td><?php echo $counter ?></td>
-                                        <td><?php echo $course['login_id']; ?></td>
-                                        <td><?php echo $course['first_name']. ' ' . $course['last_name']; ?></td>
-                                        <td><?php echo $course['title']; ?></td>
-                                        <td><a href="../student/upload/uploads/<?php echo $course['file'] ?>" target="_blank"><?php echo $course['file'] ?></a></td>
-                                        <td><input type="text" class="form-control" id="grade" name="grade" size="1" value="<?php echo $course['grade']; ?>"></td>
-                                        <td><input type="text" class="form-control" id="feedback" name="feedback" value="<?php echo $course['feedback']; ?>"></td>
-                                        <td>
-                                            <a href="submission/remove1.php?id=<?php echo $course['id'] ?>&unit_id=<?php echo $_SESSION['unit_id']; ?>" class="delete-button"><i class="fa fa-trash-o"></i></a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                                <?php endforeach; ?>
-                                <tfoot>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>ID</th>
-                                        <th>Name</th>
-                                        <th>Title</th>
-                                        <th>Files (Download)</th>
-                                        <th>Grade</th>
-                                        <th>Lecturer's Feedback</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                            <?php else: ?>
-                                <p>There is no submission to display.</p>
-                            <?php endif; ?>
-                        <!-- /.box-body -->
-                        </div>
-                        <div class="box-footer clearfix no-border">
-                          <button type="submit" class="btn btn-default pull-right"><i class="fa fa-upload"></i> Update</button>
-                        </div>
-                    </form>
+                    <div class="box-body">
+                        <?php if(!empty($courselist)): ?>
+                        <table id="assignment_submission_in_course" class="table table-bordered table-hover courselist">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Title</th>
+                                    <th>Files (Download)</th>
+                                    <th>Grade</th>
+                                    <th>Lecturer's Feedback</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <?php foreach($courselist as $course): 
+                            {
+                                $counter++;
+                            }
+                            ?>
+                            <tbody class="$course">
+                                <tr>
+                                    <td><?php echo $counter ?></td>
+                                    <td><?php echo $course['login_id']; ?></td>
+                                    <td><?php echo $course['first_name']. ' ' . $course['last_name']; ?></td>
+                                    <td><?php echo $course['title']; ?></td>
+                                    <td><a href="../student/upload/uploads/<?php echo $course['file'] ?>" target="_blank"><?php echo $course['file'] ?></a></td>
+                                    <td><input type="text" class="form-control" id="grade" name="grade" size="1" value="<?php echo $course['grade']; ?>"></td>
+                                    <td><input type="text" class="form-control" id="feedback" name="feedback" value="<?php echo $course['feedback']; ?>"></td>
+                                    <td>
+                                        <a href="#" class="upload" data-toggle="modal" data-target="#assignment-update"><i class="fa fa-upload"></i></a>
+
+                                        <a href="submission/remove1.php?id=<?php echo $course['id'] ?>&unit_id=<?php echo $_SESSION['unit_id']; ?>" class="delete-button"><i class="fa fa-trash-o"></i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <?php endforeach; ?>
+                            <tfoot>
+                                <tr>
+                                    <th>#</th>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Title</th>
+                                    <th>Files (Download)</th>
+                                    <th>Grade</th>
+                                    <th>Lecturer's Feedback</th>
+                                    <th>Action</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <?php else: ?>
+                            <p>There is no submission to display.</p>
+                        <?php endif; ?>
+                    <!-- /.box-body -->
+                    </div>
                   </div>
                 </section>
             </div>
         </section>
+        </div>
+        <div class="modal fade" id="assignment-update" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form action="submission/update1.php" method="post" enctype="multipart/form-data">
+                        <div class="modal-header">
+                            <h4 class="modal-title custom_align" id="Heading">Assignment Update</h4>
+                        </div>
+                    
+                        <div class="modal-body">
+                            
+                            <div class="form-group">
+                                <input type="hidden" name="unit" class="form-control" value="<?php echo $_SESSION['unit_id']; ?>">
+                            </div>
+                            <div class="form-group">
+                                <input type="hidden" name="name" class="form-control" value="<?php echo $_GET['name']; ?>">
+                            </div>
+                            <div class="form-group">
+                                <input type="file" name="file" />
+                                <small>Support PDF, DOC, EXE, VIDEO, MP3, ZIP,etc format</small>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer ">
+                            <button type="submit" class="btn btn-success" name="file-update" ><span class="glyphicon glyphicon-upload"></span> Upload</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            	<!-- /.modal-content --> 
+            </div>
+        	<!-- /.modal-dialog --> 
         </div>
         <?php include_once('footer.php') ?>
         <?php include_once('script.php') ?>

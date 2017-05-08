@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 02, 2017 at 12:16 PM
+-- Generation Time: May 08, 2017 at 05:33 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -68,14 +68,13 @@ CREATE TABLE `assessment` (
 --
 
 INSERT INTO `assessment` (`id`, `unit_id`, `title`, `file`, `description`, `type`, `size`) VALUES
-(6, 1, 'assessment 2', '34122-assessment-2.rtf', '<p>test 2</p>', 'application/msword', 0),
-(7, 1, 'assessment 1', '92644-assessment-1.rtf', '<p>test 1</p>', 'application/msword', 0),
-(8, 2, 'assessment 3', '59899-assessment-3.rtf', '<p>assessment 3<br></p>', 'application/msword', 0),
-(9, 2, 'assessment 4', '99094-assessment-4.rtf', '<p>assessment 4<br></p>', 'application/msword', 0),
-(10, 4, 'assessment 7', '17003-assessment-7.rtf', '<p>assessment 7<br></p>', 'application/msword', 0),
-(11, 4, 'assessment 8', '85758-assessment-8.rtf', '<p>assessment 8<br></p>', 'application/msword', 0),
-(12, 3, 'assessment 5', '11124-assessment-5.rtf', '<p>assessment 5<br></p>', 'application/msword', 0),
-(13, 3, 'assessment 6', '54379-assessment-6.rtf', '<p>assessment 6<br></p>', 'application/msword', 0);
+(1, 1, 'assessment 1', '71416-new-microsoft-excel-worksheet.xlsx', '<p>assessment 1</p>', 'application/vnd.openxmlformats', 6),
+(2, 1, 'assessment 2', '61256-new-microsoft-excel-worksheet.xlsx', '<p>assessment 2</p>', 'application/vnd.openxmlformats', 6),
+(3, 2, 'assessment 1', '26146-new-microsoft-word-document.docx', '<p>assessment 1</p>', 'application/vnd.openxmlformats', 0),
+(4, 2, 'assessment 2', '89172-new-microsoft-word-document.docx', '<p>assessment 2</p>', 'application/vnd.openxmlformats', 0),
+(5, 3, 'assessment 1', '1845-new-microsoft-excel-worksheet.xlsx', '<p>assessment 1</p>', 'application/vnd.openxmlformats', 6),
+(6, 3, 'assessment 2', '93381-new-microsoft-excel-worksheet.xlsx', '<p>assessment 2</p>', 'application/vnd.openxmlformats', 6),
+(7, 4, 'assessment 2', '20858-new-microsoft-excel-worksheet.xlsx', '', 'application/vnd.openxmlformats', 6);
 
 -- --------------------------------------------------------
 
@@ -98,14 +97,13 @@ CREATE TABLE `assignment` (
 --
 
 INSERT INTO `assignment` (`id`, `unit_id`, `title`, `file`, `description`, `type`, `size`) VALUES
-(5, 1, 'assignment 1', '3815-assignement-1.rtf', '<p>test 1</p>', 'application/msword', 0),
-(6, 1, 'assignment 2', '42031-assignement-2.rtf', '<p>test 2</p>', 'application/msword', 0),
-(7, 2, 'assignment 3', '70033-assignement-3.rtf', '<p>assignment 3<br></p>', 'application/msword', 0),
-(8, 2, 'assignment 4', '99149-assignement-4.rtf', '<p>assignment 4<br></p>', 'application/msword', 0),
-(9, 3, 'assignment 5', '8894-assignement-5.rtf', '<p>assignment 5<br></p>', 'application/msword', 0),
-(10, 3, 'assignment 6', '37188-assignement-6.rtf', '<p>assignment 6<br></p>', 'application/msword', 0),
-(11, 4, 'assignment 7', '32116-assignement-7.rtf', '<p>assignment 7<br></p>', 'application/msword', 0),
-(12, 4, 'assignment 8', '59274-assignement-8.rtf', '<p>assignment 8<br></p>', 'application/msword', 0);
+(14, 1, 'assignment 1', '35433-new-microsoft-excel-worksheet.xlsx', '<p>assignment 1</p>', 'application/vnd.openxmlformats', 6),
+(15, 1, 'assignment 2', '34143-new-microsoft-excel-worksheet.xlsx', '<p>assignment 2<br></p>', 'application/vnd.openxmlformats', 6),
+(16, 2, 'assignment 1', '80849-new-microsoft-word-document.docx', '<p>assignment 1</p>', 'application/vnd.openxmlformats', 0),
+(17, 2, 'assignment 2', '46784-new-microsoft-word-document.docx', '<p>assignment 2</p>', 'application/vnd.openxmlformats', 0),
+(18, 3, 'assignment 1', '51240-new-microsoft-excel-worksheet.xlsx', '<p>assignment 1<br></p>', 'application/vnd.openxmlformats', 6),
+(19, 3, 'assignment 2', '23414-new-microsoft-excel-worksheet.xlsx', '<p>assignment 2<br></p>', 'application/vnd.openxmlformats', 6),
+(20, 4, 'assignment 1', '18607-new-microsoft-excel-worksheet.xlsx', '<p>assignment 1<br></p>', 'application/vnd.openxmlformats', 6);
 
 -- --------------------------------------------------------
 
@@ -130,13 +128,16 @@ CREATE TABLE `assignment_submission` (
 --
 
 INSERT INTO `assignment_submission` (`id`, `unit_id`, `user_id`, `title`, `file`, `type`, `size`, `grade`, `feedback`) VALUES
-(2, 4, 3, 'assignment 7', '59733-admin.sql', 'application/octet-stream', 7, 'B', 'sdf werfr'),
-(3, 1, 4, 'assessment 1', '40805-index.php', 'application/octet-stream', 5, 'C', 'ajf se'),
-(4, 1, 4, 'assignment 2', '72072-swinlms.sql', 'application/octet-stream', 20, 'D', 'sdif'),
-(5, 1, 5, 'assignment 1', '62081-index.php', 'application/octet-stream', 5, 'E', 'a aojsd'),
-(6, 1, 5, 'assignment 2', '70549-swinlms.sql', 'application/octet-stream', 20, 'F', 'asjdb ioasjd'),
-(8, 1, 4, 'assignment 1', '40868-index.php', 'application/octet-stream', 5, 'H', 'sdfnb  eoijf'),
-(9, 1, 4, 'assignment 2', '58878-swinlms.sql', 'application/octet-stream', 20, 'I', 'sdjifb aoishf oisdhf');
+(11, 1, 4, 'assignment 1', '73063-new-microsoft-excel-worksheet.xlsx', 'application/vnd.openxmlformats', 6, NULL, NULL),
+(12, 1, 4, 'assignment 2', '53561-new-microsoft-word-document.docx', 'application/vnd.openxmlformats', 0, NULL, NULL),
+(13, 2, 4, 'assignment 1', '25822-new-microsoft-word-document.docx', 'application/vnd.openxmlformats', 0, NULL, NULL),
+(14, 2, 4, 'assignment 2', '33826-new-microsoft-excel-worksheet.xlsx', 'application/vnd.openxmlformats', 6, NULL, NULL),
+(15, 3, 4, 'assignment 1', '60120-new-microsoft-excel-worksheet.xlsx', 'application/vnd.openxmlformats', 6, NULL, NULL),
+(16, 3, 4, 'assignment 2', '72087-new-microsoft-word-document.docx', 'application/vnd.openxmlformats', 0, NULL, NULL),
+(17, 4, 4, 'assignment 1', '89991-new-microsoft-excel-worksheet.xlsx', 'application/vnd.openxmlformats', 6, NULL, NULL),
+(18, 4, 3, 'assignment 1', '3048-new-microsoft-excel-worksheet.xlsx', 'application/vnd.openxmlformats', 6, NULL, NULL),
+(19, 2, 3, 'assignment 1', '28221-new-microsoft-word-document.docx', 'application/vnd.openxmlformats', 0, NULL, NULL),
+(20, 2, 3, 'assignment 2', '81834-new-microsoft-excel-worksheet.xlsx', 'application/vnd.openxmlformats', 6, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -178,7 +179,12 @@ INSERT INTO `attendance` (`id`, `unit_id`, `user_id`, `attend`) VALUES
 (29, 4, 3, '2017-05-02 18:09:16'),
 (30, 2, 3, '2017-05-02 18:09:35'),
 (31, 2, 3, '2017-05-02 18:11:06'),
-(32, 2, 3, '2017-05-02 18:12:25');
+(32, 2, 3, '2017-05-02 18:12:25'),
+(33, 4, 4, '2017-05-02 18:25:56'),
+(34, 4, 4, '2017-05-02 18:36:40'),
+(35, 2, 4, '2017-05-02 18:36:51'),
+(36, 1, 4, '2017-05-04 13:47:11'),
+(37, 1, 3, '2017-05-04 13:49:33');
 
 -- --------------------------------------------------------
 
@@ -291,14 +297,13 @@ CREATE TABLE `lecture` (
 --
 
 INSERT INTO `lecture` (`id`, `unit_id`, `title`, `file`, `description`, `type`, `size`) VALUES
-(14, 1, 'lecture 1', '75226-lecture-1.rtf', '<p>test 1</p>', 'application/msword', 0),
-(15, 1, 'lecture 2', '23287-lecture-2.rtf', '<p>test 2</p>', 'application/msword', 0),
-(16, 2, 'lecture 3', '30212-lecture-3.rtf', '<p>lecture 3<br></p>', 'application/msword', 0),
-(17, 2, 'lecture 4', '59086-lecture-4.rtf', '<p>lecture 4<br></p>', 'application/msword', 0),
-(18, 3, 'lecture 5', '57065-lecture-5.rtf', '<p>lecture 5<br></p>', 'application/msword', 0),
-(19, 3, 'lecture 6', '28415-lecture-6.rtf', '<p>lecture 6<br></p>', 'application/msword', 0),
-(20, 4, 'lecture 7', '3909-lecture-7.rtf', '<p>lecture 7<br></p>', 'application/msword', 0),
-(21, 4, 'lecture 8', '41412-lecture-8.rtf', '<p>lecture 8<br></p>', 'application/msword', 0);
+(18, 1, 'lecture 1', '10888-new-microsoft-word-document.docx', '<p>lecture 1</p>', 'application/vnd.openxmlformats', 0),
+(19, 1, 'lecture 2', '75099-new-microsoft-word-document.docx', '<p>lecture 2</p>', 'application/vnd.openxmlformats', 0),
+(20, 2, 'lecture 1', '10284-new-microsoft-excel-worksheet.xlsx', '<p>lecture 1</p>', 'application/vnd.openxmlformats', 6),
+(21, 2, 'lecture 2', '21611-new-microsoft-excel-worksheet.xlsx', '<p>lecture 2</p>', 'application/vnd.openxmlformats', 6),
+(22, 3, 'lecture 1', '46032-new-microsoft-word-document.docx', '<p>lecture 1</p>', 'application/vnd.openxmlformats', 0),
+(23, 3, 'lecture 2', '69443-new-microsoft-word-document.docx', '<p>lecture 2</p>', 'application/vnd.openxmlformats', 0),
+(24, 4, 'lecture 1', '94846-new-microsoft-excel-worksheet.xlsx', '', 'application/vnd.openxmlformats', 6);
 
 -- --------------------------------------------------------
 
@@ -349,14 +354,13 @@ CREATE TABLE `tutorial` (
 --
 
 INSERT INTO `tutorial` (`id`, `unit_id`, `title`, `file`, `description`, `type`, `size`) VALUES
-(6, 1, 'tutorial 1', '28233-tutorial-1.rtf', '<p>test 1</p>', 'application/msword', 0),
-(7, 1, 'tutorial 2', '27463-tutorial-2.rtf', '<p>test 2</p>', 'application/msword', 0),
-(8, 2, 'tutorial 3', '18242-tutorial-3.rtf', '<p>tutorial 3<br></p>', 'application/msword', 0),
-(9, 2, 'tutorial 4', '7308-tutorial-4.rtf', '<p>tutorial 4<br></p>', 'application/msword', 0),
-(10, 4, 'tutorial 7', '87218-tutorial-7.rtf', '<p>tutorial 7<br></p>', 'application/msword', 0),
-(11, 4, 'tutorial 8', '4667-tutorial-8.rtf', '<p>tutorial 8<br></p>', 'application/msword', 0),
-(12, 3, 'tutorial 5', '20429-tutorial-5.rtf', '<p>tutorial 5<br></p>', 'application/msword', 0),
-(13, 3, 'tutorial 6', '66295-tutorial-6.rtf', '<p>tutorial 6<br></p>', 'application/msword', 0);
+(15, 1, 'tutorial 1', '49675-new-microsoft-word-document.docx', '<p>tutorial 1</p>', 'application/vnd.openxmlformats', 0),
+(16, 1, 'tutorial 2', '61316-new-microsoft-word-document.docx', '<p>tutorial 2</p>', 'application/vnd.openxmlformats', 0),
+(17, 2, 'tutorial 1', '23354-new-microsoft-excel-worksheet.xlsx', '<p>tutorial 1</p>', 'application/vnd.openxmlformats', 6),
+(18, 2, 'tutorial 2', '75697-new-microsoft-excel-worksheet.xlsx', '<p>tutorial 2</p>', 'application/vnd.openxmlformats', 6),
+(19, 3, 'tutorial 1', '51947-new-microsoft-word-document.docx', '<p>tutorial 1</p>', 'application/vnd.openxmlformats', 0),
+(20, 3, 'tutorial 2', '36711-new-microsoft-word-document.docx', '<p>tutorial 2</p>', 'application/vnd.openxmlformats', 0),
+(21, 4, 'tutorial 1', '11704-new-microsoft-word-document.docx', '<p>tutorial 1</p>', 'application/vnd.openxmlformats', 0);
 
 -- --------------------------------------------------------
 
@@ -381,8 +385,16 @@ CREATE TABLE `tutorial_submission` (
 --
 
 INSERT INTO `tutorial_submission` (`id`, `unit_id`, `user_id`, `title`, `file`, `type`, `size`, `grade`, `feedback`) VALUES
-(12, 1, 4, 'tutorial 2', '39255-index.php', 'application/octet-stream', 5, 'A', 'asdblk askndl'),
-(13, 1, 5, 'tutorial 1', '43599-index.php', 'application/octet-stream', 5, 'B', 'asdil asn af');
+(26, 1, 4, 'tutorial 1', '37732-new-microsoft-excel-worksheet.xlsx', 'application/vnd.openxmlformats', 6, NULL, NULL),
+(27, 1, 4, 'tutorial 2', '60455-new-microsoft-word-document.docx', 'application/vnd.openxmlformats', 0, NULL, NULL),
+(28, 2, 4, 'tutorial 1', '54784-new-microsoft-word-document.docx', 'application/vnd.openxmlformats', 0, NULL, NULL),
+(29, 2, 4, 'tutorial 2', '69048-new-microsoft-excel-worksheet.xlsx', 'application/vnd.openxmlformats', 6, NULL, NULL),
+(30, 3, 4, 'tutorial 1', '16571-new-microsoft-word-document.docx', 'application/vnd.openxmlformats', 0, NULL, NULL),
+(31, 3, 4, 'tutorial 2', '24744-new-microsoft-excel-worksheet.xlsx', 'application/vnd.openxmlformats', 6, NULL, NULL),
+(32, 4, 4, 'tutorial 1', '63207-new-microsoft-excel-worksheet.xlsx', 'application/vnd.openxmlformats', 6, NULL, NULL),
+(33, 4, 3, 'tutorial 1', '79042-new-microsoft-word-document.docx', 'application/vnd.openxmlformats', 0, NULL, NULL),
+(34, 2, 3, 'tutorial 1', '7634-new-microsoft-excel-worksheet.xlsx', 'application/vnd.openxmlformats', 6, NULL, NULL),
+(35, 2, 3, 'tutorial 2', '87036-new-microsoft-word-document.docx', 'application/vnd.openxmlformats', 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -448,7 +460,7 @@ INSERT INTO `users` (`id`, `login_id`, `password`, `created`, `type`, `email`, `
 (1, '123', 'qwe123', '2017-04-21 13:03:44', 'ADMIN', 'qwe@gmail.com', 'hello', 'world', 'asd12ecasd', 'kuching', 'sarawak', 93250, 1234567890, 1324567891, 1, NULL, '2017-05-10', NULL, 'sdfc', 'd@s.com', '4567', 'cousin'),
 (2, '456', 'asd456', '2017-04-21 13:03:49', 'ADMIN', 'rty@gmail.com', 'hi', 'world', 'asd12ecasd', 'kuching', 'sarawak', 93250, 1234567890, 1324567891, 2, NULL, '2017-05-10', NULL, 'uhvjhb', 'd@s.com', '876543', 'cousin'),
 (3, '78', 'zxcs', '2017-04-21 13:03:50', 'ADMIN', 'zxs@gmail.com', 'ls', 'worls', 'jalan simpang tige', 'kuching', 'sarawak', 93250, 1234567890, 1324567891, 1, NULL, '2017-04-10', NULL, 'hvjbh', 'd@s.com', '23459', 'cousin'),
-(4, '1234', 'qwe', '2017-04-22 03:27:19', 'lecturer', 'asdf@gmail.com', 'asdf', 'zxcv', 'dcffa', 'kuching', 'sarawak', 93330, 987654321, 1234567891, 2, NULL, '2017-05-17', NULL, 'hi', 'lo', '1467292591', 'cousin'),
+(4, '1234', '123456', '2017-04-22 03:27:19', 'lecturer', 'asdf@gmail.com', 'asdf', 'zxcv', 'dcffa', 'kuching', 'sarawak', 93330, 987654321, 123456789, 2, NULL, '2017-05-17', NULL, 'hi', 'lo', '1467292591', 'cousin'),
 (5, '5678', 'tyui', '2017-04-22 09:11:29', 'student', 'zxcv@gmail.com', 'tyui', 'ghjk', 'fsd vxb', 'kuching', 'sarawak', 93250, 1234567890, 1293871263, 1, NULL, '2017-05-15', NULL, 'asdn asn', 'd@s.com', '123459', 'cousin'),
 (6, '12345', 'qfscfx', '2017-04-28 02:12:13', 'student', 'as@gmail.com', 'a', 's', 'srgvsdv', 'kuching', 'sarawak', 93250, 1234567890, 1234567891, 2, NULL, '2017-05-03', NULL, 'asdn asknd', 'd@s.com', '345865', 'cousin'),
 (7, '3463', 'gddbSg', '2017-04-28 02:22:12', 'student', 'sdf@gmail.com', 'sd', 'f', 'wrsgrsdf', 'kuching', 'sarawak', 93250, 1234567890, 1345162469, 1, NULL, '2017-05-09', NULL, 'afav', 'd@s.com', '13486', 'cousin');
@@ -583,22 +595,22 @@ ALTER TABLE `announcements`
 -- AUTO_INCREMENT for table `assessment`
 --
 ALTER TABLE `assessment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `assignment`
 --
 ALTER TABLE `assignment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `assignment_submission`
 --
 ALTER TABLE `assignment_submission`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `attendance`
 --
 ALTER TABLE `attendance`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 --
 -- AUTO_INCREMENT for table `class`
 --
@@ -623,7 +635,7 @@ ALTER TABLE `grade`
 -- AUTO_INCREMENT for table `lecture`
 --
 ALTER TABLE `lecture`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT for table `todolist`
 --
@@ -633,12 +645,12 @@ ALTER TABLE `todolist`
 -- AUTO_INCREMENT for table `tutorial`
 --
 ALTER TABLE `tutorial`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT for table `tutorial_submission`
 --
 ALTER TABLE `tutorial_submission`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 --
 -- AUTO_INCREMENT for table `unit`
 --

@@ -150,7 +150,7 @@ $courselistt = $courselisttQuery->rowCount() ? $courselisttQuery : [];
                 <div class="modal-content">
                     <form action="submission/update.php" method="post" enctype="multipart/form-data">
                         <div class="modal-header">
-                            <h4 class="modal-title custom_align" id="Heading">Tutorial Submission</h4>
+                            <h4 class="modal-title custom_align" id="Heading">Tutorial Update</h4>
                         </div>
                     
                         <div class="modal-body">
@@ -168,7 +168,7 @@ $courselistt = $courselisttQuery->rowCount() ? $courselisttQuery : [];
 
                         </div>
                         <div class="modal-footer ">
-                            <button type="submit" class="btn btn-success" name="tutorial-update" ><span class="glyphicon glyphicon-upload"></span> Upload</button>
+                            <button type="submit" class="btn btn-success" name="file-update" ><span class="glyphicon glyphicon-upload"></span> Upload</button>
                             <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
                         </div>
                     </form>

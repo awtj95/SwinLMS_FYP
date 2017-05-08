@@ -61,7 +61,7 @@ while ($line = mysql_fetch_array($result, MYSQL_ASSOC))
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="pass">Password</label>
-                                                    <input type="text" class="form-control" id="pass" name="pass" value="<?php echo $line['password']; ?>">
+                                                    <input type="password" class="form-control" id="pass" name="pass" value="<?php echo $line['password']; ?>">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="fname">First Name</label>
