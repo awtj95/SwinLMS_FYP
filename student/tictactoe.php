@@ -1,5 +1,7 @@
 <?php
 
+error_reporting(0);
+
 require_once('class/class.game.php');
 require_once('class/class.tictactoe.php');
 

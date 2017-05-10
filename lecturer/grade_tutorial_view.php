@@ -1,6 +1,6 @@
 <?php
 
-require_once '../app/init.php';
+require_once '../app/config.php';
 
 $_SESSION['unit_id'] = $_GET['id'];
 $counters = 0; 
@@ -111,8 +111,8 @@ $courselistt = $courselisttQuery->rowCount() ? $courselisttQuery : [];
                                     <td><?php echo $courses['first_name']. ' ' . $courses['last_name']; ?></td>
                                     <td><?php echo $courses['title']; ?></td>
                                     <td><a href="../student/upload/uploads/<?php echo $courses['file'] ?>" target="_blank"><?php echo $courses['file']; ?></a></td>
-                                    <td><input type="text" name="grade" value="<?php echo $courses['grade']; ?>"></td>
-                                    <td><input type="text" name="feedback" value="<?php echo $courses['feedback']; ?>"></td>
+                                    <td><input type="text" id="grade" name="grade" value="<?php echo $courses['grade']; ?>"></td>
+                                    <td><input type="text" id="feedback" name="feedback" value="<?php echo $courses['feedback']; ?>"></td>
                                     <td>
                                         <a href="#" class="upload" data-toggle="modal" data-target="#tutorial-update"><i class="fa fa-upload"></i></a>
                                         

@@ -1,0 +1,103 @@
+a
+{
+	text-decoration:none;
+	color:#333333;
+}
+a:hover
+{
+	color:#000000;
+}
+
+.center
+{
+	text-align:center;
+}
+
+table
+{
+	border-spacing:0px;
+	background:#ffffff;
+	border-radius:10px;
+	padding:0px;
+	width:95%;
+	margin:5px auto 5px auto;
+}
+tr
+{
+	border-radius:5px;
+	margin:0px;
+}
+td, th
+{
+	margin:0px;
+	border:0px;
+	padding:3px;
+	text-align:center;
+}
+
+.message
+{
+	border-radius:20px;
+	padding:20px;
+	margin:auto;
+	color:#000000;
+	text-align:center;
+	font-weight:bold;
+	margin-top:20px;
+}
+.messages_table td
+{
+	border-top:1px solid #aaaaaa;
+	vertical-align:top;
+}
+.author
+{
+	width:150px;
+	border-right:1px solid #aaaaaa;
+}
+.subject_cell
+{
+	width:45%;
+}
+.date
+{
+	font-style:italic;
+	text-align:right;
+	font-size:0.9em;
+	margin-right:10px;
+}
+.new_messages
+{
+	font-size:1.3em;
+	font-weight:bold;
+	margin:5px 15px 0px 0px;
+	display:inline-block;
+	border:1px solid #dddddd;
+	background:#ffffff;
+	padding:5px;
+}
+
+h3
+{
+    font-size:1.3em;
+    font-weight:bold;
+}
+input
+{
+	width:150px;
+}
+label
+{
+	width:200px;
+	display:inline-block;
+	vertical-align:top;
+	text-align:left;
+}
+.big
+{
+	font-size:1.2em;
+}
+.small
+{
+	font-size:0.7em;
+}

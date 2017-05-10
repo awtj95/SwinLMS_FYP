@@ -1,7 +1,5 @@
 <?php
 
-require_once '../app/init.php';
-
 require_once '../app/config.php';
 
 $id = $_SESSION['user_id'];

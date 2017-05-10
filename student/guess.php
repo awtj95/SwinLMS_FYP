@@ -1,5 +1,4 @@
 <?php
-
 error_reporting(0);
 
 $randomnumber= mt_rand(1,10);

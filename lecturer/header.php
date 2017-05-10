@@ -1,9 +1,6 @@
 <?php
-
-require_once '../app/init.php';
-
+    require_once '../app/config.php';
 ?>
-
 <header class="main-header">
     <!-- Logo -->
     <a href="dashboard.php" class="logo">

@@ -1,6 +1,6 @@
 <?php
 
-require_once '../app/init.php';
+require_once '../app/config.php';
 
 $courselistQuery = $db->prepare("
 

@@ -1,6 +1,6 @@
 <?php
 
-require_once '../app/init.php';
+require_once '../app/config.php';
 
 $_SESSION['unit_id'] = $_GET['id'];
 $counter = 0; 
@@ -110,9 +110,9 @@ $courselist = $courselistQuery->rowCount() ? $courselistQuery : [];
                                     <td><?php echo $course['login_id']; ?></td>
                                     <td><?php echo $course['first_name']. ' ' . $course['last_name']; ?></td>
                                     <td><?php echo $course['title']; ?></td>
-                                    <td><a href="../student/upload/uploads/<?php echo $course['file'] ?>" target="_blank"><?php echo $course['file'] ?></a></td>
-                                    <td><input type="text" class="form-control" id="grade" name="grade" size="1" value="<?php echo $course['grade']; ?>"></td>
-                                    <td><input type="text" class="form-control" id="feedback" name="feedback" value="<?php echo $course['feedback']; ?>"></td>
+                                    <td><a href="../student/upload/uploads/<?php echo $course['file']; ?>" target="_blank"><?php echo $course['file']; ?></a></td>
+                                    <td><input type="text" id="grade" name="grade" value="<?php echo $course['grade']; ?>"></td>
+                                    <td><input type="text" id="feedback" name="feedback" value="<?php echo $course['feedback']; ?>"></td>
                                     <td>
                                         <a href="#" class="upload" data-toggle="modal" data-target="#assignment-update"><i class="fa fa-upload"></i></a>
 
@@ -178,6 +178,5 @@ $courselist = $courselistQuery->rowCount() ? $courselistQuery : [];
         </div>
         <?php include_once('footer.php') ?>
         <?php include_once('script.php') ?>
-        
 	</body>
 </html>

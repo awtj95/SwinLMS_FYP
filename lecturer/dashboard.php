@@ -1,6 +1,6 @@
 <?php
 
-require_once '../app/init.php';
+require_once '../app/config.php';
 
 $todolistQuery = $db->prepare("
     SELECT id, name, done, date

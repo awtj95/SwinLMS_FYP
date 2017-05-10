@@ -1,6 +1,6 @@
 <?php
 
-require_once '../../app/init.php';
+require_once '../../app/config.php';
 
 if(isset($_GET['as'], $_GET['todo'])){
     $as = $_GET['as'];

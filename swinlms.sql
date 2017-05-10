@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 08, 2017 at 05:33 AM
+-- Generation Time: May 10, 2017 at 02:06 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -184,7 +184,10 @@ INSERT INTO `attendance` (`id`, `unit_id`, `user_id`, `attend`) VALUES
 (34, 4, 4, '2017-05-02 18:36:40'),
 (35, 2, 4, '2017-05-02 18:36:51'),
 (36, 1, 4, '2017-05-04 13:47:11'),
-(37, 1, 3, '2017-05-04 13:49:33');
+(37, 1, 3, '2017-05-04 13:49:33'),
+(38, 1, 4, '2017-05-08 15:21:04'),
+(39, 3, 4, '2017-05-10 18:31:39'),
+(40, 2, 3, '2017-05-10 18:37:10');
 
 -- --------------------------------------------------------
 
@@ -304,6 +307,36 @@ INSERT INTO `lecture` (`id`, `unit_id`, `title`, `file`, `description`, `type`, 
 (22, 3, 'lecture 1', '46032-new-microsoft-word-document.docx', '<p>lecture 1</p>', 'application/vnd.openxmlformats', 0),
 (23, 3, 'lecture 2', '69443-new-microsoft-word-document.docx', '<p>lecture 2</p>', 'application/vnd.openxmlformats', 0),
 (24, 4, 'lecture 1', '94846-new-microsoft-excel-worksheet.xlsx', '', 'application/vnd.openxmlformats', 6);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `messages`
+--
+
+CREATE TABLE `messages` (
+  `id` bigint(11) NOT NULL,
+  `id2` int(11) NOT NULL,
+  `subject` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `user1` bigint(11) NOT NULL,
+  `user2` bigint(11) NOT NULL,
+  `message` text CHARACTER SET utf8 NOT NULL,
+  `time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `user1read` varchar(3) CHARACTER SET utf8 NOT NULL,
+  `user2read` varchar(3) CHARACTER SET utf8 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `messages`
+--
+
+INSERT INTO `messages` (`id`, `id2`, `subject`, `user1`, `user2`, `message`, `time`, `user1read`, `user2read`) VALUES
+(1, 1, 'try', 1, 2, 'aonch awdn', '2017-05-10 02:11:20', 'yes', 'yes'),
+(1, 2, '', 2, 1, 'dewaewc wf', '2017-05-10 06:19:18', 'yes', 'no'),
+(2, 1, 'testing', 4, 3, 'trying trying', '2017-05-10 18:26:38', 'yes', 'no'),
+(4, 1, 'qwe', 4, 3, '12  qwd  ad', '0000-00-00 00:00:00', 'yes', 'no'),
+(5, 1, 'try', 4, 1, 'bj,m h', '0000-00-00 00:00:00', 'yes', 'no'),
+(6, 1, 'a', 4, 1, 'qwd wfcv', '2017-05-10 20:00:31', 'yes', 'no');
 
 -- --------------------------------------------------------
 
@@ -459,8 +492,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `login_id`, `password`, `created`, `type`, `email`, `first_name`, `last_name`, `address`, `city`, `country`, `postcode`, `phone`, `contact`, `course_id`, `department`, `dob`, `photo`, `egname`, `egemail`, `egcontact`, `relationship`) VALUES
 (1, '123', 'qwe123', '2017-04-21 13:03:44', 'ADMIN', 'qwe@gmail.com', 'hello', 'world', 'asd12ecasd', 'kuching', 'sarawak', 93250, 1234567890, 1324567891, 1, NULL, '2017-05-10', NULL, 'sdfc', 'd@s.com', '4567', 'cousin'),
 (2, '456', 'asd456', '2017-04-21 13:03:49', 'ADMIN', 'rty@gmail.com', 'hi', 'world', 'asd12ecasd', 'kuching', 'sarawak', 93250, 1234567890, 1324567891, 2, NULL, '2017-05-10', NULL, 'uhvjhb', 'd@s.com', '876543', 'cousin'),
-(3, '78', 'zxcs', '2017-04-21 13:03:50', 'ADMIN', 'zxs@gmail.com', 'ls', 'worls', 'jalan simpang tige', 'kuching', 'sarawak', 93250, 1234567890, 1324567891, 1, NULL, '2017-04-10', NULL, 'hvjbh', 'd@s.com', '23459', 'cousin'),
-(4, '1234', '123456', '2017-04-22 03:27:19', 'lecturer', 'asdf@gmail.com', 'asdf', 'zxcv', 'dcffa', 'kuching', 'sarawak', 93330, 987654321, 123456789, 2, NULL, '2017-05-17', NULL, 'hi', 'lo', '1467292591', 'cousin'),
+(3, '78', 'zxcs', '2017-04-21 13:03:50', 'ADMIN', 'zxs@gmail.com', 'ls', 'work', 'jalan simpang tige', 'kuching', 'sarawak', 93250, 1234567890, 1324567891, 1, NULL, '2017-04-10', NULL, 'hvjbh', 'd@s.com', '23459', 'cousin'),
+(4, '1234', '123456', '2017-04-22 03:27:19', 'lecturer', 'asdf@gmail.com', 'asd', 'zxcv', 'dcffa', 'kuching', 'sarawak', 93330, 987654321, 123456789, 2, NULL, '2017-05-17', NULL, 'h', 'l', '1467292591', 'cousin'),
 (5, '5678', 'tyui', '2017-04-22 09:11:29', 'student', 'zxcv@gmail.com', 'tyui', 'ghjk', 'fsd vxb', 'kuching', 'sarawak', 93250, 1234567890, 1293871263, 1, NULL, '2017-05-15', NULL, 'asdn asn', 'd@s.com', '123459', 'cousin'),
 (6, '12345', 'qfscfx', '2017-04-28 02:12:13', 'student', 'as@gmail.com', 'a', 's', 'srgvsdv', 'kuching', 'sarawak', 93250, 1234567890, 1234567891, 2, NULL, '2017-05-03', NULL, 'asdn asknd', 'd@s.com', '345865', 'cousin'),
 (7, '3463', 'gddbSg', '2017-04-28 02:22:12', 'student', 'sdf@gmail.com', 'sd', 'f', 'wrsgrsdf', 'kuching', 'sarawak', 93250, 1234567890, 1345162469, 1, NULL, '2017-05-09', NULL, 'afav', 'd@s.com', '13486', 'cousin');
@@ -610,7 +643,7 @@ ALTER TABLE `assignment_submission`
 -- AUTO_INCREMENT for table `attendance`
 --
 ALTER TABLE `attendance`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 --
 -- AUTO_INCREMENT for table `class`
 --

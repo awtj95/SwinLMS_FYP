@@ -1,6 +1,6 @@
 <?php
 
-require_once '../../app/init.php';
+require_once '../../app/config.php';
 
 if(isset($_POST['unit_id'])){
     $unit_id = trim($_POST['unit_id']);

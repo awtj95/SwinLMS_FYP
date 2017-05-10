@@ -1,6 +1,6 @@
 <?php
 
-require_once '../app/init.php';
+require_once '../app/config.php';
 
 $_SESSION['unit_id'] = $_GET['id'];
 $counter = 0; 
