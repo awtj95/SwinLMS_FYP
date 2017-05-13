@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 10, 2017 at 02:06 PM
+-- Generation Time: May 13, 2017 at 09:30 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -128,16 +128,16 @@ CREATE TABLE `assignment_submission` (
 --
 
 INSERT INTO `assignment_submission` (`id`, `unit_id`, `user_id`, `title`, `file`, `type`, `size`, `grade`, `feedback`) VALUES
-(11, 1, 4, 'assignment 1', '73063-new-microsoft-excel-worksheet.xlsx', 'application/vnd.openxmlformats', 6, NULL, NULL),
-(12, 1, 4, 'assignment 2', '53561-new-microsoft-word-document.docx', 'application/vnd.openxmlformats', 0, NULL, NULL),
-(13, 2, 4, 'assignment 1', '25822-new-microsoft-word-document.docx', 'application/vnd.openxmlformats', 0, NULL, NULL),
-(14, 2, 4, 'assignment 2', '33826-new-microsoft-excel-worksheet.xlsx', 'application/vnd.openxmlformats', 6, NULL, NULL),
-(15, 3, 4, 'assignment 1', '60120-new-microsoft-excel-worksheet.xlsx', 'application/vnd.openxmlformats', 6, NULL, NULL),
-(16, 3, 4, 'assignment 2', '72087-new-microsoft-word-document.docx', 'application/vnd.openxmlformats', 0, NULL, NULL),
-(17, 4, 4, 'assignment 1', '89991-new-microsoft-excel-worksheet.xlsx', 'application/vnd.openxmlformats', 6, NULL, NULL),
-(18, 4, 3, 'assignment 1', '3048-new-microsoft-excel-worksheet.xlsx', 'application/vnd.openxmlformats', 6, NULL, NULL),
-(19, 2, 3, 'assignment 1', '28221-new-microsoft-word-document.docx', 'application/vnd.openxmlformats', 0, NULL, NULL),
-(20, 2, 3, 'assignment 2', '81834-new-microsoft-excel-worksheet.xlsx', 'application/vnd.openxmlformats', 6, NULL, NULL);
+(11, 1, 4, 'assignment 1', '73063-new-microsoft-excel-worksheet.xlsx', 'application/vnd.openxmlformats', 6, 'A', 'AA'),
+(12, 1, 4, 'assignment 2', '53561-new-microsoft-word-document.docx', 'application/vnd.openxmlformats', 0, 'B', 'BB'),
+(13, 2, 4, 'assignment 1', '25822-new-microsoft-word-document.docx', 'application/vnd.openxmlformats', 0, 'A', 'A'),
+(14, 2, 4, 'assignment 2', '33826-new-microsoft-excel-worksheet.xlsx', 'application/vnd.openxmlformats', 6, 'B', 'asdjn asdhb'),
+(15, 3, 4, 'assignment 1', '60120-new-microsoft-excel-worksheet.xlsx', 'application/vnd.openxmlformats', 6, 'E', 'EE'),
+(16, 3, 4, 'assignment 2', '72087-new-microsoft-word-document.docx', 'application/vnd.openxmlformats', 0, 'F', 'FF'),
+(17, 4, 4, 'assignment 1', '89991-new-microsoft-excel-worksheet.xlsx', 'application/vnd.openxmlformats', 6, 'G', 'GG'),
+(18, 4, 3, 'assignment 1', '3048-new-microsoft-excel-worksheet.xlsx', 'application/vnd.openxmlformats', 6, 'H', 'HH'),
+(19, 2, 3, 'assignment 1', '28221-new-microsoft-word-document.docx', 'application/vnd.openxmlformats', 0, 'B', 'test'),
+(20, 2, 3, 'assignment 2', '81834-new-microsoft-excel-worksheet.xlsx', 'application/vnd.openxmlformats', 6, 'J', 'JJ');
 
 -- --------------------------------------------------------
 
@@ -333,10 +333,11 @@ CREATE TABLE `messages` (
 INSERT INTO `messages` (`id`, `id2`, `subject`, `user1`, `user2`, `message`, `time`, `user1read`, `user2read`) VALUES
 (1, 1, 'try', 1, 2, 'aonch awdn', '2017-05-10 02:11:20', 'yes', 'yes'),
 (1, 2, '', 2, 1, 'dewaewc wf', '2017-05-10 06:19:18', 'yes', 'no'),
-(2, 1, 'testing', 4, 3, 'trying trying', '2017-05-10 18:26:38', 'yes', 'no'),
-(4, 1, 'qwe', 4, 3, '12  qwd  ad', '0000-00-00 00:00:00', 'yes', 'no'),
-(5, 1, 'try', 4, 1, 'bj,m h', '0000-00-00 00:00:00', 'yes', 'no'),
-(6, 1, 'a', 4, 1, 'qwd wfcv', '2017-05-10 20:00:31', 'yes', 'no');
+(3, 1, 'testing', 4, 3, 'helo', '2017-05-13 13:11:36', 'yes', 'yes'),
+(3, 2, '', 4, 0, 'hi', '2017-05-13 13:11:36', '', ''),
+(3, 3, '', 3, 0, 'hi', '2017-05-13 13:12:03', '', ''),
+(3, 4, '', 4, 0, 'helo', '2017-05-13 13:12:33', '', ''),
+(3, 5, '', 3, 0, 'hehe', '2017-05-13 13:13:54', '', '');
 
 -- --------------------------------------------------------
 
@@ -420,8 +421,8 @@ CREATE TABLE `tutorial_submission` (
 INSERT INTO `tutorial_submission` (`id`, `unit_id`, `user_id`, `title`, `file`, `type`, `size`, `grade`, `feedback`) VALUES
 (26, 1, 4, 'tutorial 1', '37732-new-microsoft-excel-worksheet.xlsx', 'application/vnd.openxmlformats', 6, NULL, NULL),
 (27, 1, 4, 'tutorial 2', '60455-new-microsoft-word-document.docx', 'application/vnd.openxmlformats', 0, NULL, NULL),
-(28, 2, 4, 'tutorial 1', '54784-new-microsoft-word-document.docx', 'application/vnd.openxmlformats', 0, NULL, NULL),
-(29, 2, 4, 'tutorial 2', '69048-new-microsoft-excel-worksheet.xlsx', 'application/vnd.openxmlformats', 6, NULL, NULL),
+(28, 2, 4, 'tutorial 1', '54784-new-microsoft-word-document.docx', 'application/vnd.openxmlformats', 0, 'A', 'aA'),
+(29, 2, 4, 'tutorial 2', '69048-new-microsoft-excel-worksheet.xlsx', 'application/vnd.openxmlformats', 6, '98', 'as rg'),
 (30, 3, 4, 'tutorial 1', '16571-new-microsoft-word-document.docx', 'application/vnd.openxmlformats', 0, NULL, NULL),
 (31, 3, 4, 'tutorial 2', '24744-new-microsoft-excel-worksheet.xlsx', 'application/vnd.openxmlformats', 6, NULL, NULL),
 (32, 4, 4, 'tutorial 1', '63207-new-microsoft-excel-worksheet.xlsx', 'application/vnd.openxmlformats', 6, NULL, NULL),

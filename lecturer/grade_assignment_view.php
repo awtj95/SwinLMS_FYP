@@ -111,12 +111,14 @@ $courselist = $courselistQuery->rowCount() ? $courselistQuery : [];
                                     <td><?php echo $course['first_name']. ' ' . $course['last_name']; ?></td>
                                     <td><?php echo $course['title']; ?></td>
                                     <td><a href="../student/upload/uploads/<?php echo $course['file']; ?>" target="_blank"><?php echo $course['file']; ?></a></td>
-                                    <td><input type="text" id="grade" name="grade" value="<?php echo $course['grade']; ?>"></td>
-                                    <td><input type="text" id="feedback" name="feedback" value="<?php echo $course['feedback']; ?>"></td>
+                                    <td><?php echo $course['grade']; ?></td>
+                                    <td><?php echo $course['feedback']; ?></td>
                                     <td>
                                         <a href="#" class="upload" data-toggle="modal" data-target="#assignment-update"><i class="fa fa-upload"></i></a>
+                                        
+                                        <a href="#" class="upload" data-toggle="modal" data-target="#assignment-mark1" data-id="<?php echo $course['id'] ?>"><i class="fa fa-check-square-o"></i></a>
 
-                                        <a href="submission/remove1.php?id=<?php echo $course['id'] ?>&unit_id=<?php echo $_SESSION['unit_id']; ?>" class="delete-button"><i class="fa fa-trash-o"></i></a>
+                                        <a href="submission/remove1.php?id=<?php echo $course['id'] ?>&unit_id=<?php echo $_SESSION['unit_id']; ?>"><i class="fa fa-trash-o"></i></a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -163,6 +165,43 @@ $courselist = $courselistQuery->rowCount() ? $courselistQuery : [];
                             <div class="form-group">
                                 <input type="file" name="file" />
                                 <small>Support PDF, DOC, EXE, VIDEO, MP3, ZIP,etc format</small>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer ">
+                            <button type="submit" class="btn btn-success" name="file-update" ><span class="glyphicon glyphicon-upload"></span> Upload</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            	<!-- /.modal-content --> 
+            </div>
+        	<!-- /.modal-dialog --> 
+        </div>
+        <div class="modal fade" id="assignment-mark1" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form action="submission/mark1.php" method="post" enctype="multipart/form-data">
+                        <div class="modal-header">
+                            <h4 class="modal-title custom_align" id="Heading">Assignment Update</h4>
+                        </div>
+                    
+                        <div class="modal-body">
+                            
+                            <div class="form-group">
+                                <input type="hidden" name="unit" class="form-control" value="<?php echo $_SESSION['unit_id']; ?>">
+                            </div>
+                            <div class="form-group">
+                                <input type="hidden" name="name" class="form-control" value="<?php echo $_GET['name']; ?>">
+                            </div>
+                            <div class="form-group">
+                                <input type="hidden" name="id" id="id" class="form-control" value=""/>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="grade" id="grade" class="form-control" value="" placeholder="Grade"/>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="feedback" id="feedback" class="form-control" value="" placeholder="Feedback"/>
                             </div>
 
                         </div>

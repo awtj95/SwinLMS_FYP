@@ -24,7 +24,7 @@
           <li class="dropdown user user-menu">
             <a href="dashboard.php" class="dropdown-toggle" data-toggle="dropdown">
               <img src="../dist/img/admin.ico" class="user-image" alt="User Image">
-              <span class="hidden-xs"><?php echo $_SESSION['user_id']; ?></span>
+              <span class="hidden-xs"><?php echo $_SESSION['login_id']; ?></span>
             </a>
           </li>
           
