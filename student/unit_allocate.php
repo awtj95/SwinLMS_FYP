@@ -1,3 +1,26 @@
+<?php
+
+require_once '../app/config.php';
+
+$counter = 0; 
+
+$courselistQuery = $db->prepare("
+    SELECT c.unit_id, u.name, u.description
+    FROM unit u
+    JOIN class c
+    ON c.unit_id = u.id
+    WHERE user_id=:user_id
+
+");
+
+$courselistQuery->execute([
+    'user_id' => $_SESSION['user_id']
+]);
+
+$courselist = $courselistQuery->rowCount() ? $courselistQuery : [];
+
+?>
+
 <!DOCTYPE html>
 <html>
 		<?php include_once('first.php') ?>
@@ -41,49 +64,37 @@
                     <!-- /.box-header -->
                     
                     <div class="box-body">
-                        <table id="student_in_course" class="table table-bordered">
+                        <?php if(!empty($courselist)): ?>
+                        <table id="unit_allocate" class="table table-bordered table-hover courselist">
                             <thead>
                                 <tr>
-                                    <th class="col-xs-0.5">#</th>
-                                    <th class="col-xs-6">Unit </th>
-                                    <th class="col-xs-4">Class Period</th>
+                                    <th>#</th>
+                                    <th>Unit </th>
+                                    <th>Class Period</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <?php foreach($courselist as $course): 
+                            {
+                                $counter++;
+                            }
+                            
+                            ?>
+                            <tbody class="$course">
                                 <tr>
-                                    <td>1</td>
-                                    <td>asd</td>
+                                    <td><?php echo $counter ?></td>
+                                    <td><?php echo $course['name']; ?></td>
                                     <td>
                                         <select class="unit" id="unit-allocate">
-                                            <option>asd</option>
-                                            <option>asd</option>
-                                            <option>asd</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>asd</td>
-                                    <td>
-                                        <select class="unit" id="unit-allocate">
-                                            <option>asd</option>
-                                            <option>asd</option>
-                                            <option>asd</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>asd</td>
-                                    <td>
-                                        <select class="unit" id="unit-allocate">
-                                            <option>asd</option>
-                                            <option>asd</option>
-                                            <option>asd</option>
+                                            <option></option>
+                                            <option>8:30 - 10:30</option>
+                                            <option>10:30 - 12:30</option>
+                                            <option>13:30 - 15:30</option>
+                                            <option>15:30 - 17:30</option>
                                         </select>
                                     </td>
                                 </tr>
                             </tbody>
+                            <?php endforeach; ?>
                             <tfoot>
                                 <tr>
                                     <th>#</th>
@@ -92,6 +103,9 @@
                                 </tr>
                             </tfoot>
                         </table>
+                        <?php else: ?>
+                            <p>There is no units to display.</p>
+                        <?php endif; ?>
                     <!-- /.box-body -->
                         <div class="box-footer clearfix no-border">
                           <button type="button" class="btn btn-default pull-right"><i class="fa fa-upload"></i> Apply</button>

@@ -121,3 +121,39 @@ $(document).on("click", ".upload", function () {
 
 });
 </script>
+<script>
+function printData(){
+    var divToPrint=document.getElementById("student_in_course");
+    newWin=window.open("");
+    newWin.document.write(divToPrint.outerHTML);
+    newWin.print();
+    newWin.close();
+}
+</script>
+<script>
+function printData1(){
+    var divToPrint=document.getElementById("assignment_submission_in_course");
+    newWin=window.open("");
+    newWin.document.write(divToPrint.outerHTML);
+    newWin.print();
+    newWin.close();
+}
+</script>
+<script>
+function printData2(){
+    var divToPrint=document.getElementById("tutorial_submission_in_course");
+    newWin=window.open("");
+    newWin.document.write(divToPrint.outerHTML);
+    newWin.print();
+    newWin.close();
+}
+</script>
+<script>
+function printData3(){
+    var divToPrint=document.getElementById("attendance_in_course");
+    newWin=window.open("");
+    newWin.document.write(divToPrint.outerHTML);
+    newWin.print();
+    newWin.close();
+}
+</script>

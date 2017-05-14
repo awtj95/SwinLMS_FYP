@@ -194,6 +194,9 @@ $courselist = $courselistQuery->rowCount() ? $courselistQuery : [];
                         <?php endif; ?>
                     <!-- /.box-body -->
                     </div>
+                    <div class="box-footer clearfix no-border">
+                        <button type="submit" class="btn btn-default pull-right" name="printTable" id="printTable" onClick="printData()"><i class="fa fa-print"></i> Print</button>
+                    </div>
                   </div>
                   <!-- /.box -->
                 </section>

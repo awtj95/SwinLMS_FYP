@@ -2,7 +2,7 @@
 
 session_start();
 
-$_SESSION['user_id'] =3;
+$_SESSION['user_id'] =4;
 
 $dbhost = "localhost";
 $dbuser = "root";
