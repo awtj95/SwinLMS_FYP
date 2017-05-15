@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
--- https://www.phpmyadmin.net/
+-- version 4.3.11
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 13, 2017 at 09:30 AM
--- Server version: 10.1.21-MariaDB
--- PHP Version: 5.6.30
+-- Generation Time: May 15, 2017 at 12:35 PM
+-- Server version: 5.6.24
+-- PHP Version: 5.6.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `swinlms`
@@ -26,12 +26,12 @@ SET time_zone = "+00:00";
 -- Table structure for table `announcements`
 --
 
-CREATE TABLE `announcements` (
+CREATE TABLE IF NOT EXISTS `announcements` (
   `id` int(11) NOT NULL,
   `description` varchar(255) NOT NULL,
   `date` datetime NOT NULL,
   `unit_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `announcements`
@@ -53,7 +53,7 @@ INSERT INTO `announcements` (`id`, `description`, `date`, `unit_id`) VALUES
 -- Table structure for table `assessment`
 --
 
-CREATE TABLE `assessment` (
+CREATE TABLE IF NOT EXISTS `assessment` (
   `id` int(11) NOT NULL,
   `unit_id` int(11) NOT NULL,
   `title` varchar(45) NOT NULL,
@@ -61,7 +61,7 @@ CREATE TABLE `assessment` (
   `description` varchar(50) NOT NULL,
   `type` varchar(30) DEFAULT NULL,
   `size` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `assessment`
@@ -82,7 +82,7 @@ INSERT INTO `assessment` (`id`, `unit_id`, `title`, `file`, `description`, `type
 -- Table structure for table `assignment`
 --
 
-CREATE TABLE `assignment` (
+CREATE TABLE IF NOT EXISTS `assignment` (
   `id` int(11) NOT NULL,
   `unit_id` int(11) NOT NULL,
   `title` varchar(45) NOT NULL,
@@ -90,7 +90,7 @@ CREATE TABLE `assignment` (
   `description` varchar(50) NOT NULL,
   `type` varchar(30) DEFAULT NULL,
   `size` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `assignment`
@@ -111,7 +111,7 @@ INSERT INTO `assignment` (`id`, `unit_id`, `title`, `file`, `description`, `type
 -- Table structure for table `assignment_submission`
 --
 
-CREATE TABLE `assignment_submission` (
+CREATE TABLE IF NOT EXISTS `assignment_submission` (
   `id` int(11) NOT NULL,
   `unit_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
@@ -121,7 +121,7 @@ CREATE TABLE `assignment_submission` (
   `size` int(11) NOT NULL,
   `grade` varchar(10) DEFAULT NULL,
   `feedback` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `assignment_submission`
@@ -145,12 +145,12 @@ INSERT INTO `assignment_submission` (`id`, `unit_id`, `user_id`, `title`, `file`
 -- Table structure for table `attendance`
 --
 
-CREATE TABLE `attendance` (
+CREATE TABLE IF NOT EXISTS `attendance` (
   `id` int(11) NOT NULL,
   `unit_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `attend` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `attendance`
@@ -195,32 +195,13 @@ INSERT INTO `attendance` (`id`, `unit_id`, `user_id`, `attend`) VALUES
 -- Table structure for table `class`
 --
 
-CREATE TABLE `class` (
+CREATE TABLE IF NOT EXISTS `class` (
   `id` int(11) NOT NULL,
   `classroom_id` int(11) NOT NULL,
-  `grade_id` int(11) DEFAULT NULL,
   `user_id` int(11) NOT NULL,
   `unit_id` int(11) NOT NULL,
-  `section` time DEFAULT NULL
+  `section_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `class`
---
-
-INSERT INTO `class` (`id`, `classroom_id`, `grade_id`, `user_id`, `unit_id`, `section`) VALUES
-(1, 1, NULL, 4, 1, NULL),
-(2, 2, NULL, 4, 2, NULL),
-(3, 2, NULL, 3, 2, NULL),
-(4, 3, NULL, 4, 3, NULL),
-(5, 4, NULL, 4, 4, NULL),
-(6, 4, NULL, 3, 4, NULL),
-(7, 1, NULL, 5, 1, NULL),
-(8, 1, NULL, 6, 1, NULL),
-(9, 1, NULL, 7, 1, NULL),
-(10, 1, NULL, 5, 2, NULL),
-(11, 1, NULL, 6, 3, NULL),
-(12, 1, NULL, 7, 4, NULL);
 
 -- --------------------------------------------------------
 
@@ -228,10 +209,10 @@ INSERT INTO `class` (`id`, `classroom_id`, `grade_id`, `user_id`, `unit_id`, `se
 -- Table structure for table `classroom`
 --
 
-CREATE TABLE `classroom` (
+CREATE TABLE IF NOT EXISTS `classroom` (
   `id` int(11) NOT NULL,
   `classroom` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `classroom`
@@ -249,12 +230,12 @@ INSERT INTO `classroom` (`id`, `classroom`) VALUES
 -- Table structure for table `course`
 --
 
-CREATE TABLE `course` (
+CREATE TABLE IF NOT EXISTS `course` (
   `id` int(11) NOT NULL,
   `name` varchar(45) NOT NULL,
   `code` varchar(10) NOT NULL,
   `description` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `course`
@@ -267,25 +248,10 @@ INSERT INTO `course` (`id`, `name`, `code`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `grade`
---
-
-CREATE TABLE `grade` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `class_id` int(11) NOT NULL,
-  `unit_id` int(11) NOT NULL,
-  `mark` int(3) NOT NULL,
-  `description` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `lecture`
 --
 
-CREATE TABLE `lecture` (
+CREATE TABLE IF NOT EXISTS `lecture` (
   `id` int(11) NOT NULL,
   `unit_id` int(11) NOT NULL,
   `title` varchar(45) NOT NULL,
@@ -293,7 +259,7 @@ CREATE TABLE `lecture` (
   `description` varchar(50) NOT NULL,
   `type` varchar(30) NOT NULL,
   `size` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `lecture`
@@ -314,7 +280,7 @@ INSERT INTO `lecture` (`id`, `unit_id`, `title`, `file`, `description`, `type`, 
 -- Table structure for table `messages`
 --
 
-CREATE TABLE `messages` (
+CREATE TABLE IF NOT EXISTS `messages` (
   `id` bigint(11) NOT NULL,
   `id2` int(11) NOT NULL,
   `subject` varchar(255) CHARACTER SET utf8 NOT NULL,
@@ -342,17 +308,44 @@ INSERT INTO `messages` (`id`, `id2`, `subject`, `user1`, `user2`, `message`, `ti
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `msg_of_day`
+--
+
+CREATE TABLE IF NOT EXISTS `msg_of_day` (
+  `id` int(11) NOT NULL,
+  `detail` varchar(255) NOT NULL,
+  `status` varchar(65) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `section`
+--
+
+CREATE TABLE IF NOT EXISTS `section` (
+  `id` int(11) NOT NULL,
+  `section_name` varchar(65) NOT NULL,
+  `section_venue` varchar(65) NOT NULL,
+  `section_start_time` datetime NOT NULL,
+  `section_day` varchar(65) NOT NULL,
+  `section_duration` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `todolist`
 --
 
-CREATE TABLE `todolist` (
+CREATE TABLE IF NOT EXISTS `todolist` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `user_id` int(11) NOT NULL,
   `done` tinyint(1) DEFAULT NULL,
   `created` datetime DEFAULT NULL,
   `date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `todolist`
@@ -373,7 +366,7 @@ INSERT INTO `todolist` (`id`, `name`, `user_id`, `done`, `created`, `date`) VALU
 -- Table structure for table `tutorial`
 --
 
-CREATE TABLE `tutorial` (
+CREATE TABLE IF NOT EXISTS `tutorial` (
   `id` int(11) NOT NULL,
   `unit_id` int(11) NOT NULL,
   `title` varchar(45) NOT NULL,
@@ -381,7 +374,7 @@ CREATE TABLE `tutorial` (
   `description` varchar(50) NOT NULL,
   `type` varchar(30) DEFAULT NULL,
   `size` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tutorial`
@@ -402,7 +395,7 @@ INSERT INTO `tutorial` (`id`, `unit_id`, `title`, `file`, `description`, `type`,
 -- Table structure for table `tutorial_submission`
 --
 
-CREATE TABLE `tutorial_submission` (
+CREATE TABLE IF NOT EXISTS `tutorial_submission` (
   `id` int(11) NOT NULL,
   `unit_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
@@ -412,7 +405,7 @@ CREATE TABLE `tutorial_submission` (
   `size` int(11) NOT NULL,
   `grade` varchar(10) DEFAULT NULL,
   `feedback` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tutorial_submission`
@@ -436,24 +429,23 @@ INSERT INTO `tutorial_submission` (`id`, `unit_id`, `user_id`, `title`, `file`, 
 -- Table structure for table `unit`
 --
 
-CREATE TABLE `unit` (
+CREATE TABLE IF NOT EXISTS `unit` (
   `id` int(11) NOT NULL,
   `name` varchar(45) NOT NULL,
   `code` varchar(10) NOT NULL,
   `description` varchar(255) NOT NULL,
-  `grade_id` int(11) DEFAULT NULL,
   `course_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `unit`
 --
 
-INSERT INTO `unit` (`id`, `name`, `code`, `description`, `grade_id`, `course_id`) VALUES
-(1, 'software engineering project a', 'swe40001', 'final year project a', NULL, 1),
-(2, 'software engineering project b', 'swe40002', 'final year project b', NULL, 1),
-(3, 'network admin', 'NA', 'networking', NULL, 2),
-(4, 'computer system configuration', 'CSC', 'configuration', NULL, 2);
+INSERT INTO `unit` (`id`, `name`, `code`, `description`, `course_id`) VALUES
+(1, 'software engineering project a', 'swe40001', 'final year project a', 1),
+(2, 'software engineering project b', 'swe40002', 'final year project b', 1),
+(3, 'network admin', 'NA', 'networking', 2),
+(4, 'computer system configuration', 'CSC', 'configuration', 2);
 
 -- --------------------------------------------------------
 
@@ -461,7 +453,7 @@ INSERT INTO `unit` (`id`, `name`, `code`, `description`, `grade_id`, `course_id`
 -- Table structure for table `users`
 --
 
-CREATE TABLE `users` (
+CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL,
   `login_id` varchar(25) NOT NULL,
   `password` varchar(50) NOT NULL,
@@ -476,7 +468,6 @@ CREATE TABLE `users` (
   `postcode` int(10) DEFAULT NULL,
   `phone` int(15) DEFAULT NULL,
   `contact` int(11) NOT NULL,
-  `course_id` int(11) DEFAULT NULL,
   `department` varchar(50) DEFAULT NULL,
   `dob` date DEFAULT NULL,
   `photo` varchar(100) DEFAULT NULL,
@@ -484,20 +475,20 @@ CREATE TABLE `users` (
   `egemail` varchar(50) DEFAULT NULL,
   `egcontact` varchar(15) DEFAULT NULL,
   `relationship` varchar(15) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `login_id`, `password`, `created`, `type`, `email`, `first_name`, `last_name`, `address`, `city`, `country`, `postcode`, `phone`, `contact`, `course_id`, `department`, `dob`, `photo`, `egname`, `egemail`, `egcontact`, `relationship`) VALUES
-(1, '123', 'qwe123', '2017-04-21 13:03:44', 'ADMIN', 'qwe@gmail.com', 'hello', 'world', 'asd12ecasd', 'kuching', 'sarawak', 93250, 1234567890, 1324567891, 1, NULL, '2017-05-10', NULL, 'sdfc', 'd@s.com', '4567', 'cousin'),
-(2, '456', 'asd456', '2017-04-21 13:03:49', 'ADMIN', 'rty@gmail.com', 'hi', 'world', 'asd12ecasd', 'kuching', 'sarawak', 93250, 1234567890, 1324567891, 2, NULL, '2017-05-10', NULL, 'uhvjhb', 'd@s.com', '876543', 'cousin'),
-(3, '78', 'zxcs', '2017-04-21 13:03:50', 'ADMIN', 'zxs@gmail.com', 'ls', 'work', 'jalan simpang tige', 'kuching', 'sarawak', 93250, 1234567890, 1324567891, 1, NULL, '2017-04-10', NULL, 'hvjbh', 'd@s.com', '23459', 'cousin'),
-(4, '1234', '123456', '2017-04-22 03:27:19', 'lecturer', 'asdf@gmail.com', 'asd', 'zxcv', 'dcffa', 'kuching', 'sarawak', 93330, 987654321, 123456789, 2, NULL, '2017-05-17', NULL, 'h', 'l', '1467292591', 'cousin'),
-(5, '5678', 'tyui', '2017-04-22 09:11:29', 'student', 'zxcv@gmail.com', 'tyui', 'ghjk', 'fsd vxb', 'kuching', 'sarawak', 93250, 1234567890, 1293871263, 1, NULL, '2017-05-15', NULL, 'asdn asn', 'd@s.com', '123459', 'cousin'),
-(6, '12345', 'qfscfx', '2017-04-28 02:12:13', 'student', 'as@gmail.com', 'a', 's', 'srgvsdv', 'kuching', 'sarawak', 93250, 1234567890, 1234567891, 2, NULL, '2017-05-03', NULL, 'asdn asknd', 'd@s.com', '345865', 'cousin'),
-(7, '3463', 'gddbSg', '2017-04-28 02:22:12', 'student', 'sdf@gmail.com', 'sd', 'f', 'wrsgrsdf', 'kuching', 'sarawak', 93250, 1234567890, 1345162469, 1, NULL, '2017-05-09', NULL, 'afav', 'd@s.com', '13486', 'cousin');
+INSERT INTO `users` (`id`, `login_id`, `password`, `created`, `type`, `email`, `first_name`, `last_name`, `address`, `city`, `country`, `postcode`, `phone`, `contact`, `department`, `dob`, `photo`, `egname`, `egemail`, `egcontact`, `relationship`) VALUES
+(1, '123', 'qwe123', '2017-04-21 13:03:44', 'ADMIN', 'qwe@gmail.com', 'hello', 'world', 'asd12ecasd', 'kuching', 'sarawak', 93250, 1234567890, 1324567891, NULL, '2017-05-10', NULL, 'sdfc', 'd@s.com', '4567', 'cousin'),
+(2, '456', 'asd456', '2017-04-21 13:03:49', 'ADMIN', 'rty@gmail.com', 'hi', 'world', 'asd12ecasd', 'kuching', 'sarawak', 93250, 1234567890, 1324567891, NULL, '2017-05-10', NULL, 'uhvjhb', 'd@s.com', '876543', 'cousin'),
+(3, '78', 'zxcs', '2017-04-21 13:03:50', 'ADMIN', 'zxs@gmail.com', 'ls', 'work', 'jalan simpang tige', 'kuching', 'sarawak', 93250, 1234567890, 1324567891, NULL, '2017-04-10', NULL, 'hvjbh', 'd@s.com', '23459', 'cousin'),
+(4, '1234', '123456', '2017-04-22 03:27:19', 'lecturer', 'asdf@gmail.com', 'asd', 'zxcv', 'dcffa', 'kuching', 'sarawak', 93330, 987654321, 123456789, NULL, '2017-05-17', NULL, 'h', 'l', '1467292591', 'cousin'),
+(5, '5678', 'tyui', '2017-04-22 09:11:29', 'student', 'zxcv@gmail.com', 'tyui', 'ghjk', 'fsd vxb', 'kuching', 'sarawak', 93250, 1234567890, 1293871263, NULL, '2017-05-15', NULL, 'asdn asn', 'd@s.com', '123459', 'cousin'),
+(6, '12345', 'qfscfx', '2017-04-28 02:12:13', 'student', 'as@gmail.com', 'a', 's', 'srgvsdv', 'kuching', 'sarawak', 93250, 1234567890, 1234567891, NULL, '2017-05-03', NULL, 'asdn asknd', 'd@s.com', '345865', 'cousin'),
+(7, '3463', 'gddbSg', '2017-04-28 02:22:12', 'student', 'sdf@gmail.com', 'sd', 'f', 'wrsgrsdf', 'kuching', 'sarawak', 93250, 1234567890, 1345162469, NULL, '2017-05-09', NULL, 'afav', 'd@s.com', '13486', 'cousin');
 
 --
 -- Indexes for dumped tables
@@ -507,55 +498,43 @@ INSERT INTO `users` (`id`, `login_id`, `password`, `created`, `type`, `email`, `
 -- Indexes for table `announcements`
 --
 ALTER TABLE `announcements`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `course_id` (`unit_id`) USING BTREE;
+  ADD PRIMARY KEY (`id`), ADD KEY `course_id` (`unit_id`) USING BTREE;
 
 --
 -- Indexes for table `assessment`
 --
 ALTER TABLE `assessment`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `unit_id` (`unit_id`) USING BTREE;
+  ADD PRIMARY KEY (`id`), ADD KEY `unit_id` (`unit_id`) USING BTREE;
 
 --
 -- Indexes for table `assignment`
 --
 ALTER TABLE `assignment`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `unit_id` (`unit_id`);
+  ADD PRIMARY KEY (`id`), ADD KEY `unit_id` (`unit_id`);
 
 --
 -- Indexes for table `assignment_submission`
 --
 ALTER TABLE `assignment_submission`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `unit_id` (`unit_id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD PRIMARY KEY (`id`), ADD KEY `unit_id` (`unit_id`), ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `attendance`
 --
 ALTER TABLE `attendance`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `unit_id` (`unit_id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD PRIMARY KEY (`id`), ADD KEY `unit_id` (`unit_id`), ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `class`
 --
 ALTER TABLE `class`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `grade_id` (`grade_id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `unit_id` (`unit_id`),
-  ADD KEY `classroom_id` (`classroom_id`);
+  ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `section_id` (`section_id`), ADD KEY `user_id` (`user_id`), ADD KEY `unit_id` (`unit_id`), ADD KEY `classroom_id` (`classroom_id`);
 
 --
 -- Indexes for table `classroom`
 --
 ALTER TABLE `classroom`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `classroom` (`classroom`);
+  ADD PRIMARY KEY (`id`), ADD KEY `classroom` (`classroom`);
 
 --
 -- Indexes for table `course`
@@ -564,57 +543,52 @@ ALTER TABLE `course`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `grade`
---
-ALTER TABLE `grade`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `unit_id` (`unit_id`),
-  ADD KEY `class_id` (`class_id`);
-
---
 -- Indexes for table `lecture`
 --
 ALTER TABLE `lecture`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `unit_id` (`unit_id`);
+  ADD PRIMARY KEY (`id`), ADD KEY `unit_id` (`unit_id`);
+
+--
+-- Indexes for table `msg_of_day`
+--
+ALTER TABLE `msg_of_day`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `section`
+--
+ALTER TABLE `section`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `todolist`
 --
 ALTER TABLE `todolist`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `userid` (`user_id`);
+  ADD PRIMARY KEY (`id`), ADD KEY `userid` (`user_id`);
 
 --
 -- Indexes for table `tutorial`
 --
 ALTER TABLE `tutorial`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `unit_id` (`unit_id`);
+  ADD PRIMARY KEY (`id`), ADD KEY `unit_id` (`unit_id`);
 
 --
 -- Indexes for table `tutorial_submission`
 --
 ALTER TABLE `tutorial_submission`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `unit_id` (`unit_id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD PRIMARY KEY (`id`), ADD KEY `unit_id` (`unit_id`), ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `unit`
 --
 ALTER TABLE `unit`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `grade_id` (`grade_id`),
-  ADD KEY `course_id` (`course_id`);
+  ADD PRIMARY KEY (`id`), ADD KEY `course_id` (`course_id`);
 
 --
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `course_id` (`course_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -624,77 +598,82 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `announcements`
 --
 ALTER TABLE `announcements`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT for table `assessment`
 --
 ALTER TABLE `assessment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `assignment`
 --
 ALTER TABLE `assignment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `assignment_submission`
 --
 ALTER TABLE `assignment_submission`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `attendance`
 --
 ALTER TABLE `attendance`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=41;
 --
 -- AUTO_INCREMENT for table `class`
 --
 ALTER TABLE `class`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `classroom`
 --
 ALTER TABLE `classroom`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `course`
 --
 ALTER TABLE `course`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT for table `grade`
---
-ALTER TABLE `grade`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `lecture`
 --
 ALTER TABLE `lecture`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
+--
+-- AUTO_INCREMENT for table `msg_of_day`
+--
+ALTER TABLE `msg_of_day`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `section`
+--
+ALTER TABLE `section`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `todolist`
 --
 ALTER TABLE `todolist`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `tutorial`
 --
 ALTER TABLE `tutorial`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT for table `tutorial_submission`
 --
 ALTER TABLE `tutorial_submission`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=36;
 --
 -- AUTO_INCREMENT for table `unit`
 --
 ALTER TABLE `unit`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- Constraints for dumped tables
 --
@@ -703,88 +682,78 @@ ALTER TABLE `users`
 -- Constraints for table `announcements`
 --
 ALTER TABLE `announcements`
-  ADD CONSTRAINT `announcements_ibfk_2` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`id`) ON UPDATE CASCADE;
+ADD CONSTRAINT `announcements_ibfk_2` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `assessment`
 --
 ALTER TABLE `assessment`
-  ADD CONSTRAINT `assessment_ibfk_1` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`id`) ON UPDATE CASCADE;
+ADD CONSTRAINT `assessment_ibfk_1` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `assignment`
 --
 ALTER TABLE `assignment`
-  ADD CONSTRAINT `assignment_ibfk_1` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`id`) ON UPDATE CASCADE;
+ADD CONSTRAINT `assignment_ibfk_1` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `assignment_submission`
 --
 ALTER TABLE `assignment_submission`
-  ADD CONSTRAINT `assignment_submission_ibfk_1` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `assignment_submission_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE;
+ADD CONSTRAINT `assignment_submission_ibfk_1` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`id`) ON UPDATE CASCADE,
+ADD CONSTRAINT `assignment_submission_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `attendance`
 --
 ALTER TABLE `attendance`
-  ADD CONSTRAINT `attendance_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `attendance_ibfk_2` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`id`) ON UPDATE CASCADE;
+ADD CONSTRAINT `attendance_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE,
+ADD CONSTRAINT `attendance_ibfk_2` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `class`
 --
 ALTER TABLE `class`
-  ADD CONSTRAINT `class_ibfk_1` FOREIGN KEY (`grade_id`) REFERENCES `grade` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `class_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `class_ibfk_3` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `class_ibfk_4` FOREIGN KEY (`classroom_id`) REFERENCES `classroom` (`id`) ON UPDATE CASCADE;
-
---
--- Constraints for table `grade`
---
-ALTER TABLE `grade`
-  ADD CONSTRAINT `grade_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `grade_ibfk_2` FOREIGN KEY (`class_id`) REFERENCES `classroom` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `grade_ibfk_3` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`id`) ON UPDATE CASCADE;
+ADD CONSTRAINT `class_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE,
+ADD CONSTRAINT `class_ibfk_3` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`id`) ON UPDATE CASCADE,
+ADD CONSTRAINT `class_ibfk_4` FOREIGN KEY (`classroom_id`) REFERENCES `classroom` (`id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `lecture`
 --
 ALTER TABLE `lecture`
-  ADD CONSTRAINT `lecture_ibfk_1` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`id`) ON UPDATE CASCADE;
+ADD CONSTRAINT `lecture_ibfk_1` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `section`
+--
+ALTER TABLE `section`
+ADD CONSTRAINT `section_ibfk_1` FOREIGN KEY (`id`) REFERENCES `class` (`section_id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `todolist`
 --
 ALTER TABLE `todolist`
-  ADD CONSTRAINT `todolist_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE;
+ADD CONSTRAINT `todolist_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tutorial`
 --
 ALTER TABLE `tutorial`
-  ADD CONSTRAINT `tutorial_ibfk_1` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`id`) ON UPDATE CASCADE;
+ADD CONSTRAINT `tutorial_ibfk_1` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tutorial_submission`
 --
 ALTER TABLE `tutorial_submission`
-  ADD CONSTRAINT `tutorial_submission_ibfk_1` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `tutorial_submission_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE;
+ADD CONSTRAINT `tutorial_submission_ibfk_1` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`id`) ON UPDATE CASCADE,
+ADD CONSTRAINT `tutorial_submission_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `unit`
 --
 ALTER TABLE `unit`
-  ADD CONSTRAINT `unit_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `unit_ibfk_3` FOREIGN KEY (`grade_id`) REFERENCES `grade` (`id`) ON UPDATE CASCADE;
-
---
--- Constraints for table `users`
---
-ALTER TABLE `users`
-  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`) ON UPDATE CASCADE;
+ADD CONSTRAINT `unit_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`) ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
