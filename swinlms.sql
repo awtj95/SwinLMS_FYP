@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.3.11
--- http://www.phpmyadmin.net
+-- version 4.6.5.2
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 15, 2017 at 12:35 PM
--- Server version: 5.6.24
--- PHP Version: 5.6.8
+-- Generation Time: May 17, 2017 at 08:55 AM
+-- Server version: 10.1.21-MariaDB
+-- PHP Version: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `swinlms`
@@ -26,12 +26,12 @@ SET time_zone = "+00:00";
 -- Table structure for table `announcements`
 --
 
-CREATE TABLE IF NOT EXISTS `announcements` (
+CREATE TABLE `announcements` (
   `id` int(11) NOT NULL,
   `description` varchar(255) NOT NULL,
   `date` datetime NOT NULL,
   `unit_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `announcements`
@@ -53,7 +53,7 @@ INSERT INTO `announcements` (`id`, `description`, `date`, `unit_id`) VALUES
 -- Table structure for table `assessment`
 --
 
-CREATE TABLE IF NOT EXISTS `assessment` (
+CREATE TABLE `assessment` (
   `id` int(11) NOT NULL,
   `unit_id` int(11) NOT NULL,
   `title` varchar(45) NOT NULL,
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `assessment` (
   `description` varchar(50) NOT NULL,
   `type` varchar(30) DEFAULT NULL,
   `size` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `assessment`
@@ -82,7 +82,7 @@ INSERT INTO `assessment` (`id`, `unit_id`, `title`, `file`, `description`, `type
 -- Table structure for table `assignment`
 --
 
-CREATE TABLE IF NOT EXISTS `assignment` (
+CREATE TABLE `assignment` (
   `id` int(11) NOT NULL,
   `unit_id` int(11) NOT NULL,
   `title` varchar(45) NOT NULL,
@@ -90,7 +90,7 @@ CREATE TABLE IF NOT EXISTS `assignment` (
   `description` varchar(50) NOT NULL,
   `type` varchar(30) DEFAULT NULL,
   `size` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `assignment`
@@ -111,7 +111,7 @@ INSERT INTO `assignment` (`id`, `unit_id`, `title`, `file`, `description`, `type
 -- Table structure for table `assignment_submission`
 --
 
-CREATE TABLE IF NOT EXISTS `assignment_submission` (
+CREATE TABLE `assignment_submission` (
   `id` int(11) NOT NULL,
   `unit_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
@@ -121,7 +121,7 @@ CREATE TABLE IF NOT EXISTS `assignment_submission` (
   `size` int(11) NOT NULL,
   `grade` varchar(10) DEFAULT NULL,
   `feedback` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `assignment_submission`
@@ -145,12 +145,12 @@ INSERT INTO `assignment_submission` (`id`, `unit_id`, `user_id`, `title`, `file`
 -- Table structure for table `attendance`
 --
 
-CREATE TABLE IF NOT EXISTS `attendance` (
+CREATE TABLE `attendance` (
   `id` int(11) NOT NULL,
   `unit_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `attend` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `attendance`
@@ -161,15 +161,6 @@ INSERT INTO `attendance` (`id`, `unit_id`, `user_id`, `attend`) VALUES
 (11, 2, 4, '2017-05-02 16:58:56'),
 (12, 3, 4, '2017-05-02 16:59:24'),
 (13, 3, 4, '2017-05-02 16:59:34'),
-(14, 4, 4, '2017-05-02 17:00:35'),
-(15, 4, 4, '2017-05-02 17:00:45'),
-(16, 4, 4, '2017-05-02 17:01:19'),
-(17, 4, 4, '2017-05-02 17:01:30'),
-(18, 4, 4, '2017-05-02 17:01:33'),
-(19, 4, 4, '2017-05-02 17:01:34'),
-(20, 4, 4, '2017-05-02 17:01:36'),
-(21, 4, 4, '2017-05-02 17:01:38'),
-(22, 4, 4, '2017-05-02 17:01:40'),
 (23, 4, 4, '2017-05-02 17:01:54'),
 (24, 4, 4, '2017-05-02 17:01:55'),
 (25, 4, 4, '2017-05-02 17:01:56'),
@@ -195,13 +186,29 @@ INSERT INTO `attendance` (`id`, `unit_id`, `user_id`, `attend`) VALUES
 -- Table structure for table `class`
 --
 
-CREATE TABLE IF NOT EXISTS `class` (
+CREATE TABLE `class` (
   `id` int(11) NOT NULL,
-  `classroom_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `unit_id` int(11) NOT NULL,
-  `section_id` int(11) NOT NULL
+  `section_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `class`
+--
+
+INSERT INTO `class` (`id`, `user_id`, `unit_id`, `section_id`) VALUES
+(1, 4, 1, 1),
+(2, 4, 2, 2),
+(3, 4, 3, 3),
+(4, 4, 4, 4),
+(5, 5, 1, 1),
+(6, 5, 3, 3),
+(7, 6, 1, 1),
+(8, 6, 4, 4),
+(9, 7, 2, 2),
+(10, 7, 3, 3),
+(11, 7, 4, 4);
 
 -- --------------------------------------------------------
 
@@ -209,10 +216,10 @@ CREATE TABLE IF NOT EXISTS `class` (
 -- Table structure for table `classroom`
 --
 
-CREATE TABLE IF NOT EXISTS `classroom` (
+CREATE TABLE `classroom` (
   `id` int(11) NOT NULL,
   `classroom` varchar(10) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `classroom`
@@ -230,12 +237,12 @@ INSERT INTO `classroom` (`id`, `classroom`) VALUES
 -- Table structure for table `course`
 --
 
-CREATE TABLE IF NOT EXISTS `course` (
+CREATE TABLE `course` (
   `id` int(11) NOT NULL,
   `name` varchar(45) NOT NULL,
   `code` varchar(10) NOT NULL,
   `description` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `course`
@@ -251,7 +258,7 @@ INSERT INTO `course` (`id`, `name`, `code`, `description`) VALUES
 -- Table structure for table `lecture`
 --
 
-CREATE TABLE IF NOT EXISTS `lecture` (
+CREATE TABLE `lecture` (
   `id` int(11) NOT NULL,
   `unit_id` int(11) NOT NULL,
   `title` varchar(45) NOT NULL,
@@ -259,7 +266,7 @@ CREATE TABLE IF NOT EXISTS `lecture` (
   `description` varchar(50) NOT NULL,
   `type` varchar(30) NOT NULL,
   `size` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `lecture`
@@ -280,7 +287,7 @@ INSERT INTO `lecture` (`id`, `unit_id`, `title`, `file`, `description`, `type`, 
 -- Table structure for table `messages`
 --
 
-CREATE TABLE IF NOT EXISTS `messages` (
+CREATE TABLE `messages` (
   `id` bigint(11) NOT NULL,
   `id2` int(11) NOT NULL,
   `subject` varchar(255) CHARACTER SET utf8 NOT NULL,
@@ -311,7 +318,7 @@ INSERT INTO `messages` (`id`, `id2`, `subject`, `user1`, `user2`, `message`, `ti
 -- Table structure for table `msg_of_day`
 --
 
-CREATE TABLE IF NOT EXISTS `msg_of_day` (
+CREATE TABLE `msg_of_day` (
   `id` int(11) NOT NULL,
   `detail` varchar(255) NOT NULL,
   `status` varchar(65) NOT NULL
@@ -320,17 +327,48 @@ CREATE TABLE IF NOT EXISTS `msg_of_day` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `relation`
+--
+
+CREATE TABLE `relation` (
+  `id` int(11) NOT NULL,
+  `user_id1` int(11) NOT NULL,
+  `user_id2` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `relation`
+--
+
+INSERT INTO `relation` (`id`, `user_id1`, `user_id2`) VALUES
+(1, 8, 5),
+(2, 8, 7),
+(3, 9, 6);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `section`
 --
 
-CREATE TABLE IF NOT EXISTS `section` (
+CREATE TABLE `section` (
   `id` int(11) NOT NULL,
-  `section_name` varchar(65) NOT NULL,
-  `section_venue` varchar(65) NOT NULL,
+  `unit_id` int(11) NOT NULL,
+  `classroom_id` int(11) NOT NULL,
   `section_start_time` datetime NOT NULL,
   `section_day` varchar(65) NOT NULL,
   `section_duration` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `section`
+--
+
+INSERT INTO `section` (`id`, `unit_id`, `classroom_id`, `section_start_time`, `section_day`, `section_duration`) VALUES
+(1, 1, 1, '2017-05-17 03:00:00', 'wed', 2),
+(2, 2, 2, '2017-05-17 01:00:00', 'thur', 2),
+(3, 3, 3, '2017-05-17 05:00:00', 'fri', 3),
+(4, 4, 4, '2017-05-17 03:00:00', 'mon', 2);
 
 -- --------------------------------------------------------
 
@@ -338,14 +376,14 @@ CREATE TABLE IF NOT EXISTS `section` (
 -- Table structure for table `todolist`
 --
 
-CREATE TABLE IF NOT EXISTS `todolist` (
+CREATE TABLE `todolist` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `user_id` int(11) NOT NULL,
   `done` tinyint(1) DEFAULT NULL,
   `created` datetime DEFAULT NULL,
   `date` date NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `todolist`
@@ -366,7 +404,7 @@ INSERT INTO `todolist` (`id`, `name`, `user_id`, `done`, `created`, `date`) VALU
 -- Table structure for table `tutorial`
 --
 
-CREATE TABLE IF NOT EXISTS `tutorial` (
+CREATE TABLE `tutorial` (
   `id` int(11) NOT NULL,
   `unit_id` int(11) NOT NULL,
   `title` varchar(45) NOT NULL,
@@ -374,7 +412,7 @@ CREATE TABLE IF NOT EXISTS `tutorial` (
   `description` varchar(50) NOT NULL,
   `type` varchar(30) DEFAULT NULL,
   `size` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tutorial`
@@ -395,7 +433,7 @@ INSERT INTO `tutorial` (`id`, `unit_id`, `title`, `file`, `description`, `type`,
 -- Table structure for table `tutorial_submission`
 --
 
-CREATE TABLE IF NOT EXISTS `tutorial_submission` (
+CREATE TABLE `tutorial_submission` (
   `id` int(11) NOT NULL,
   `unit_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
@@ -405,7 +443,7 @@ CREATE TABLE IF NOT EXISTS `tutorial_submission` (
   `size` int(11) NOT NULL,
   `grade` varchar(10) DEFAULT NULL,
   `feedback` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tutorial_submission`
@@ -429,13 +467,13 @@ INSERT INTO `tutorial_submission` (`id`, `unit_id`, `user_id`, `title`, `file`, 
 -- Table structure for table `unit`
 --
 
-CREATE TABLE IF NOT EXISTS `unit` (
+CREATE TABLE `unit` (
   `id` int(11) NOT NULL,
   `name` varchar(45) NOT NULL,
   `code` varchar(10) NOT NULL,
   `description` varchar(255) NOT NULL,
   `course_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `unit`
@@ -453,7 +491,7 @@ INSERT INTO `unit` (`id`, `name`, `code`, `description`, `course_id`) VALUES
 -- Table structure for table `users`
 --
 
-CREATE TABLE IF NOT EXISTS `users` (
+CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `login_id` varchar(25) NOT NULL,
   `password` varchar(50) NOT NULL,
@@ -475,7 +513,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `egemail` varchar(50) DEFAULT NULL,
   `egcontact` varchar(15) DEFAULT NULL,
   `relationship` varchar(15) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
@@ -488,7 +526,9 @@ INSERT INTO `users` (`id`, `login_id`, `password`, `created`, `type`, `email`, `
 (4, '1234', '123456', '2017-04-22 03:27:19', 'lecturer', 'asdf@gmail.com', 'asd', 'zxcv', 'dcffa', 'kuching', 'sarawak', 93330, 987654321, 123456789, NULL, '2017-05-17', NULL, 'h', 'l', '1467292591', 'cousin'),
 (5, '5678', 'tyui', '2017-04-22 09:11:29', 'student', 'zxcv@gmail.com', 'tyui', 'ghjk', 'fsd vxb', 'kuching', 'sarawak', 93250, 1234567890, 1293871263, NULL, '2017-05-15', NULL, 'asdn asn', 'd@s.com', '123459', 'cousin'),
 (6, '12345', 'qfscfx', '2017-04-28 02:12:13', 'student', 'as@gmail.com', 'a', 's', 'srgvsdv', 'kuching', 'sarawak', 93250, 1234567890, 1234567891, NULL, '2017-05-03', NULL, 'asdn asknd', 'd@s.com', '345865', 'cousin'),
-(7, '3463', 'gddbSg', '2017-04-28 02:22:12', 'student', 'sdf@gmail.com', 'sd', 'f', 'wrsgrsdf', 'kuching', 'sarawak', 93250, 1234567890, 1345162469, NULL, '2017-05-09', NULL, 'afav', 'd@s.com', '13486', 'cousin');
+(7, '3463', 'gddbSg', '2017-04-28 02:22:12', 'student', 'sdf@gmail.com', 'sd', 'f', 'wrsgrsdf', 'kuching', 'sarawak', 93250, 1234567890, 1345162469, NULL, '2017-05-09', NULL, 'afav', 'd@s.com', '13486', 'cousin'),
+(8, '345', 'asknc12', '2017-05-17 02:00:00', 'parent', 'pa@gmail.com', 'pa', 'rent', 'aksdn asnd asdn', NULL, NULL, NULL, NULL, 1237874527, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(9, '9876', 'qwen123', '2017-05-17 11:09:00', 'parent', 'as@gmail.com', 'as', 'parent', 'asd AD ASKN ', NULL, NULL, NULL, NULL, 1236846273, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -498,43 +538,54 @@ INSERT INTO `users` (`id`, `login_id`, `password`, `created`, `type`, `email`, `
 -- Indexes for table `announcements`
 --
 ALTER TABLE `announcements`
-  ADD PRIMARY KEY (`id`), ADD KEY `course_id` (`unit_id`) USING BTREE;
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `course_id` (`unit_id`) USING BTREE;
 
 --
 -- Indexes for table `assessment`
 --
 ALTER TABLE `assessment`
-  ADD PRIMARY KEY (`id`), ADD KEY `unit_id` (`unit_id`) USING BTREE;
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `unit_id` (`unit_id`) USING BTREE;
 
 --
 -- Indexes for table `assignment`
 --
 ALTER TABLE `assignment`
-  ADD PRIMARY KEY (`id`), ADD KEY `unit_id` (`unit_id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `unit_id` (`unit_id`);
 
 --
 -- Indexes for table `assignment_submission`
 --
 ALTER TABLE `assignment_submission`
-  ADD PRIMARY KEY (`id`), ADD KEY `unit_id` (`unit_id`), ADD KEY `user_id` (`user_id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `unit_id` (`unit_id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `attendance`
 --
 ALTER TABLE `attendance`
-  ADD PRIMARY KEY (`id`), ADD KEY `unit_id` (`unit_id`), ADD KEY `user_id` (`user_id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `unit_id` (`unit_id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `class`
 --
 ALTER TABLE `class`
-  ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `section_id` (`section_id`), ADD KEY `user_id` (`user_id`), ADD KEY `unit_id` (`unit_id`), ADD KEY `classroom_id` (`classroom_id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `unit_id` (`unit_id`),
+  ADD KEY `section_id_2` (`section_id`);
 
 --
 -- Indexes for table `classroom`
 --
 ALTER TABLE `classroom`
-  ADD PRIMARY KEY (`id`), ADD KEY `classroom` (`classroom`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `classroom` (`classroom`);
 
 --
 -- Indexes for table `course`
@@ -546,7 +597,8 @@ ALTER TABLE `course`
 -- Indexes for table `lecture`
 --
 ALTER TABLE `lecture`
-  ADD PRIMARY KEY (`id`), ADD KEY `unit_id` (`unit_id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `unit_id` (`unit_id`);
 
 --
 -- Indexes for table `msg_of_day`
@@ -555,34 +607,49 @@ ALTER TABLE `msg_of_day`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `relation`
+--
+ALTER TABLE `relation`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id1` (`user_id1`),
+  ADD KEY `user_id2` (`user_id2`);
+
+--
 -- Indexes for table `section`
 --
 ALTER TABLE `section`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `unit_id` (`unit_id`),
+  ADD KEY `classroom_id` (`classroom_id`);
 
 --
 -- Indexes for table `todolist`
 --
 ALTER TABLE `todolist`
-  ADD PRIMARY KEY (`id`), ADD KEY `userid` (`user_id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `userid` (`user_id`);
 
 --
 -- Indexes for table `tutorial`
 --
 ALTER TABLE `tutorial`
-  ADD PRIMARY KEY (`id`), ADD KEY `unit_id` (`unit_id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `unit_id` (`unit_id`);
 
 --
 -- Indexes for table `tutorial_submission`
 --
 ALTER TABLE `tutorial_submission`
-  ADD PRIMARY KEY (`id`), ADD KEY `unit_id` (`unit_id`), ADD KEY `user_id` (`user_id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `unit_id` (`unit_id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `unit`
 --
 ALTER TABLE `unit`
-  ADD PRIMARY KEY (`id`), ADD KEY `course_id` (`course_id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `course_id` (`course_id`);
 
 --
 -- Indexes for table `users`
@@ -598,82 +665,87 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `announcements`
 --
 ALTER TABLE `announcements`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT for table `assessment`
 --
 ALTER TABLE `assessment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `assignment`
 --
 ALTER TABLE `assignment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `assignment_submission`
 --
 ALTER TABLE `assignment_submission`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `attendance`
 --
 ALTER TABLE `attendance`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=41;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 --
 -- AUTO_INCREMENT for table `class`
 --
 ALTER TABLE `class`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `classroom`
 --
 ALTER TABLE `classroom`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `course`
 --
 ALTER TABLE `course`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `lecture`
 --
 ALTER TABLE `lecture`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT for table `msg_of_day`
 --
 ALTER TABLE `msg_of_day`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `relation`
+--
+ALTER TABLE `relation`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
 -- AUTO_INCREMENT for table `section`
 --
 ALTER TABLE `section`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `todolist`
 --
 ALTER TABLE `todolist`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `tutorial`
 --
 ALTER TABLE `tutorial`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT for table `tutorial_submission`
 --
 ALTER TABLE `tutorial_submission`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 --
 -- AUTO_INCREMENT for table `unit`
 --
 ALTER TABLE `unit`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- Constraints for dumped tables
 --
@@ -682,78 +754,86 @@ ALTER TABLE `users`
 -- Constraints for table `announcements`
 --
 ALTER TABLE `announcements`
-ADD CONSTRAINT `announcements_ibfk_2` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `announcements_ibfk_2` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `assessment`
 --
 ALTER TABLE `assessment`
-ADD CONSTRAINT `assessment_ibfk_1` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `assessment_ibfk_1` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `assignment`
 --
 ALTER TABLE `assignment`
-ADD CONSTRAINT `assignment_ibfk_1` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `assignment_ibfk_1` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `assignment_submission`
 --
 ALTER TABLE `assignment_submission`
-ADD CONSTRAINT `assignment_submission_ibfk_1` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`id`) ON UPDATE CASCADE,
-ADD CONSTRAINT `assignment_submission_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `assignment_submission_ibfk_1` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `assignment_submission_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `attendance`
 --
 ALTER TABLE `attendance`
-ADD CONSTRAINT `attendance_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE,
-ADD CONSTRAINT `attendance_ibfk_2` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `attendance_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `attendance_ibfk_2` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `class`
 --
 ALTER TABLE `class`
-ADD CONSTRAINT `class_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE,
-ADD CONSTRAINT `class_ibfk_3` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`id`) ON UPDATE CASCADE,
-ADD CONSTRAINT `class_ibfk_4` FOREIGN KEY (`classroom_id`) REFERENCES `classroom` (`id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `class_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `class_ibfk_3` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `class_ibfk_5` FOREIGN KEY (`section_id`) REFERENCES `section` (`id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `lecture`
 --
 ALTER TABLE `lecture`
-ADD CONSTRAINT `lecture_ibfk_1` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `lecture_ibfk_1` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `relation`
+--
+ALTER TABLE `relation`
+  ADD CONSTRAINT `relation_ibfk_1` FOREIGN KEY (`user_id1`) REFERENCES `users` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `relation_ibfk_2` FOREIGN KEY (`user_id2`) REFERENCES `users` (`id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `section`
 --
 ALTER TABLE `section`
-ADD CONSTRAINT `section_ibfk_1` FOREIGN KEY (`id`) REFERENCES `class` (`section_id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `section_ibfk_1` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `section_ibfk_2` FOREIGN KEY (`classroom_id`) REFERENCES `classroom` (`id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `todolist`
 --
 ALTER TABLE `todolist`
-ADD CONSTRAINT `todolist_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `todolist_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tutorial`
 --
 ALTER TABLE `tutorial`
-ADD CONSTRAINT `tutorial_ibfk_1` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `tutorial_ibfk_1` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tutorial_submission`
 --
 ALTER TABLE `tutorial_submission`
-ADD CONSTRAINT `tutorial_submission_ibfk_1` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`id`) ON UPDATE CASCADE,
-ADD CONSTRAINT `tutorial_submission_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `tutorial_submission_ibfk_1` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `tutorial_submission_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `unit`
 --
 ALTER TABLE `unit`
-ADD CONSTRAINT `unit_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `unit_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`) ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
