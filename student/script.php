@@ -238,3 +238,10 @@ function play_game()
     }
 }
 </script>
+<script>
+$(document).on("click", ".upload", function () {
+     var myId = $(this).data('id');
+     $(".modal-body #id").val( myId );
+
+});
+</script>

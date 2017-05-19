@@ -116,8 +116,8 @@ function myFunction3() {
 </script>
 <script>
 $(document).on("click", ".upload", function () {
-     var myMarkId = $(this).data('id');
-     $(".modal-body #id").val( myMarkId );
+     var myId = $(this).data('id');
+     $(".modal-body #id").val( myId );
 
 });
 </script>
