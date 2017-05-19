@@ -85,7 +85,7 @@ $courselist = $courselistQuery->rowCount() ? $courselistQuery : [];
                 <div class="modal-content">
                     <form action="upload/upload.php" method="post" enctype="multipart/form-data">
                         <div class="modal-header">
-                            <h4 class="modal-title custom_align" id="Heading">Tutorial Submission</h4>
+                            <h4 class="modal-title custom_align" id="Heading">Assignment Submission</h4>
                         </div>
                     
                         <div class="modal-body">

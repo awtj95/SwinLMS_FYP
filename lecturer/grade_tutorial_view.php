@@ -19,7 +19,7 @@ $contentheaderQuery->execute([
 $contentheader = $contentheaderQuery->rowCount() ? $contentheaderQuery : [];
 
 $courselisttQuery = $db->prepare("
-    SELECT u.login_id, u.first_name, u.last_name, ts.id, ts.title, ts.file, ts.grade, ts.feedback
+    SELECT u.login_id, u.first_name, u.last_name, ts.id, ts.title, ts.file, ts.grade, ts.feedback, ts.status
     FROM tutorial_submission ts
     JOIN users u
     ON ts.user_id = u.id
@@ -94,6 +94,7 @@ $courselistt = $courselisttQuery->rowCount() ? $courselisttQuery : [];
                                     <th>Name</th>
                                     <th>Title</th>
                                     <th>Files (Download)</th>
+                                    <th>Status</th>
                                     <th>Grade</th>
                                     <th>Lecturer's Feedback</th>
                                     <th>Action</th>
@@ -111,12 +112,13 @@ $courselistt = $courselisttQuery->rowCount() ? $courselisttQuery : [];
                                     <td><?php echo $courses['first_name']. ' ' . $courses['last_name']; ?></td>
                                     <td><?php echo $courses['title']; ?></td>
                                     <td><a href="../student/upload/uploads/<?php echo $courses['file'] ?>" target="_blank"><?php echo $courses['file']; ?></a></td>
+                                    <td><?php echo $courses['status']; ?></td>
                                     <td><?php echo $courses['grade']; ?></td>
                                     <td><?php echo $courses['feedback']; ?></td>
                                     <td>
-                                        <a href="#" class="upload" data-toggle="modal" data-target="#tutorial-update"><i class="fa fa-upload"></i></a>
+                                        <a href="#" class="upload" data-toggle="modal" data-target="#tutorial-update" data-id="<?php echo $courses['id'] ?>"><i class="fa fa-upload"></i></a>
                                         
-                                        <a href="#" class="upload" data-toggle="modal" data-target="#tutorial-mark  " data-id="<?php echo $courses['id'] ?>"><i class="fa fa-check-square-o"></i></a>
+                                        <a href="#" class="upload" data-toggle="modal" data-target="#tutorial-mark" data-id="<?php echo $courses['id'] ?>"><i class="fa fa-check-square-o"></i></a>
                                         
                                         <a href="submission/remove.php?id=<?php echo $courses['id']; ?>&unit_id=<?php echo $_SESSION['unit_id']; ?>" class="delete-button"><i class="fa fa-trash-o"></i></a>                                        
                                     </td>
@@ -131,6 +133,7 @@ $courselistt = $courselisttQuery->rowCount() ? $courselisttQuery : [];
                                     <th>Name</th>
                                     <th>Title</th>
                                     <th>Files (Download)</th>
+                                    <th>Status</th>
                                     <th>Grade</th>
                                     <th>Lecturer's Feedback</th>
                                     <th>Action</th>
@@ -167,6 +170,9 @@ $courselistt = $courselisttQuery->rowCount() ? $courselisttQuery : [];
                                 <input type="hidden" name="name" class="form-control" value="<?php echo $_GET['name']; ?>">
                             </div>
                             <div class="form-group">
+                                <input type="hidden" name="id" id="id" class="form-control" value=""/>
+                            </div>
+                            <div class="form-group">
                                 <input type="file" name="file" />
                                 <small>Support PDF, DOC, EXE, VIDEO, MP3, ZIP,etc format</small>
                             </div>
@@ -182,7 +188,7 @@ $courselistt = $courselisttQuery->rowCount() ? $courselisttQuery : [];
             </div>
         	<!-- /.modal-dialog --> 
         </div>
-                <div class="modal fade" id="tutorial-mark" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+        <div class="modal fade" id="tutorial-mark" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <form action="submission/mark.php" method="post" enctype="multipart/form-data">

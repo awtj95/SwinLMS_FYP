@@ -194,6 +194,7 @@ if(isset($_POST['tutorial-submission']))
     $unit = $_POST['unit'];
     $name = $_POST['name'];
     $title = $_POST['title'];
+    $status = "Original";
 	
 	// new file size in KB
 	$new_size = $file_size/1024;  
@@ -207,7 +208,7 @@ if(isset($_POST['tutorial-submission']))
 	
 	if(move_uploaded_file($file_loc,$folder.$final_file))
 	{
-		$sql="INSERT INTO tutorial_submission(unit_id,user_id,title,file,type,size) VALUES('$unit','$user','$title','$final_file','$file_type','$new_size')";
+		$sql="INSERT INTO tutorial_submission(unit_id,user_id,title,file,type,size,status) VALUES('$unit','$user','$title','$final_file','$file_type','$new_size','$status')";
 		mysql_query($sql);
 		?>
 		<script>
@@ -239,6 +240,7 @@ if(isset($_POST['assignment-submission']))
     $unit = $_POST['unit'];
     $name = $_POST['name'];
     $title = $_POST['title'];
+    $status = "Original";
 	
 	// new file size in KB
 	$new_size = $file_size/1024;  
@@ -252,7 +254,7 @@ if(isset($_POST['assignment-submission']))
 	
 	if(move_uploaded_file($file_loc,$folder.$final_file))
 	{
-		$sql="INSERT INTO assignment_submission(unit_id,user_id,title,file,type,size) VALUES('$unit','$user','$title','$final_file','$file_type','$new_size')";
+		$sql="INSERT INTO assignment_submission(unit_id,user_id,title,file,type,size,status) VALUES('$unit','$user','$title','$final_file','$file_type','$new_size','$status')";
 		mysql_query($sql);
 		?>
 		<script>

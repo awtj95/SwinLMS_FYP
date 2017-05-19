@@ -19,7 +19,7 @@ $contentheaderQuery->execute([
 $contentheader = $contentheaderQuery->rowCount() ? $contentheaderQuery : [];
 
 $courselistQuery = $db->prepare("
-    SELECT u.login_id, u.first_name, u.last_name, a.id, a.title, a.file, a.grade, a.feedback
+    SELECT u.login_id, u.first_name, u.last_name, a.id, a.title, a.file, a.grade, a.feedback, a.status
     FROM assignment_submission a
     JOIN users u
     ON a.user_id = u.id
@@ -94,6 +94,7 @@ $courselist = $courselistQuery->rowCount() ? $courselistQuery : [];
                                     <th>Name</th>
                                     <th>Title</th>
                                     <th>Files (Download)</th>
+                                    <th>Status</th>
                                     <th>Grade</th>
                                     <th>Lecturer's Feedback</th>
                                     <th>Action</th>
@@ -111,10 +112,11 @@ $courselist = $courselistQuery->rowCount() ? $courselistQuery : [];
                                     <td><?php echo $course['first_name']. ' ' . $course['last_name']; ?></td>
                                     <td><?php echo $course['title']; ?></td>
                                     <td><a href="../student/upload/uploads/<?php echo $course['file']; ?>" target="_blank"><?php echo $course['file']; ?></a></td>
+                                    <td><?php echo $course['status']; ?></td>
                                     <td><?php echo $course['grade']; ?></td>
                                     <td><?php echo $course['feedback']; ?></td>
                                     <td>
-                                        <a href="#" class="upload" data-toggle="modal" data-target="#assignment-update"><i class="fa fa-upload"></i></a>
+                                        <a href="#" class="upload" data-toggle="modal" data-target="#assignment-update" data-id="<?php echo $course['id'] ?>"><i class="fa fa-upload"></i></a>
                                         
                                         <a href="#" class="upload" data-toggle="modal" data-target="#assignment-mark1" data-id="<?php echo $course['id'] ?>"><i class="fa fa-check-square-o"></i></a>
 
@@ -130,6 +132,7 @@ $courselist = $courselistQuery->rowCount() ? $courselistQuery : [];
                                     <th>Name</th>
                                     <th>Title</th>
                                     <th>Files (Download)</th>
+                                    <th>Status</th>
                                     <th>Grade</th>
                                     <th>Lecturer's Feedback</th>
                                     <th>Action</th>
@@ -164,6 +167,9 @@ $courselist = $courselistQuery->rowCount() ? $courselistQuery : [];
                             </div>
                             <div class="form-group">
                                 <input type="hidden" name="name" class="form-control" value="<?php echo $_GET['name']; ?>">
+                            </div>
+                            <div class="form-group">
+                                <input type="hidden" name="id" id="id" class="form-control" value=""/>
                             </div>
                             <div class="form-group">
                                 <input type="file" name="file" />

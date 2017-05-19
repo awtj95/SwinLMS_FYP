@@ -19,7 +19,7 @@ $contentheaderQuery->execute([
 $contentheader = $contentheaderQuery->rowCount() ? $contentheaderQuery : [];
 
 $courselisttQuery = $db->prepare("
-    SELECT u.login_id, u.first_name, u.last_name, ts.user_id, ts.id, ts.title, ts.file, ts.grade, ts.feedback
+    SELECT u.login_id, u.first_name, u.last_name, ts.user_id, ts.id, ts.title, ts.file, ts.grade, ts.feedback, ts.status
     FROM tutorial_submission ts
     JOIN users u
     ON ts.user_id = u.id
@@ -95,6 +95,7 @@ $courselistt = $courselisttQuery->rowCount() ? $courselisttQuery : [];
                                     <th>Name</th>
                                     <th>Title</th>
                                     <th>Files (Download)</th>
+                                    <th>Status</th>
                                     <th>Grade</th>
                                     <th>Lecturer's Feedback</th>
                                 </tr>
@@ -111,6 +112,7 @@ $courselistt = $courselisttQuery->rowCount() ? $courselisttQuery : [];
                                     <td><?php echo $courses['first_name']. ' ' . $courses['last_name']; ?></td>
                                     <td><?php echo $courses['title']; ?></td>
                                     <td><a href="upload/uploads/<?php echo $courses['file'] ?>" target="_blank"><?php echo $courses['file']; ?></a></td>
+                                    <td><?php echo $courses['status']; ?></td>
                                     <td><?php echo $courses['grade']; ?></td>
                                     <td><?php echo $courses['feedback']; ?></td>
                                 </tr>
@@ -123,6 +125,7 @@ $courselistt = $courselisttQuery->rowCount() ? $courselisttQuery : [];
                                     <th>Name</th>
                                     <th>Title</th>
                                     <th>Files (Download)</th>
+                                    <th>Status</th>
                                     <th>Grade</th>
                                     <th>Lecturer's Feedback</th>
                                 </tr>

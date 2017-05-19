@@ -52,14 +52,8 @@ $courselist = $courselistQuery->rowCount() ? $courselistQuery : [];
                   <!-- Submission List -->
                   <div class="box box-primary">
                     <div class="box-header">
-                      <i class="fa fa-calendar-check-o"></i>
+                        <i class="fa fa-calendar-check-o"></i>
         				<h3 class="box-title">Unit List</h3>
-                        <div class="box-tools pull-right">
-                            <div class="has-feedback">
-                                <input type="text" class="form-control input-sm" placeholder="Filter List">
-                                <span class="glyphicon glyphicon-search form-control-feedback"></span>
-                            </div>
-                        </div>
                     </div>
                     <!-- /.box-header -->
                     
