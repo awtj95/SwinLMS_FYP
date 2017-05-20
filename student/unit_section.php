@@ -1,7 +1,7 @@
 <?php
 
 require_once '../app/config.php';
-
+session_start();
 $_SESSION['id'] = $_GET['id'];
 $_SESSION['unit_id'] = $_GET['unit_id'];
 $_SESSION['name'] = $_GET['name'];

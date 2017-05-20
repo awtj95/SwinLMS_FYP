@@ -1,6 +1,3 @@
-<?php
-    require_once '../app/config.php';
-?>
 <header class="main-header">
     <!-- Logo -->
     <a href="dashboard.php" class="logo">
@@ -83,7 +80,7 @@
                       <a href="setting.php"><i class="fa fa-gears"> Setting</i></a>
                   </li>
                   <li>
-                      <a href="../index.php"><i class="fa fa-sign-out"> Sign Out</i></a>
+                      <a href="../logout.php"><i class="fa fa-sign-out"> Sign Out</i></a>
                   </li>
                 </ul>
               </li>

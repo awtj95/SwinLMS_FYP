@@ -1,15 +1,8 @@
 <?php
-require_once 'app/config.php';
+/* Log out process, unsets and destroys session variables */
 session_start();
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') 
-{
-    if (isset($_POST['login'])) { //user logging in
-
-        require 'login.php';
-        
-    }
-}
+session_unset();
+session_destroy(); 
 ?>
 <!DOCTYPE html>
 <html>
@@ -53,25 +46,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
   <body class="hold-transition login-page">
     <div class="login-box">
       <div class="login-box-body">
-        <h1 class="login-box-msg">Swin LMS</h1>
-        <form action="index.php" method="post" autocomplete="off">
-          <div class="form-group has-feedback">
-            <input type="text" class="form-control" name="login_id" placeholder="Username" required autocomplete="off">
-            <span class="glyphicon glyphicon-user form-control-feedback"></span>
-          </div>
-          <div class="form-group has-feedback">
-            <input type="password" class="form-control" name="password" placeholder="Password" required autocomplete="off">
-            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-          </div>
-          <div class="row">
-            <div class="col-xs-8">
-              
-            </div>
-            <div class="col-xs-4">
-              <button type="submit" name="login" class="btn btn-primary btn-block btn-flat">Log In</button>
-            </div><!-- /.col -->
-          </div>
-        </form>
+        <h1 class="login-box-msg">Logout Successful</h1>
+        <a href="index.php"><button class="btn btn-primary btn-block btn-flat">Log In</button></a>
 
       </div><!-- /.login-box-body -->
     </div><!-- /.login-box -->

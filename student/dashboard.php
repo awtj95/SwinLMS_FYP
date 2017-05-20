@@ -1,7 +1,7 @@
 <?php
 
 require_once '../app/config.php';
-
+session_start();
 $todolistQuery = $db->prepare("
     SELECT id, name, done, date
     FROM todolist

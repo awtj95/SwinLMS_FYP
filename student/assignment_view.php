@@ -3,7 +3,7 @@
 require_once '../app/config.php';
 
 $_SESSION['unit_id'] = $_GET['id'];
-
+session_start();
 $courselistQuery = $db->prepare("
     SELECT id, title, file, description
     FROM assignment

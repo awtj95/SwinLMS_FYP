@@ -1,7 +1,7 @@
 <?php
 
 require_once '../app/config.php';
-
+session_start();
 $courselistQuery = $db->prepare("
     SELECT c.unit_id, c.section_id, u.name, u.description, s.section_start_time, s.section_day
     FROM ((unit u

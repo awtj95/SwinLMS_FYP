@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
     <?php include_once('first.php') ?>
@@ -28,14 +31,6 @@
                 <!-- Left col -->
                     <section class="col-lg-12">
                     <!-- Custom tabs (Charts with tabs)-->
-                        <div class="box box-primary">
-                            <div class="box-header">
-                                <i class="fa fa-gamepad"></i>
-                                <a href="tictactoe.php">
-                                    <h3 class="box-title">Tic Tac Toe</h3>
-                                </a>
-                            </div>
-                        </div>
                         <div class="box box-primary">
                             <div class="box-header">
                                 <i class="fa fa-gamepad"></i>

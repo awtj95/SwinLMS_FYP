@@ -1,7 +1,7 @@
 <?php
 
 require_once '../app/config.php';
-
+session_start();
 $_SESSION['unit_id'] = $_GET['id'];
 
 $courselistQuery = $db->prepare("

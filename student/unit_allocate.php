@@ -1,7 +1,7 @@
 <?php
 
 require_once '../app/config.php';
-
+session_start();
 $counter = 0; 
 
 $courselistQuery = $db->prepare("

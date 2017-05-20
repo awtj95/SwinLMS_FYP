@@ -1,6 +1,7 @@
 <?php
 
 require_once '../app/config.php';
+session_start();
 
 $id = $_SESSION['user_id'];
 $query = "select * from users where id = '$id'";

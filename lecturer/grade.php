@@ -1,6 +1,7 @@
 <?php
 
 require_once '../app/config.php';
+session_start();
 
 $courselistQuery = $db->prepare("
     SELECT c.unit_id, u.name
