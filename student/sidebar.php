@@ -32,7 +32,7 @@
           </a>
         </li>
         <li>
-          <a href="calendar.php">
+          <a href="#">
             <i class="fa fa-calendar"></i> <span>Calendar</span>
             <!--<span class="pull-right-container">
               <small class="label pull-right bg-red"></small>

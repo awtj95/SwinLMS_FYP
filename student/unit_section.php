@@ -2,26 +2,25 @@
 
 require_once '../app/config.php';
 
+$_SESSION['id'] = $_GET['id'];
+$_SESSION['unit_id'] = $_GET['unit_id'];
+$_SESSION['name'] = $_GET['name'];
 $counter = 0; 
 
-$courselistQuery = $db->prepare("
-    SELECT c.unit_id, c.section_id, c.id, u.name, u.description, s.section_start_time, s.section_day, s.section_duration, cr.classroom
-    FROM (((unit u
-    JOIN class c
-    ON c.unit_id = u.id)
-    JOIN section s
-    ON c.section_id = s.id)
-    JOIN classroom cr
-    ON s.classroom_id = cr.id)
-    WHERE user_id=:user_id
+$sectionlistQuery = $db->prepare("
+    SELECT cr.classroom, s.id, s.section_day, s.section_start_time, s.section_duration
+    FROM section s
+    Join classroom cr
+    ON s.classroom_id = cr.id
+    WHERE unit_id=:unit_id
 
 ");
 
-$courselistQuery->execute([
-    'user_id' => $_SESSION['user_id']
+$sectionlistQuery->execute([
+    'unit_id' => $_SESSION['unit_id']
 ]);
 
-$courselist = $courselistQuery->rowCount() ? $courselistQuery : [];
+$sectionlist = $sectionlistQuery->rowCount() ? $sectionlistQuery : [];
 
 ?>
 
@@ -38,11 +37,12 @@ $courselist = $courselistQuery->rowCount() ? $courselistQuery : [];
             <!-- Content Header (Page header) -->
             <section class="content-header">
               <h1>
-                Unit Allocation
+                Unit Section
               </h1>
               <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active">Unit allocation</li>
+                <li class="active">Unit Allocation</li>
+                <li class="active">Unit Section</li>
               </ol>
             </section>
             
@@ -57,40 +57,38 @@ $courselist = $courselistQuery->rowCount() ? $courselistQuery : [];
                   <div class="box box-primary">
                     <div class="box-header">
                         <i class="fa fa-calendar-check-o"></i>
-        				<h3 class="box-title">Unit List</h3>
+        				<h3 class="box-title"><?php echo $_GET['name']; ?></h3>
                     </div>
                     <!-- /.box-header -->
                     
                     <div class="box-body">
-                        <?php if(!empty($courselist)): ?>
-                        <table id="unit_allocate" class="table table-bordered table-hover courselist">
+                        <?php if(!empty($sectionlist)): ?>
+                        <table id="unit_allocate" class="table table-bordered table-hover sectionlist">
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Unit</th>
                                     <th>Day</th>
                                     <th>Time</th>
                                     <th>Duration</th>
                                     <th>Room</th>
-                                    <th>Allocate</th>
+                                    <th>Apply</th>
                                 </tr>
                             </thead>
-                            <?php foreach($courselist as $course): 
+                            <?php foreach($sectionlist as $section): 
                             {
                                 $counter++;
                             }
                             
                             ?>
-                            <tbody class="course">
+                            <tbody class="section">
                                 <tr>
                                     <td><?php echo $counter ?></td>
-                                    <td><?php echo $course['name']; ?></td>
-                                    <td><?php echo $course['section_day']; ?></td>
-                                    <td><?php echo $course['section_start_time']; ?></td>
-                                    <td><?php echo $course['section_duration']; ?></td>
-                                    <td><?php echo $course['classroom']; ?></td>
+                                    <td><?php echo $section['section_day']; ?></td>
+                                    <td><?php echo $section['section_start_time']; ?></td>
+                                    <td><?php echo $section['section_duration']; ?></td>
+                                    <td><?php echo $section['classroom']; ?></td>
                                     <td>
-                                        <a href="unit_section.php?id=<?php echo $course['id']; ?>&unit_id=<?php echo $course['unit_id']; ?>&name=<?php echo $course['name']; ?>" class="upload"><i class="fa fa-calendar-times-o"></i></a>
+                                        <a href="allocate/update.php?id=<?php echo $_SESSION['id']; ?>&section=<?php echo $section['id']; ?>" class="upload"><i class="fa fa-check"></i></a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -98,17 +96,16 @@ $courselist = $courselistQuery->rowCount() ? $courselistQuery : [];
                             <tfoot>
                                 <tr>
                                     <th>#</th>
-                                    <th>Unit</th>
                                     <th>Day</th>
                                     <th>Time</th>
                                     <th>Duration</th>
                                     <th>Room</th>
-                                    <th>Allocate</th>
+                                    <th>Apply</th>
                                 </tr>
                             </tfoot>
                         </table>
                         <?php else: ?>
-                            <p>There is no units to display.</p>
+                            <p>There is no section to display.</p>
                         <?php endif; ?>
                     <!-- /.box-body -->
                     </div>
