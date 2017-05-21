@@ -16,6 +16,8 @@ else { // User exists
         
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['login_id'] = $user['login_id'];
+        $_SESSION['first_name'] = $user['first_name'];
+        $_SESSION['last_name'] = $user['last_name'];
         
         if($user['type'] == 'lecturer'){
             header("location: lecturer/dashboard.php");

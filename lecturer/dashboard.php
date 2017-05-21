@@ -160,12 +160,12 @@ $todolist = $todolistQuery->rowCount() ? $todolistQuery : [];
                   <!-- /.box -->
         
                   <!--email widget -->
-                  <div class="box box-info">
+                  <!--<div class="box box-info">
                     <div class="box-header">
                       <i class="fa fa-envelope"></i>
                       <h3 class="box-title">Email</h3>
                       <!-- if add 'remove button -->
-                    </div>
+                    <!--</div>
                     <div class="box-body">
                       <form action="#" method="post">
                         <div class="form-group">
@@ -183,7 +183,7 @@ $todolist = $todolistQuery->rowCount() ? $todolistQuery : [];
                       <button type="button" class="pull-right btn btn-default" id="sendEmail">Send
                         <i class="fa fa-arrow-circle-right"></i></button>
                     </div>
-                  </div>
+                  </div>-->
         
                 </section>
                 <!-- /.Left col -->

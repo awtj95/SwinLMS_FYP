@@ -8,9 +8,9 @@
           </a>
         </li>
         <li>
-          <a href="grade.php">
+          <a href="students.php">
             <i class="fa fa-check-square-o"></i>
-            <span>Student Grade</span>
+            <span>Student's</span>
           </a>
         </li>
         <li>
