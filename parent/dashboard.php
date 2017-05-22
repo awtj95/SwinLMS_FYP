@@ -1,5 +1,9 @@
 <?php
+require_once '../app/config.php';
 session_start();
+
+$sql= "SELECT * FROM msg_of_day WHERE status = 'Active'" ;
+$records = mysql_query($sql);
 ?>
 <!DOCTYPE html>
 <html>
@@ -26,6 +30,23 @@ session_start();
         
             <!-- Main content -->
             <section class="content">
+                <div class="box box-default">
+                    <div class="box-header">
+                        <h3 class="box-title"><i class="fa fa-bullhorn"></i> Message of the day</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <?php
+                                    while($message=mysql_fetch_assoc($records)){
+                                    echo "<marquee>".$message['detail']."</marquee>";
+                                    }
+                                ?>
+                            </div>
+                        </div> <!-- /. End Row-->
+                    </div>
+                </div>
               <!-- Small boxes (Stat box) -->
               <div class="row">
                 <div class="col-lg-6 col-xs-12">

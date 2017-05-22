@@ -9,7 +9,7 @@
         </li>
         <li>
           <a href="students.php">
-            <i class="fa fa-check-square-o"></i>
+            <i class="fa fa-user"></i>
             <span>Student's</span>
           </a>
         </li>

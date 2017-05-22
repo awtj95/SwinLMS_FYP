@@ -33,13 +33,13 @@ $courselist = $courselistQuery->rowCount() ? $courselistQuery : [];
         <!-- Content Header (Page header) -->
             <section class="content-header">
                 <h1>
-                    Course
-                    <small>List</small>
+                    Student
+                    <small>Detail</small>
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="dashboard.php"><i class="fa fa-dashboard"></i> Home</a></li>
                     <li class="active">Student</li>
-                    <li class="active">Course</li>
+                    <li class="active">Student Detail</li>
                 </ol>
             </section>
 
@@ -57,7 +57,7 @@ $courselist = $courselistQuery->rowCount() ? $courselistQuery : [];
                         <div class="box box-primary">
                             <div class="box-header">
                                 <i class="fa fa-files-o"></i>        
-                                <h3 class="box-title">List</h3>                   
+                                <h3 class="box-title">Course List</h3>                   
                             </div>
                             <!-- /.box-header -->
                             <div class="box-body">
@@ -78,6 +78,45 @@ $courselist = $courselistQuery->rowCount() ? $courselistQuery : [];
                             </div>                    
                         </div>
                     <!-- /.box -->
+                    </section>
+                </div>
+                <div class="row">
+                <!-- Left col -->
+                    <section class="col-lg-12">
+                      <!-- Custom tabs (Charts with tabs)-->
+                        <!-- Lecture Note -->
+                            <div class="box box-primary courselist">
+                                <div class="box-header">
+                                    <i class="fa fa-table"></i>
+                                    <a href="timetable.php?userid=<?php echo $_SESSION['id']; ?>"><h3 class="box-title">Time Table</h3></a>
+                                </div>
+                            </div>
+                    </section>
+                </div>
+                <div class="row">
+                <!-- Left col -->
+                    <section class="col-lg-12">
+                      <!-- Custom tabs (Charts with tabs)-->
+                        <!-- Lecture Note -->
+                            <div class="box box-primary courselist">
+                                <div class="box-header">
+                                    <i class="fa fa-table"></i>
+                                    <a href="exam_timetable.php"><h3 class="box-title">Exam Time Table</h3></a>
+                                </div>
+                            </div>
+                    </section>
+                </div>
+                <div class="row">
+                <!-- Left col -->
+                    <section class="col-lg-12">
+                      <!-- Custom tabs (Charts with tabs)-->
+                        <!-- Lecture Note -->
+                            <div class="box box-primary courselist">
+                                <div class="box-header">
+                                    <i class="fa fa-check-square-o"></i>
+                                    <a href="grade.php"><h3 class="box-title">Grade</h3></a>
+                                </div>
+                            </div>
                     </section>
                 </div>
             <!-- /.content-wrapper -->

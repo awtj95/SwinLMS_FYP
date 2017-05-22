@@ -18,7 +18,9 @@ session_start();
               </h1>
               <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active">Student Grade</li>
+                <li class="active">Student</li>
+                <li class="active">Student Detail</li>
+                <li class="active">Grade</li>
               </ol>
             </section>
             
@@ -33,7 +35,7 @@ session_start();
                   <div class="box box-primary">
                     <div class="box-header">
                       <i class="fa fa-tasks"></i>
-        				<h3 class="box-title">Student Grade List</h3>
+        				<h3 class="box-title">Student Grade</h3>
                         <div class="box-tools pull-right">
                             <div class="has-feedback">
                                 <input type="text" class="form-control input-sm" placeholder="Filter List">

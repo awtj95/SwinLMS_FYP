@@ -48,35 +48,22 @@ $studentlist = $studentlistQuery->rowCount() ? $studentlistQuery : [];
             <!-- Main row -->
                 <div class="row">
                 <!-- Left col -->
-                    <section class="col-lg-12">
-                    <!-- Custom tabs (Charts with tabs)-->
-
-
-                    <!-- Course List -->
-                        <div class="box box-primary">
-                            <div class="box-header">
-                                <i class="fa fa-files-o"></i>        
-                                <h3 class="box-title">List</h3>
+                    <?php if(!empty($studentlist)): ?>
+                    <section class="col-lg-12 studentlist">
+                      <!-- Custom tabs (Charts with tabs)-->
+                        <!-- Lecture Note -->
+                            <?php foreach($studentlist as $student): ?>
+                            <div class="box box-primary student">
+                                <div class="box-header">
+                                    <i class="fa fa-user"></i>
+                                    <a href="student_course_list.php?id=<?php echo $student['id']; ?>"><h3 class="box-title"><?php echo $student['first_name']; ?> <?php echo $student['last_name']; ?></h3></a>
+                                </div>
                             </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
-                                <?php if(!empty($studentlist)): ?>
-                                <ul class="studentlist">
-                                    <?php foreach($studentlist as $student): ?>
-                                    <li>
-                                        <a href="student_course_list.php?id=<?php echo $student['id']; ?>">
-                                            <h3 class="student"><?php echo $student['first_name']; ?> <?php echo $student['last_name']; ?></h3>
-                                        </a>
-                                    </li><br />
-                                    <?php endforeach; ?>
-                                </ul>
-                                <?php else: ?>
-                                    <p>There is no student to display.</p>
-                                <?php endif; ?>
-                            </div>                    
-                        </div>
-                    <!-- /.box -->
+                            <?php endforeach; ?>
                     </section>
+                    <?php else: ?>
+                        <p>There is no student to display.</p>
+                    <?php endif; ?>
                 </div>
             <!-- /.content-wrapper -->
             </section>
