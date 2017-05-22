@@ -205,6 +205,7 @@ $courselist = $courselistQuery->rowCount() ? $courselistQuery : [];
         </section>
         </div>
         
+        
          <!-- Lecture Note Dialog -->
         <div class="modal fade" id="lecture" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
             <div class="modal-dialog">

@@ -88,7 +88,7 @@
           </ul>
         </li>
         <li>
-          <a href="#">
+          <a href="calendar.php">
             <i class="fa fa-calendar"></i> <span>Calendar</span>
             <!--<span class="pull-right-container">
               <small class="label pull-right bg-red"></small>

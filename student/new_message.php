@@ -43,7 +43,7 @@ session_start();
                             <!-- /.box-header -->
                             <?php
                                 //We check if the user is logged
-                                if(isset($_SESSION['user_id']))
+                                if(isset($_SESSION['login_id']))
                                 {                                                                
                                     $form = true;
                                     $osubject = '';
@@ -70,7 +70,7 @@ session_start();
                                             $recip = mysql_real_escape_string($orecip);
                                             $message = mysql_real_escape_string(nl2br(htmlentities($omessage, ENT_QUOTES, 'UTF-8')));
                                             //We check if the recipient exists
-                                            $dn1 = mysql_fetch_array(mysql_query('select count(id) as recip, id as recipid, (select count(*) from messages) as npm from users where id="'.$recip.'"'));
+                                            $dn1 = mysql_fetch_array(mysql_query('select count(id) as recip, id as recipid, (select count(*) from messages) as npm from users where login_id="'.$recip.'"'));
                                             if($dn1['recip']==1)
                                             {
                                                 //We check if the recipient is not the actual user
@@ -128,13 +128,15 @@ session_start();
                             ?>
                             <div class="box-body">
                                 <form action="new_message.php" method="post">
-                                    <label for="subject">Subject</label>
-                                    <input type="text" value="<?php echo htmlentities($osubject, ENT_QUOTES, 'UTF-8'); ?>" id="subject" name="subject" /><br />
-                                    <label for="recip">Recipient<span class="small"> - User ID</span></label>
-                                    <input type="text" value="<?php echo htmlentities($orecip, ENT_QUOTES, 'UTF-8'); ?>" id="recip" name="recip" /><br />
-                                    <label for="message">Message</label>
-                                    <textarea cols="40" rows="5" id="message" name="message"><?php echo htmlentities($omessage, ENT_QUOTES, 'UTF-8'); ?></textarea><br />
-                                    <input type="submit" value="Send" />
+                                    <label for="subject"><h4>Subject</h4></label>
+                                    <input type="text" class="form-control" value="<?php echo htmlentities($osubject, ENT_QUOTES, 'UTF-8'); ?>" id="subject" name="subject"><br />
+                                    
+                                    <label for="recip"><h4>Recipient<span class="small"> - User ID</span></h4></label>
+                                    <input type="text" class="form-control" value="<?php echo htmlentities($orecip, ENT_QUOTES, 'UTF-8'); ?>" id="recip" name="recip"><br />
+                                    
+                                    <label for="message"><h4>Message</h4></label>
+                                    <textarea name="message" id="message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea><br /><br />
+                                    <input type='submit' class="btn btn-success pull-right" value="Send">
                                 </form>
                             </div>
                             <?php

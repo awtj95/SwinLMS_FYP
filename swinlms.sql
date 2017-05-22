@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 22, 2017 at 12:48 PM
+-- Generation Time: May 22, 2017 at 09:32 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -283,9 +283,10 @@ INSERT INTO `enrolment` (`id`, `filename`, `created`) VALUES
 
 CREATE TABLE `events` (
   `id` int(11) NOT NULL,
-  `start` time NOT NULL,
-  `end` time NOT NULL,
   `title` varchar(65) NOT NULL,
+  `detail` varchar(255) NOT NULL,
+  `date` varchar(10) NOT NULL,
+  `created` date NOT NULL,
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -293,8 +294,11 @@ CREATE TABLE `events` (
 -- Dumping data for table `events`
 --
 
-INSERT INTO `events` (`id`, `start`, `end`, `title`, `user_id`) VALUES
-(11, '08:00:00', '08:30:00', 'r', 1);
+INSERT INTO `events` (`id`, `title`, `detail`, `date`, `created`, `user_id`) VALUES
+(9, 'qowu', '<p>zjkbc12</p>', '05/22/2017', '2017-05-23', 4),
+(10, 'tt', '<p>mna</p>', '05/23/2017', '2017-05-23', 4),
+(11, 'try', '<p>asd</p>', '05/15/2017', '2017-05-23', 1),
+(12, 'stu', '<p>stu</p>', '05/24/2017', '2017-05-23', 4);
 
 -- --------------------------------------------------------
 
@@ -463,7 +467,12 @@ INSERT INTO `messages` (`id`, `id2`, `subject`, `user1`, `user2`, `message`, `ti
 (10, 1, 'hr', 4, 8, 'ttttt', '2017-05-21 16:23:10', 'yes', 'yes'),
 (11, 1, 'tete', 4, 345, 'test', '2017-05-21 16:25:24', 'yes', 'no'),
 (12, 1, 'warning', 4, 8, 'your son', '2017-05-21 16:45:34', 'yes', 'yes'),
-(12, 2, '', 8, 0, 'what happen?', '2017-05-21 16:45:43', '', '');
+(12, 2, '', 8, 0, 'what happen?', '2017-05-21 16:45:43', '', ''),
+(14, 1, 'test', 4, 1, '&lt;p&gt;try&lt;/p&gt;', '2017-05-23 03:18:20', 'yes', 'yes'),
+(14, 2, '', 1, 0, 'te', '2017-05-23 03:19:19', '', ''),
+(16, 1, 'asd', 1, 4, '&lt;p&gt;asac&lt;/p&gt;', '2017-05-23 03:19:43', 'yes', 'no'),
+(17, 1, 'as', 1, 4, '&lt;p&gt;asdc&lt;/p&gt;', '2017-05-23 03:20:56', 'yes', 'no'),
+(18, 1, 'asd', 1, 4, 'xv', '2017-05-23 03:22:58', 'yes', 'no');
 
 -- --------------------------------------------------------
 
@@ -661,6 +670,21 @@ INSERT INTO `unit` (`id`, `name`, `code`, `description`, `course_id`) VALUES
 (2, 'software engineering project b', 'swe40002', 'final year project b', 1),
 (3, 'network admin', 'NA', 'networking', 2),
 (4, 'computer system configuration', 'CSC', 'configuration', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `unit_events`
+--
+
+CREATE TABLE `unit_events` (
+  `id` int(11) NOT NULL,
+  `title` varchar(65) NOT NULL,
+  `detail` varchar(255) NOT NULL,
+  `date` varchar(10) NOT NULL,
+  `created` date NOT NULL,
+  `unit_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -880,6 +904,13 @@ ALTER TABLE `unit`
   ADD KEY `course_id` (`course_id`);
 
 --
+-- Indexes for table `unit_events`
+--
+ALTER TABLE `unit_events`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `unit_id` (`unit_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -938,7 +969,7 @@ ALTER TABLE `enrolment`
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `exam`
 --
@@ -968,7 +999,7 @@ ALTER TABLE `graduation`
 -- AUTO_INCREMENT for table `lecture`
 --
 ALTER TABLE `lecture`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT for table `msg_of_day`
 --
@@ -1009,6 +1040,11 @@ ALTER TABLE `tutorial_submission`
 --
 ALTER TABLE `unit`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `unit_events`
+--
+ALTER TABLE `unit_events`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `users`
 --
@@ -1115,6 +1151,12 @@ ALTER TABLE `tutorial_submission`
 --
 ALTER TABLE `unit`
   ADD CONSTRAINT `unit_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `unit_events`
+--
+ALTER TABLE `unit_events`
+  ADD CONSTRAINT `unit_events_ibfk_1` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`id`) ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

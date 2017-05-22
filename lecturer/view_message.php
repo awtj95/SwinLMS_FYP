@@ -133,9 +133,8 @@ session_start();
                                 <h2>Reply</h2>
                                 <div class="center">
                                     <form action="view_message.php?id=<?php echo $id; ?>" method="post">
-                                        <label for="message" class="center">Message</label><br />
-                                        <textarea cols="40" rows="5" name="message" id="message"></textarea><br />
-                                        <input type="submit" value="Send" />
+                                        <textarea name="message" id="message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea><br /><br />
+                                        <input type='submit' class="btn btn-success pull-center" value="Send">
                                     </form>
                                 </div>
                             </div>

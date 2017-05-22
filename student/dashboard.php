@@ -26,7 +26,8 @@ $todolist = $todolistQuery->rowCount() ? $todolistQuery : [];
 <html>
 		<?php include_once('first.php') ?>
     <link href="../bootstrap/css/todo.css" rel="stylesheet" />
-    
+    <link href="../bootstrap/css/calendar.css" rel="stylesheet" />
+    <link href="../bootstrap/css/mail.css" rel="stylesheet" />
 	<body class="hold-transition skin-blue sidebar-mini">
 	
 		<?php include_once('header.php')?>
@@ -156,70 +157,225 @@ $todolist = $todolistQuery->rowCount() ? $todolistQuery : [];
                   <!-- /.box -->
         
                   <!--email widget -->
-                  <!--<div class="box box-info">
-                    <div class="box-header">
-                      <i class="fa fa-envelope"></i>
-        
-                      <h3 class="box-title">Email</h3>
-                      <!-- if add 'remove button -->
-          
-                     
-                    <!--</div>
-                    <div class="box-body">
-                      <form action="#" method="post">
-                        <div class="form-group">
-                          <input type="email" class="form-control" name="emailto" placeholder="Email to:">
+                  <div class="box box-primary">
+                            <div class="box-header">
+                                <i class="fa fa-envelope"></i>        
+                                <h2 class="box-title">Quick Messages</h2>                   
+                            </div>
+                            <!-- /.box-header -->
+                            <?php
+                                //We check if the user is logged
+                                if(isset($_SESSION['login_id']))
+                                {                                                                
+                                    $form = true;
+                                    $osubject = '';
+                                    $orecip = '';
+                                    $omessage = '';
+                                    //We check if the form has been sent
+                                    if(isset($_POST['subject'], $_POST['recip'], $_POST['message']))
+                                    {
+                                        $osubject = $_POST['subject'];
+                                        $orecip = $_POST['recip'];
+                                        $omessage = $_POST['message'];
+                                        //We remove slashes depending on the configuration
+                                        if(get_magic_quotes_gpc())
+                                        {
+                                            $osubject = stripslashes($osubject);
+                                            $orecip = stripslashes($orecip);
+                                            $omessage = stripslashes($omessage);
+                                        }
+                                        //We check if all the fields are filled
+                                        if($_POST['subject']!='' and $_POST['recip']!='' and $_POST['message']!='')
+                                        {
+                                            //We protect the variables
+                                            $subject = mysql_real_escape_string($osubject);
+                                            $recip = mysql_real_escape_string($orecip);
+                                            $message = mysql_real_escape_string(nl2br(htmlentities($omessage, ENT_QUOTES, 'UTF-8')));
+                                            //We check if the recipient exists
+                                            $dn1 = mysql_fetch_array(mysql_query('select count(id) as recip, id as recipid, (select count(*) from messages) as npm from users where login_id="'.$recip.'"'));
+                                            if($dn1['recip']==1)
+                                            {
+                                                //We check if the recipient is not the actual user
+                                                if($dn1['recipid']!=$_SESSION['user_id'])
+                                                {
+                                                    $id = $dn1['npm']+1;
+                                                    //We send the message
+                                                    if(mysql_query('insert into messages (id, id2, subject, user1, user2, message, time, user1read, user2read)values("'.$id.'", "1", "'.$subject.'", "'.$_SESSION['user_id'].'", "'.$dn1['recipid'].'", "'.$message.'", NOW(), "yes", "no")'))
+                                                    {
+                            ?>
+
+                            <div class="message">The message has successfully been sent.<br />
+                            <a href="mailbox.php">Back to MailBox</a></div>
+
+                            <?php
+                                                    $form = false;
+                                                }
+                                                else
+                                                {
+                                                    //Otherwise, we say that an error occured
+                                                    $error = 'An error occurred while sending the message';
+                                                }
+                                            }
+                                            else
+                                            {
+                                                //Otherwise, we say the user cannot send a message to himself
+                                                $error = 'You cannot send a message to yourself.';
+                                            }
+                                        }
+                                        else
+                                        {
+                                            //Otherwise, we say the recipient does not exists
+                                            $error = 'The recipient does not exists.';
+                                        }
+                                    }
+                                    else
+                                    {
+                                        //Otherwise, we say a field is empty
+                                        $error = 'A field is empty. Please fill of the fields.';
+                                    }
+                                }
+                                elseif(isset($_GET['recip']))
+                                {
+                                    //We get the username for the recipient if available
+                                    $orecip = $_GET['recip'];
+                                }
+                                if($form)
+                                {
+                                //We display a message if necessary
+                                if(isset($error))
+                                {
+                                    echo '<div class="message">'.$error.'</div>';
+                                }
+                                //We display the form
+                            ?>
+                            <div class="box-body">
+                                <form action="new_message.php" method="post">
+                                    <label for="subject"><h4>Subject</h4></label>
+                                    <input type="text" class="form-control" value="<?php echo htmlentities($osubject, ENT_QUOTES, 'UTF-8'); ?>" id="subject" name="subject"><br />
+                                    
+                                    <label for="recip"><h4>Recipient<span class="small"> - User ID</span></h4></label>
+                                    <input type="text" class="form-control" value="<?php echo htmlentities($orecip, ENT_QUOTES, 'UTF-8'); ?>" id="recip" name="recip"><br />
+                                    
+                                    <label for="message"><h4>Message</h4></label>
+                                    <textarea name="message" id="message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea><br />
+
+                                    <input type='submit' class="btn btn-success pull-right" value="Send">
+                                </form>
+                            </div>
+                            <?php
+                                }
+                                }
+                                else
+                                {
+                                    echo '<div class="message">You must be logged to access this page.</div>';
+                                }
+                            ?>
                         </div>
-                        <div class="form-group">
-                          <input type="text" class="form-control" name="subject" placeholder="Subject">
-                        </div>
-                        <div>
-                          <textarea class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-                        </div>
-                      </form>
-                    </div>
-                    <div class="box-footer clearfix">
-                      <button type="button" class="pull-right btn btn-default" id="sendEmail">Send
-                        <i class="fa fa-arrow-circle-right"></i></button>
-                    </div>
-                  </div>-->
-        
                 </section>
                 <!-- /.Left col -->
                 <!-- right col (We are only adding the ID to make the widgets sortable)-->
                 <section class="col-lg-5 connectedSortable">
         
                   <!-- Calendar -->
-                  <div class="box box-solid bg-green-gradient">
-                    <div class="box-header">
-                      <i class="fa fa-calendar"></i>
+                      <div class="box box-primary">
+                            <div class="box-header">
+                                <i class="fa fa-calendar"></i>        
+                                <h3 class="box-title">Calendar</h3>                   
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <?php
+                                    //Hoofdstuk 2
+                                    //check if day has passing variable
+                                    if (isset ($_GET['day'])){
+                                        $day = $_GET['day'];
+                                    }else{
+                                        $day = date ("d");
+                                    }
+
+                                    if (isset ($_GET['month'])){
+                                        $month = $_GET['month'];
+                                    }else{
+                                        $month = date ("n");
+                                    }
+
+                                    if (isset ($_GET['year'])){
+                                        $year = $_GET['year'];
+                                    }else{
+                                        $year = date ("Y");
+                                    }
         
-                      <h3 class="box-title">Calendar</h3>
-                      <!-- tools box -->
-                      <div class="pull-right box-tools">
-                        <!-- button with a dropdown -->
-                        <div class="btn-group">
-                          <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-bars"></i></button>
-                          <ul class="dropdown-menu pull-right" role="menu">
-                            <li><a href="#">Add new event</a></li>
-                            <li><a href="#">Clear events</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">View calendar</a></li>
-                          </ul>
-                        </div>
-                        <button type="button" class="btn btn-success btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
-                        </button>
-                      </div>
-                      <!-- /. tools -->
-                    </div>
-                    <!-- /.box-header -->
-                    <div class="box-body no-padding">
-                      <!--The calendar -->
-                      <div id="calendar" style="width: 100%"></div>
-                    </div>
-                    
-                  </div>
+                                    //calender valiable
+                                    $currentTimeStamp = strtotime("$year-$month-$day");
+                                    //get current month name
+                                    $monthName = date ("F", $currentTimeStamp);
+                                    //Determine how many day there are in this month
+                                    $numDays = date("t", $currentTimeStamp);
+                                    //variable to count cell in the loop later
+                                    $counter = 0;
+                                ?>
+                                <table border='2' width='100%' height='150px'>
+                                    <tr>
+                                        <td align='center'><input style='width:50px;' type='button' value='<' name='previousbutton' onClick="goPreviousMonth (<?php echo $month.",".$year ?>)"></td>
+                                        <td colspan='5' align='center'><strong><?php echo $monthName.", ".$year; ?></strong></td>
+                                        <td align='center'><input style='width:50px;' type='button' value='>' name='nextbutton' onClick="goNextMonth (<?php echo $month.",".$year?>)"></td>
+                                    </tr>
+                                    <tr>
+                                        <th width='14%'>Sun</th>
+                                        <th width='14%'>Mon</th>
+                                        <th width='14%'>Tue</th>
+                                        <th width='14%'>Wed</th>
+                                        <th width='14%'>Thu</th>
+                                        <th width='14%'>Fri</th>
+                                        <th width='14%'>Sat</th>
+                                    </tr>
+                                    <?php
+                                        echo "<tr>";
+
+                                        for ($i = 1; $i < $numDays+1; $i++, $counter++) { 
+                                            $timeStamp = strtotime ("$year-$month-$i");
+                                                if($i == 1){ 
+                                                    $firstDay = date ("w", $timeStamp);
+                                                    for ($j = 0; $j < $firstDay; $j++, $counter++){ 
+                                                        //blank space
+                                                        echo "<td>&nbsp;</td>";
+                                                    }
+                                                } 
+
+                                                if($counter % 7 == 0 ){ 
+                                                    echo "<tr></tr>";
+                                                }
+
+                                                $monthstring = $month;
+                                                $monthlength = strlen($monthstring);
+                                                $daystring = $i;
+                                                $daylength = strlen($daystring);
+
+                                                if($monthlength <=1 ){
+                                                    $monthstring = "0".$monthstring;
+                                                }
+                                                if($daylength <=1 ){
+                                                    $daystring = "0".$daystring;
+                                                }
+                                            $todaysDate = date("m/d/Y");
+                                            $dateToCompare = $monthstring.'/'.$daystring.'/'.$year;
+                                            echo "<td align='center' ";
+                                            if($todaysDate == $dateToCompare){
+                                                echo "class='today'";
+                                            }else{
+                                                $sqlCount = "select * from events where date='".$dateToCompare."' and user_id='".$_SESSION['user_id']."'";
+                                                $noOfEvent = mysql_num_rows(mysql_query($sqlCount));
+                                                if($noOfEvent >= 1){
+                                                    echo "class='event'";
+                                                }
+                                            }
+                                            echo "><h4><a href='".$_SERVER['PHP_SELF']."?month=".$monthstring."&day=".$daystring."&year=".$year."&v=true'>".$i."</td></h4>";
+                                        }
+                                        echo "</tr>";
+                                    ?>
+                                </table>
+                            </div>                    
+                        </div>  
                   <!-- /.box -->
         
                 </section>
@@ -231,8 +387,6 @@ $todolist = $todolistQuery->rowCount() ? $todolistQuery : [];
             <!-- /.content -->
           </div>
           <!-- /.content-wrapper -->
-        
-        </div>
         
         <?php include_once('footer.php') ?>
         <?php include_once('script.php') ?>

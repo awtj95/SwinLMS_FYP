@@ -38,3 +38,35 @@
 <script src="../dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../dist/js/demo.js"></script>
+<script>
+    function goPreviousMonth(month, year){ 
+            if (month == 1) { 
+                --year;
+                month = 13;
+
+            }
+            --month;
+            var monthstring = ""+month+"";
+            var monthlength = monthstring.length;
+            if(monthlength <= 1){
+                monthstring = "0"+monthstring;
+            }
+        document.location.href = "<?php $_SERVER['PHP_SELF'];?>?month="+monthstring+"&year="+year;
+        }
+
+
+    function goNextMonth(month, year){ 
+    if (month == 12){ 
+            ++year;
+            month = 0;
+
+        }
+        ++month;
+        var monthstring = ""+month+"";
+        var monthlength = monthstring.length;
+        if(monthlength <= 1){
+            monthstring = "0"+monthstring;
+        }
+    document.location.href = "<?php $_SERVER['PHP_SELF'];?>?month="+monthstring+"&year="+year;
+    }
+</script>
