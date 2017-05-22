@@ -6,7 +6,7 @@ $password = "";
 $databaseName = "swinlms";
 
 $connect = mysqli_connect($hostname, $username, $password, $databaseName);
-$query = "SELECT * FROM `course` ";
+$query = "SELECT * FROM `unit` ";
 
 $result = mysqli_query($connect, $query);
 $options = "";
@@ -15,10 +15,19 @@ while ($row2= mysqli_fetch_array($result))
 	$options = $options."<option>$row2[0]</option>";
 }
 
+$query1 = "SELECT * FROM `classroom` ";
+
+$result1 = mysqli_query($connect, $query1);
+$options1 = "";
+while ($row2= mysqli_fetch_array($result1))
+{
+	$options1 = $options1."<option>$row2[0]</option>";
+}
+
 ?>
 <!DOCTYPE html>
 <html>
-	<title>Unit</title>
+	<title>Section</title>
 	<?php include_once('../admin/first.php') ?>
 	<?php include_once('header.php')?>
     <?php include_once('sidebar.php') ?>
@@ -28,11 +37,11 @@ while ($row2= mysqli_fetch_array($result))
     <div class="content-wrapper">
 	<!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>Manage unit</h1>
+      <h1>Manage Section</h1>
       <ol class="breadcrumb">
         <li><a href="dashboard.php"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active">Student Management</li>
-		<li class="active">Manage unit</li>
+		<li class="active">Manage Section</li>
       </ol>
     </section>
 	<!--Main content -->
@@ -40,12 +49,12 @@ while ($row2= mysqli_fetch_array($result))
 		<div class="panel panel-default">
 		<div class="panel-body">  
 		<fieldset>
-			<legend>Unit List</legend>
+			<legend>Section List</legend>
 			<div id="messages"></div>
 			<div class="pull pull-left">
     	<button class="btn btn-default" data-toggle="modal" data-target="#addData">
 		<i class="glyphicon glyphicon-plus-sign"></i>
-		Add Unit</button>
+		Add Section</button>
     	</div>	
 		<br /> <br /> <br />
 		<table class="table table-bordered table-striped">
@@ -53,9 +62,10 @@ while ($row2= mysqli_fetch_array($result))
     			<tr>
     				<th width="40">#</th>
     				<th>Unit Name</th>
-    				<th>Unit Code</th>
-					<th>Description</th>
-					<th>Course id</th>
+    				<th>Class Venue</th>
+					<th>Start Time</th>
+					<th>Day</th>
+					<th>Duration</th>
     				<th width="200">Action</th>
     			</tr>
     		</thead>
@@ -74,29 +84,50 @@ while ($row2= mysqli_fetch_array($result))
 			<div class="modal-content">
 			  <div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="addLabel">Add unit</h4>
+				<h4 class="modal-title" id="addLabel">Add Section</h4>
 			  </div>
 			  <form>
 			  <div class="modal-body">
-				  <div class="form-group">
-					<label for="un">Unit Name:</label>
-					<input type="text" class="form-control" id="un" placeholder="Unit Name">
-				  </div>
-				  <div class="form-group">
-					<label for="uc">Unit Code:</label>
-					<input type="text" class="form-control" id="uc" placeholder="Eg: HIT2210">
-				  </div>
-				  <div class="form-group">
-					<label for="ud">Unit Description:</label>
-					<textarea class="form-control" id="ud" placeholder="Write.."></textarea>
-				  </div>
 				   <div class="form-group">
-						<label for="ui">Course ID: </label> 
-							<select class="form-control" name="ci" id="ci" >
-							<option value="" disabled selected>Select Choose</option>
+							<label for="ui">Unit ID: </label> 
+							<select class="form-control" name="ui" id="ui" >
+							<option value="" disabled selected>Select Unit</option>
 							<?php echo $options;?>
 							</select>
 					</div> 
+				  <div class="form-group">
+							<label for="ci">Classroom ID: </label> 
+							<select class="form-control" name="ci" id="ci" >
+								<option value="" disabled selected>Select Classroom</option>
+								<?php echo $options1;?>
+							</select>
+					</div> 
+				  <div class="form-group">
+					<label for="st">Start Time:</label>
+					<input type="time" class="form-control" id="st" placeholder="">
+				  </div>
+				   <div class="form-group">
+						<label for="sd">Day: </label> 
+						<select class="form-control" name="sd" id="sd">
+							<option value="" disabled selected>Select Day</option>
+							<option value="Mon">Monday</option>
+							<option value="Tues">Tuesday</option>
+							<option value="Wed">Wednesday</option>
+							<option value="Thurs">Thursday</option>
+							<option value="Fri">Friday</option>
+							<option value="Sat">Saturday</option>
+						</select>
+					</div>
+				  <div class="form-group">
+						<label for="dr">Duration: </label> 
+						<select class="form-control" name="dr" id="dr">
+							<option value="" disabled selected>Select duration</option>
+							<option value="1">One hour</option>
+							<option value="2">Two hours</option>
+							<option value="3">Three hours</option>
+						</select>
+					</div>
+				  
 			  </div>
 			  <div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -116,24 +147,26 @@ while ($row2= mysqli_fetch_array($result))
 
 	   
    <script>
-    function saveData(){
-    	var name = $('#un').val();
-    	var code = $('#uc').val();
-		var description = $('#ud').val();
-		var course_id = $('#ci').val();
+  function saveData(){
+    	var unit_id = $('#ui').val();
+    	var classroom_id = $('#ci').val();
+		var section_start_time = $('#st').val();
+		var section_day = $('#sd').val();
+		var section_duration = $('#dr').val();
     	$.ajax({
     		type: "POST",
-    		url: "../admin/server/unit.php?p=add",
-    		data: "un="+name+"&uc="+code+"&ud="+description+"&ci="+course_id,
+    		url: "../admin/server/sections.php?p=add",
+    		data: "ui="+unit_id+"&ci="+classroom_id+"&st="+section_start_time+"&sd="+section_day+"&dr="+section_duration,
     		success: function(data){
-    			viewData();
+				viewData();
+				
     		}
     	});
     }
     function viewData(){
     	$.ajax({
     		type: "GET",
-    		url: "../admin/server/unit.php",
+    		url: "../admin/server/section.php",
     		success: function(data){
     			$('tbody').html(data);
     		}
@@ -141,14 +174,15 @@ while ($row2= mysqli_fetch_array($result))
     }
     function updateData(str){
     	var id = str;
-    	var name = $('#un-'+str).val();
-    	var code = $('#uc-'+str).val();
-		var description = $('#ud-'+str).val();
-		var course_id = $('#ci-'+str).val();
+    	var unit_id = $('#ui-'+str).val();
+    	var classroom_id = $('#ci-'+str).val();
+		var section_start_time = $('#st-'+str).val();
+		var section_day = $('#sd-'+str).val();
+		var section_duration = $('#dr-'+str).val();
     	$.ajax({
     		type: "POST",
-    		url: "../admin/server/unit.php?p=edit",
-    		data: "un="+name+"&uc="+code+"&ud="+description+"&ci="+course_id+"&id="+id,
+    		url: "../admin/server/section.php?p=edit",
+    		data: "ui="+unit_id+"&ci="+classroom_id+"&st="+section_start_time+"&sd="+section_day+"&dr="+section_duration+"&id="+id,
     		success: function(data){
     			viewData();
     		}
@@ -158,7 +192,7 @@ while ($row2= mysqli_fetch_array($result))
     	var id = str;
     	$.ajax({
     		type: "GET",
-    		url: "../admin/server/unit.php?p=del",
+    		url: "../admin/server/section.php?p=del",
     		data: "id="+id,
     		success: function(data){
     			viewData();

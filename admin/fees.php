@@ -6,7 +6,7 @@ $password = "";
 $databaseName = "swinlms";
 
 $connect = mysqli_connect($hostname, $username, $password, $databaseName);
-$query = "SELECT * FROM `course` ";
+$query = "SELECT * FROM `users` where type='parent' ";
 
 $result = mysqli_query($connect, $query);
 $options = "";
@@ -18,21 +18,23 @@ while ($row2= mysqli_fetch_array($result))
 ?>
 <!DOCTYPE html>
 <html>
-	<title>Unit</title>
+	<title>Fees</title>
 	<?php include_once('../admin/first.php') ?>
 	<?php include_once('header.php')?>
     <?php include_once('sidebar.php') ?>
 	<body class="hold-transition skin-blue sidebar-mini" onload ="viewData()">
 
-	<!-- Content Wrapper. Contains page content -->
+	
+	
+  <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
 	<!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>Manage unit</h1>
+      <h1>Manage Fees</h1>
       <ol class="breadcrumb">
         <li><a href="dashboard.php"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Student Management</li>
-		<li class="active">Manage unit</li>
+        <li class="active">Payment</li>
+		<li class="active">Fees</li>
       </ol>
     </section>
 	<!--Main content -->
@@ -40,22 +42,24 @@ while ($row2= mysqli_fetch_array($result))
 		<div class="panel panel-default">
 		<div class="panel-body">  
 		<fieldset>
-			<legend>Unit List</legend>
+			<legend>Fees</legend>
 			<div id="messages"></div>
 			<div class="pull pull-left">
     	<button class="btn btn-default" data-toggle="modal" data-target="#addData">
 		<i class="glyphicon glyphicon-plus-sign"></i>
-		Add Unit</button>
+		Create Fees</button>
     	</div>	
-		<br /> <br /> <br />
-		<table class="table table-bordered table-striped">
+		<br /> <br /> <br />   
+		
+    	<table class="table table-bordered table-striped">
     		<thead>
     			<tr>
     				<th width="40">#</th>
-    				<th>Unit Name</th>
-    				<th>Unit Code</th>
-					<th>Description</th>
-					<th>Course id</th>
+    				<th>Tuition fee</th>
+    				<th>Paid Amount</th>
+					<th>Date</th>
+					<th>Status</th>
+					<th>Parent ID</th>
     				<th width="200">Action</th>
     			</tr>
     		</thead>
@@ -67,33 +71,40 @@ while ($row2= mysqli_fetch_array($result))
 		</div>
 	</div>
 	</section>
-	
-	<!--add Modal -->
-	<div class="modal fade" id="addData" tabindex="-1" role="dialog" aria-labelledby="addLabel">
+		<!--add Modal -->
+		<div class="modal fade" id="addData" tabindex="-1" role="dialog" aria-labelledby="addLabel">
 		  <div class="modal-dialog" role="document">
 			<div class="modal-content">
 			  <div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="addLabel">Add unit</h4>
+				<h4 class="modal-title" id="addLabel">Add Fees</h4>
 			  </div>
 			  <form>
 			  <div class="modal-body">
+				 <div class="form-group">
+				  <label for="fn">Tuition Fee:</label>
+					<input type="text" class="form-control" id="fn" name="fn" placeholder="" />
+				</div>
 				  <div class="form-group">
-					<label for="un">Unit Name:</label>
-					<input type="text" class="form-control" id="un" placeholder="Unit Name">
+					<label for="am">Paid Amount:</label>
+					<input type="text" class="form-control" id="am" placeholder="Amount" />
 				  </div>
 				  <div class="form-group">
-					<label for="uc">Unit Code:</label>
-					<input type="text" class="form-control" id="uc" placeholder="Eg: HIT2210">
-				  </div>
+						<label for="st">Status: </label> 
+						<select class="form-control" id="st">
+							<option value="" disabled selected>Select status</option>
+							<option value="Paid">Paid</option>
+							<option value="Unpaid">Unpaid</option>
+						</select>
+					</div>
 				  <div class="form-group">
-					<label for="ud">Unit Description:</label>
-					<textarea class="form-control" id="ud" placeholder="Write.."></textarea>
+					<label for="date">Date:</label>
+					<input type="date" class="form-control" id="date" placeholder="">
 				  </div>
 				   <div class="form-group">
-						<label for="ui">Course ID: </label> 
-							<select class="form-control" name="ci" id="ci" >
-							<option value="" disabled selected>Select Choose</option>
+						<label for="pa">Parent ID: </label> 
+							<select class="form-control" name="pa" id="pa" >
+							<option value="" disabled selected>Select Parent</option>
 							<?php echo $options;?>
 							</select>
 					</div> 
@@ -102,11 +113,11 @@ while ($row2= mysqli_fetch_array($result))
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				<button type="submit" onclick="saveData()" class="btn btn-primary">Save</button>
 			  </div>
-			  </div>
 			  </form>
+			</div>
 		  </div>
 		</div>
-	</div>
+</div>
     
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="../bootstrap/js/jquery.min.js"></script>
@@ -117,23 +128,25 @@ while ($row2= mysqli_fetch_array($result))
 	   
    <script>
     function saveData(){
-    	var name = $('#un').val();
-    	var code = $('#uc').val();
-		var description = $('#ud').val();
-		var course_id = $('#ci').val();
+    	var name= $('#fn').val();
+    	var amount = $('#am').val();
+		var status = $('#st').val();
+		var date = $('#date').val();
+		var parent_id = $('#pa').val();
     	$.ajax({
     		type: "POST",
-    		url: "../admin/server/unit.php?p=add",
-    		data: "un="+name+"&uc="+code+"&ud="+description+"&ci="+course_id,
+    		url: "../admin/server/fees.php?p=add",
+    		data: "fn="+name+"&am="+amount+"&st="+status+"&date="+date+"&pa="+parent_id,
     		success: function(data){
-    			viewData();
+				viewData();
+				
     		}
     	});
     }
     function viewData(){
     	$.ajax({
     		type: "GET",
-    		url: "../admin/server/unit.php",
+    		url: "../admin/server/fees.php",
     		success: function(data){
     			$('tbody').html(data);
     		}
@@ -141,14 +154,16 @@ while ($row2= mysqli_fetch_array($result))
     }
     function updateData(str){
     	var id = str;
-    	var name = $('#un-'+str).val();
-    	var code = $('#uc-'+str).val();
-		var description = $('#ud-'+str).val();
-		var course_id = $('#ci-'+str).val();
+    	var name = $('#fn-'+str).val();
+    	var amount = $('#am-'+str).val();
+		var status = $('#st-'+str).val();
+		var date = $('#date-'+str).val();
+		var parent_id = $('#pa-'+str).val();
+		
     	$.ajax({
     		type: "POST",
-    		url: "../admin/server/unit.php?p=edit",
-    		data: "un="+name+"&uc="+code+"&ud="+description+"&ci="+course_id+"&id="+id,
+    		url: "../admin/server/fees.php?p=edit",
+    		data: "fn="+name+"&am="+amount+"&st="+status+"&date="+date+"&pa="+parent_id+"&id="+id,
     		success: function(data){
     			viewData();
     		}
@@ -158,7 +173,7 @@ while ($row2= mysqli_fetch_array($result))
     	var id = str;
     	$.ajax({
     		type: "GET",
-    		url: "../admin/server/unit.php?p=del",
+    		url: "../admin/server/fees.php?p=del",
     		data: "id="+id,
     		success: function(data){
     			viewData();
@@ -173,7 +188,7 @@ while ($row2= mysqli_fetch_array($result))
 }
     </script>
 	<?php include_once('footer.php') ?>
-	<?php include_once('../admin/script.php') ?>
+	 <?php include_once('../admin/script.php') ?>
     
       
   </body>

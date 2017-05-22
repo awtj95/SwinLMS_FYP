@@ -8,12 +8,6 @@
 					<span>Dashboard</span>
 			 </a>
 		</li>
-        <li>
-			 <a href="#">
-				<i class="fa fa-institution"></i>
-					<span>Class</span>
-			 </a>
-        </li>
 		<li class="treeview">
           <a href="#">
             <i class="fa fa-book"></i> <span>Course Management</span>
@@ -24,37 +18,38 @@
           <ul class="treeview-menu">
             <li><a href="../admin/course.php"><i class="fa fa-circle-o"></i>Manage Course</a></li>
             <li><a href="../admin/unit.php"><i class="fa fa-circle-o"></i>Manage Unit</a></li>
+			<li><a href="../admin/section.php"><i class="fa fa-circle-o"></i>Manage Section</a></li>
           </ul>
         </li>
 		<li class="treeview">
           <a href="#">
-            <i class="fa fa-users"></i> <span>Student</span>
+            <i class="fa fa-home"></i> <span>Student Management</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="../admin/student.php"><i class="fa fa-circle-o"></i>Add Student</a></li>
-            <li><a href="../admin/addstu.php"><i class="fa fa-circle-o"></i>Add Bulk Student</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i>Manage Student</a></li>
+            <li><a href="../admin/managestu.php"><i class="fa fa-circle-o"></i>Unit Allocate</a></li>
           </ul>
         </li>
-        <li>
-			<a href="#">
-				<i class="fa fa-graduation-cap"></i>
-					<span>All Lecturer</span>
-			</a>
-        </li>
-        <li>
-			<a href="#">
-				<i class="fa fa-female"></i>
-					<span>All Parent</span>
-			</a>
+		<li class="treeview">
+          <a href="#">
+            <i class="fa fa-users"></i> <span>All Users</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="../admin/user.php"><i class="fa fa-circle-o"></i>Add User</a></li>
+            <li><a href="../admin/student.php"><i class="fa fa-circle-o"></i>Manage Student</a></li>
+            <li><a href="../admin/lecturer.php"><i class="fa fa-circle-o"></i>Manage Lecturer</a></li>
+			<li><a href="../admin/parent.php"><i class="fa fa-circle-o"></i>Manage Parent</a></li>
+		  </ul>
         </li>
 		<li>
-			 <a href="#">
+			 <a href="../admin/motd.php">
 				<i class="fa fa-files-o"></i>
-					<span>Grade</span>
+					<span>Message</span>
 			 </a>
         </li>
         <li>
@@ -71,14 +66,26 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-circle-o"></i>Assessment & Results</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i>Enrolment</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i>Graduation</a></li>
-            <li><a href="#l"><i class="fa fa-circle-o"></i>Others</a></li>
+            <li><a href="../admin/assessment.php"><i class="fa fa-circle-o"></i>Assessment & Results</a></li>
+            <li><a href="../admin/enrolment.php"><i class="fa fa-circle-o"></i>Enrolment</a></li>
+            <li><a href="../admin/graduation.php"><i class="fa fa-circle-o"></i>Graduation</a></li>
+            <li><a href="../admin/others.php"><i class="fa fa-circle-o"></i>Others</a></li>
           </ul>
         </li>
+		<li class="treeview">
+          <a href="#">
+            <i class="fa fa-money"></i> <span>Payment</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="../admin/fees.php"><i class="fa fa-circle-o"></i>Fees</a></li>
+            <li><a href="../admin/expenses.php"><i class="fa fa-circle-o"></i>Expenses</a></li>
+		  </ul>
+        </li>
         <li>
-          <a href="../admin/error.php">
+          <a href="../fullcalendar/index.php">
             <i class="fa fa-calendar"></i> <span>Calendar</span>
           </a>
         </li>
