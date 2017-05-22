@@ -101,7 +101,7 @@ $courselist = $courselistQuery->rowCount() ? $courselistQuery : [];
                             <div class="box box-primary courselist">
                                 <div class="box-header">
                                     <i class="fa fa-table"></i>
-                                    <a href="exam_timetable.php"><h3 class="box-title">Exam Time Table</h3></a>
+                                    <a href="exam_timetable.php?userid=<?php echo $_SESSION['id']; ?>"><h3 class="box-title">Exam Time Table</h3></a>
                                 </div>
                             </div>
                     </section>
@@ -114,7 +114,7 @@ $courselist = $courselistQuery->rowCount() ? $courselistQuery : [];
                             <div class="box box-primary courselist">
                                 <div class="box-header">
                                     <i class="fa fa-check-square-o"></i>
-                                    <a href="grade.php"><h3 class="box-title">Grade</h3></a>
+                                    <a href="grade.php?userid=<?php echo $_SESSION['id']; ?>"><h3 class="box-title">Grade</h3></a>
                                 </div>
                             </div>
                     </section>

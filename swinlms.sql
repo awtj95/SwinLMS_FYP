@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 22, 2017 at 11:29 AM
+-- Generation Time: May 22, 2017 at 12:48 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -294,7 +294,7 @@ CREATE TABLE `events` (
 --
 
 INSERT INTO `events` (`id`, `start`, `end`, `title`, `user_id`) VALUES
-(1, '06:00:00', '06:30:00', 'ada', 1);
+(11, '08:00:00', '08:30:00', 'r', 1);
 
 -- --------------------------------------------------------
 
@@ -310,6 +310,16 @@ CREATE TABLE `exam` (
   `start_time` time NOT NULL,
   `end_time` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `exam`
+--
+
+INSERT INTO `exam` (`id`, `unit_id`, `classroom_id`, `date`, `start_time`, `end_time`) VALUES
+(1, 1, 1, '2017-05-23', '04:00:00', '05:00:00'),
+(2, 2, 2, '2017-05-24', '01:00:00', '02:00:00'),
+(3, 3, 3, '2017-05-25', '03:00:00', '05:00:00'),
+(4, 4, 4, '2017-05-26', '03:00:00', '05:00:00');
 
 -- --------------------------------------------------------
 
@@ -770,13 +780,16 @@ ALTER TABLE `enrolment`
 -- Indexes for table `events`
 --
 ALTER TABLE `events`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `exam`
 --
 ALTER TABLE `exam`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `unit_id` (`unit_id`),
+  ADD KEY `classroom_id` (`classroom_id`);
 
 --
 -- Indexes for table `expenses`
@@ -925,12 +938,12 @@ ALTER TABLE `enrolment`
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `exam`
 --
 ALTER TABLE `exam`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `expenses`
 --
@@ -1044,6 +1057,19 @@ ALTER TABLE `class`
   ADD CONSTRAINT `class_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `class_ibfk_3` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `class_ibfk_5` FOREIGN KEY (`section_id`) REFERENCES `section` (`id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `events`
+--
+ALTER TABLE `events`
+  ADD CONSTRAINT `events_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `exam`
+--
+ALTER TABLE `exam`
+  ADD CONSTRAINT `exam_ibfk_1` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `exam_ibfk_2` FOREIGN KEY (`classroom_id`) REFERENCES `classroom` (`id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `lecture`
