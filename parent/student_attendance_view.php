@@ -2,6 +2,7 @@
 
 require_once '../app/config.php';
 session_start();
+$_SESSION['userid'] = $_GET['userid'];
 $_SESSION['unit_id'] = $_GET['id'];
 $counter = 0; 
 
@@ -18,7 +19,7 @@ $courselistQuery = $db->prepare("
 
 $courselistQuery->execute([
     'unit_id' => $_SESSION['unit_id'],
-    'user_id' => $_SESSION['user_id']
+    'user_id' => $_SESSION['userid']
 ]);
 
 $courselist = $courselistQuery->rowCount() ? $courselistQuery : [];
@@ -111,20 +112,6 @@ $courselist = $courselistQuery->rowCount() ? $courselistQuery : [];
                                     <?php endif; ?>
                             <!-- /.box-body -->
                             </div>
-                            <form action="attendance/addAttendance.php" method="post">
-                                <div class="form-group">
-                                    <input type="hidden" id="unit_id" name="unit_id" value="<?php echo $_GET['id']; ?>">
-                                </div>
-                                <div class="form-group">
-                                    <input type="hidden" id="name" name="name" value="<?php echo $_GET['name']; ?>">
-                                </div>
-                                <div class="form-group">
-                                    <input type="hidden" id="user_id" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">
-                                </div>
-                                <div class="box-footer clearfix no-border">
-                                  <button type="submit" class="btn btn-default pull-right"><i class="fa fa-check"></i> Attend</button>
-                                </div>
-                            </form>
                         </div> 
                     </section>
                 </div>

@@ -62,6 +62,15 @@
           </a>
         </li>
         <li>
+          <a href="unit_calendar.php">
+            <i class="fa fa-calendar"></i> <span>Unit Calendar</span>
+            <!--<span class="pull-right-container">
+              <small class="label pull-right bg-red"></small>
+              <small class="label pull-right bg-blue"></small>
+            </span>-->
+          </a>
+        </li>
+        <li>
           <a href="timetable.php">
             <i class="fa fa-table"></i>
             <span>Time Table</span>
@@ -89,7 +98,7 @@
         </li>
         <li>
           <a href="calendar.php">
-            <i class="fa fa-calendar"></i> <span>Calendar</span>
+            <i class="fa fa-calendar"></i> <span>Calendar Manage</span>
             <!--<span class="pull-right-container">
               <small class="label pull-right bg-red"></small>
               <small class="label pull-right bg-blue"></small>

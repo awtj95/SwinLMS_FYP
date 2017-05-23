@@ -1,13 +1,14 @@
 <?php
 
 require_once '../../app/config.php';
+$mysqli = new mysqli($dbhost,$dbuser,$dbpass,$dbname) or die($mysqli->error);
 
 if (isset($_POST['id']) && is_numeric($_POST['id']))
 
 {
     $id = $_POST['id'];
     $sid = $_POST['sid'];
-    $pass = $_POST['pass'];
+    $pass = $_POST['password'];
     $fname = $_POST['fname'];
     $lname = $_POST['lname'];
     $address = $_POST['address'];
@@ -23,7 +24,7 @@ if (isset($_POST['id']) && is_numeric($_POST['id']))
     $relationship = $_POST['relationship'];
     
 
-    $result = mysql_query("UPDATE users SET login_id='$sid', password='$pass', first_name='$fname', last_name='$lname', address='$address', contact='$contact', email='$email', city='$city', country='$country', postcode='$postcode', phone='$phone', egname='$egname', egemail='$egemail', egcontact='$egcontact', relationship='$relationship' WHERE id=$id") or die(mysql_error());
+    $result = mysql_query("UPDATE users SET login_id='$sid', password='$pass', first_name='$fname', last_name='$lname', address='$address', contact='$contact', email='$email', city='$city', country='$country', postcode='$postcode', phone='$phone', egname='$egname', egemail='$egemail', egcontact='$egcontact', relationship='$relationship', $hash='$hash' WHERE id=$id") or die(mysql_error());
     ?>
 		<script>
 		alert('successfully update');

@@ -39,7 +39,7 @@
         </li>
         <li>
           <a href="calendar.php">
-            <i class="fa fa-calendar"></i> <span>Calendar</span>
+            <i class="fa fa-calendar"></i> <span>Calendar Manage</span>
             <!--<span class="pull-right-container">
               <small class="label pull-right bg-red"></small>
               <small class="label pull-right bg-blue"></small>

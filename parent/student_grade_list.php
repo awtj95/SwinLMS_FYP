@@ -77,6 +77,19 @@ $contentheader = $contentheaderQuery->rowCount() ? $contentheaderQuery : [];
                             </div>
                     </section>
                 </div>
+                <div class="row">
+                    <!-- Left col -->
+                    <section class="col-lg-12">
+                      <!-- Custom tabs (Charts with tabs)-->
+                        <!-- Lecture Note -->
+                            <div class="box box-primary courselist">
+                                <div class="box-header">
+                                    <i class="fa fa-calendar-check-o"></i>
+                                    <a href="student_attendance_view.php?id=<?php echo $_SESSION['unit_id'] ?>&name=<?php echo $header['name']; ?>&userid=<?php echo $_SESSION['userid']; ?>"><h3 class="box-title">Attendance</h3></a>
+                                </div>
+                            </div>
+                    </section>
+                </div>
             </section>
         </div>
         
