@@ -57,8 +57,8 @@ while ($row2= mysqli_fetch_array($result))
     				<th width="40">#</th>
     				<th>Tuition fee</th>
     				<th>Paid Amount</th>
-					<th>Date</th>
 					<th>Status</th>
+					<th>Date</th>
 					<th>Parent ID</th>
     				<th width="200">Action</th>
     			</tr>

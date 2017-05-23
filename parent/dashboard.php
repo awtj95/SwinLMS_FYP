@@ -60,7 +60,7 @@ $records = mysql_query($sql);
                     <div class="icon">
                       <i class="fa fa-credit-card"></i>
                     </div>
-                    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="payment.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                   </div>
                 </div>
                 <!-- ./col -->
@@ -87,21 +87,6 @@ $records = mysql_query($sql);
                   <!-- Custom tabs (Charts with tabs)-->
                   
                   
-                  <!-- PAYMENT INQUIRIES tab -->
-                  <div class="box box-primary">
-                    <div class="box-header">
-                      <i class="ion ion-clipboard"></i>
-        
-                      <h3 class="box-title">Payment Inquiries</h3>
-        
-                    </div>
-                    <!-- /.box-header -->
-                    <div class="box-body">
-                        <a href="payment.php">Payment Inquiries for asd</a>
-                    </div>
-                    <!-- /.box-body -->
-                    
-                  </div>
                   <!-- /.box -->
                     <div class="box box-primary">
                             <div class="box-header">

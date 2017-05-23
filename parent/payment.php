@@ -1,6 +1,28 @@
 <?php
+
+require_once '../app/config.php';
 session_start();
+$counters = 0;
+
+$paymentlistQuery = $db->prepare("
+    SELECT f.name, f.amount, f.status, f.date, f.id
+    FROM fees f
+    JOIN users u
+	ON u.id = f.parent_id
+	WHERE parent_id = 8
+");
+
+$paymentlistQuery->execute([
+    'user_id' => $_SESSION['id']
+]);
+
+$paymentlist = $paymentlistQuery->rowCount() ? $paymentlistQuery : [];
+
+$paypalURL = 'https://www.sandbox.paypal.com/cgi-bin/webscr'; //Test PayPal API URL
+$paypalID = 'SwinLMSMerc@gmail.com'; //Business Email
+
 ?>
+
 <!DOCTYPE html>
 <html>
 		<?php include_once('first.php') ?>
@@ -44,54 +66,66 @@ session_start();
                     <!-- /.box-header -->
                     
                     <div class="box-body">
-                        <table id="student_in_course" class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th class="col-xs-0.5">#</th>
-                                    <th class="col-xs-1">Student ID</th>
-                                    <th class="col-xs-4">Student Name</th>
-                                    <th class="col-xs-2">Invoice</th>
-                                    <th class="col-xs-0.5">Payment Due Date</th>
-                                    <th class="col-xs-0.5">Payment Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>asd</td>
-                                    <td>asd</td>
-                                    <td><a href="#">feb-june 2016</a></td>
-                                    <td>asd</td>
-                                    <td>Recieved</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>asd</td>
-                                    <td>asd</td>
-                                    <td><a href="#">august-dec 2016</a></td>
-                                    <td>asd</td>
-                                    <td>Recieved</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>asd</td>
-                                    <td>asd</td>
-                                    <td><a href="#">feb-june 2017</a></td>
-                                    <td>asd</td>
-                                    <td>Not Recieved</td>
-                                </tr>
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Student ID</th>
-                                    <th>Student Name</th>
-                                    <th>Invoice</th>
-                                    <th>Payment Due Date</th>
-                                    <th>Payment Status</th>
-                                </tr>
-                            </tfoot>
-                        </table>
+						<?php if (!empty ($paymentlist)):?>
+							<table id="student_in_course" class="table table-bordered table-hover paymentlist">
+								<thead>
+									<tr>
+										<th class="col-xs-0.5">#</th>
+										<th class="col-xs-4">Tuition Fee</th>
+										<th class="col-xs-2">Paid Amount</th>
+										<th class="col-xs-2">Status</th>
+										<th class="col-xs-0.5">Date</th>
+										<th class="col-xs-0.5">Action</th>
+									</tr>
+								</thead>
+								<?php foreach($paymentlist as $payment): 
+								{
+									$counters++;
+								}
+								?>
+								<tbody class="$payment">
+									<tr>
+										<td><?php echo $counters ?></td>
+										<td><?php echo $payment['name']; ?></td>
+										<td><?php echo $payment['amount']; ?></td>
+										<td><?php echo $payment['status']; ?></td>
+										<td><?php echo $payment['date']; ?></td>
+										<td>
+										<form action="<?php echo $paypalURL; ?>" method="post">
+										<!-- Identify your business so that you can collect the payments. -->
+										<input type="hidden" name="business" value="<?php echo $paypalID; ?>">
+											<input type="hidden" name="item_name" value="<?php echo $payment['name']; ?>">
+											<input type="hidden" name="amount" value="<?php echo $payment['amount']; ?>">
+											<input type="hidden" name="item_number" value="<?php echo $payment['id']; ?>">
+											<input type="hidden" name="currency_code" value="MYR">
+											<input type="hidden" name="cmd" value="_xclick">
+											
+											<input type='hidden' name='cancel_return' value='http://localhost/SwinLMS_FYP/parent/paypal/cancel.php'>
+											<input type='hidden' name='return' value='http://localhost/SwinLMS_FYP/parent/paypal/success.php'>
+											<input type='hidden' name='notify_url' value='http://9e5638bb.ngrok.io/SwinLMS_FYP/parent/paypal.ipn.php'>
+											
+											<input type="image" name="submit" border="0"
+											src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" alt="PayPal - The safer, easier way to pay online">
+											<img alt="" border="0" width="1" height="1" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >
+											</form>
+										</td>
+									</tr>
+								</tbody>
+								<?php endforeach; ?>
+								<tfoot>
+									<tr>
+										<th>#</th>
+										<th>Tuition Fee</th>
+										<th>Paid Amount</th>
+										<th>Status</th>
+										<th>Date</th>
+										<th>Action</th>
+									</tr>
+								</tfoot>
+							</table>
+						<?php else: ?>
+                            <p>There is no payment to display.</p>
+                        <?php endif; ?>
                     <!-- /.box-body -->
                     </div>
                   </div>        

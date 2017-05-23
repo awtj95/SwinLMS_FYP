@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 22, 2017 at 09:32 PM
+-- Generation Time: May 23, 2017 at 11:22 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -359,7 +359,9 @@ CREATE TABLE `fees` (
 
 INSERT INTO `fees` (`id`, `name`, `amount`, `status`, `date`, `parent_id`) VALUES
 (1, 'sam', 100, 'Paid', '2017-05-13', 18),
-(2, 'sem1', 100, 'Unpaid', '2017-05-18', 9);
+(2, 'sem1', 100, 'Unpaid', '2017-05-18', 9),
+(4, 'test', 100, 'Unpaid', '2017-05-10', 8),
+(5, 'March - June 2016 ', 1000, 'Unpaid', '2017-05-10', 8);
 
 -- --------------------------------------------------------
 
@@ -503,6 +505,21 @@ CREATE TABLE `others` (
   `id` int(11) NOT NULL,
   `filename` varchar(65) NOT NULL,
   `created` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payments`
+--
+
+CREATE TABLE `payments` (
+  `payment_id` int(11) NOT NULL,
+  `item_number` varchar(255) NOT NULL,
+  `txn_id` varchar(255) NOT NULL,
+  `payment_gross` float(10,2) NOT NULL,
+  `currency_code` varchar(5) NOT NULL,
+  `payment_status` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -859,6 +876,12 @@ ALTER TABLE `others`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `payments`
+--
+ALTER TABLE `payments`
+  ADD PRIMARY KEY (`payment_id`);
+
+--
 -- Indexes for table `relation`
 --
 ALTER TABLE `relation`
@@ -984,7 +1007,7 @@ ALTER TABLE `expenses`
 -- AUTO_INCREMENT for table `fees`
 --
 ALTER TABLE `fees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `form`
 --
@@ -1010,6 +1033,11 @@ ALTER TABLE `msg_of_day`
 --
 ALTER TABLE `others`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `payments`
+--
+ALTER TABLE `payments`
+  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `relation`
 --
