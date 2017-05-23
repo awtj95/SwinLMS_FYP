@@ -166,6 +166,7 @@ $todolist = $todolistQuery->rowCount() ? $todolistQuery : [];
                         <form class="todo-add" action="todo/addTodo.php" method="post">
                             <div class="row">
                                 <div class="col-lg-8">
+                                    <input type="hidden" id="user_id" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">
                                     <input type="text" name="name" placeholder="Type a new things here...." class="input" autocomplete="off" required>
                                 </div>
                                 <div class="col-lg-4">
