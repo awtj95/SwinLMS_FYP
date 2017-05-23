@@ -70,3 +70,10 @@
     document.location.href = "<?php $_SERVER['PHP_SELF'];?>?month="+monthstring+"&year="+year;
     }
 </script>
+<script>
+$(document).on("click", ".upload", function () {
+     var myId = $(this).data('id');
+     $(".modal-body #id").val( myId );
+
+});
+</script>

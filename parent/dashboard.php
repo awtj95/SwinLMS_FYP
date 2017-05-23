@@ -261,6 +261,34 @@ $records = mysql_query($sql);
                                     //variable to count cell in the loop later
                                     $counter = 0;
                                 ?>
+                                <?php
+                                    if(isset($_GET['add'])){
+                                        $title = $_POST['title'];
+                                        $detail = $_POST['detail'];
+                                        $user_id = $_SESSION['user_id'];
+                                        $date = $month."/".$day."/".$year;
+
+                                        $sql = "insert into events (title,detail,date,created,user_id) values ('".$title."','".$detail."','".$date."',now(),'".$user_id."')";
+                                        $result = mysql_query($sql);
+                                        if($result){
+                                        ?>
+                                            <script>
+                                            alert('successfully uploaded');
+                                            window.location.href='dashboard.php?success';
+                                            </script>
+                                            <?php
+                                        }
+                                        else
+                                        {
+                                            ?>
+                                            <script>
+                                            alert('error while uploading file');
+                                            window.location.href='dashboard.php?fail';
+                                            </script>
+                                            <?php
+                                        }
+                                    }  
+                                ?>
                                 <table border='2' width='100%' height='150px'>
                                     <tr>
                                         <td align='center'><input style='width:50px;' type='button' value='<' name='previousbutton' onClick="goPreviousMonth (<?php echo $month.",".$year ?>)"></td>
@@ -321,6 +349,22 @@ $records = mysql_query($sql);
                                         echo "</tr>";
                                     ?>
                                 </table>
+                                <?php
+                                    if(isset($_GET['v'])){
+                                        echo "<a href='".$_SERVER['PHP_SELF']."?month=".$month."&day=".$day."&year=".$year."&v=true&f=true'><h3>Add Event</h3></a>";
+                                        if(isset($_GET['f'])){
+                                            include("insert.php");
+                                        }
+                                        $sqlEvent = "select * from events where date='".$month."/".$day."/".$year."' and user_id='".$_SESSION['user_id']."'";
+                                        $resultEvents = mysql_query($sqlEvent);
+                                        echo "<hr />";
+                                        while($events=mysql_fetch_array($resultEvents)){
+                                            echo "Title : ".$events['title']."<br />";
+                                            echo "Detail : ".$events['detail']."";
+                                            echo "<hr />";
+                                        }
+                                    }
+                                ?>
                             </div>                    
                         </div>
                   <!-- /.box -->

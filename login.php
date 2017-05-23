@@ -16,6 +16,7 @@ else { // User exists
     if ($_POST['password'] == $user['password'] ) {
         
         $_SESSION['user_id'] = $user['id'];
+        $_SESSION['user'] = $user['id'];
         $_SESSION['login_id'] = $user['login_id'];
         $_SESSION['first_name'] = $user['first_name'];
         $_SESSION['last_name'] = $user['last_name'];

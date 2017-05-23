@@ -1,4 +1,4 @@
-<form name='insertevent' method='POST' action="<?php $_SERVER['PHP_SELF']; ?>?month=<?php echo $month; ?>&day=<?php echo $day; ?>&year=<?php echo $year; ?>&v=true&add=true">
+<form name='insertevent' method='POST' action="<?php $_SERVER['PHP_SELF']; ?>?month=<?php echo $month; ?>&day=<?php echo $day; ?>&year=<?php echo $year; ?>&v=true&add=true&id=<?php echo $_GET['id']; ?>&name=<?php echo $_GET['name']; ?>">
     <table>
         <tr width='400px'>
             <td width='150px'>Title</td>

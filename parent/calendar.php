@@ -2,45 +2,26 @@
 
 require_once '../app/config.php';
 session_start();
+$counter =0;
+
+$calendarlistQuery = $db->prepare("
+    SELECT id, title, detail, date, created
+    FROM events
+    WHERE user_id=:user_id
+
+");
+
+$calendarlistQuery->execute([
+    'user_id' => $_SESSION['user_id']
+]);
+
+$calendarlist = $calendarlistQuery->rowCount() ? $calendarlistQuery : [];
 
 ?>
 
 <!DOCTYPE html>
 <html>
     <?php include_once('first.php') ?>
-    <link href="../bootstrap/css/calendar.css" rel="stylesheet" />
-    <script>
-        function goPreviousMonth(month, year){ 
-                if (month == 1) { 
-                    --year;
-                    month = 13;
-
-                }
-                --month;
-                var monthstring = ""+month+"";
-                var monthlength = monthstring.length;
-                if(monthlength <= 1){
-                    monthstring = "0"+monthstring;
-                }
-            document.location.href = "<?php $_SERVER['PHP_SELF'];?>?month="+monthstring+"&year="+year;
-            }
-
-
-        function goNextMonth(month, year){ 
-        if (month == 12){ 
-                ++year;
-                month = 0;
-
-            }
-            ++month;
-            var monthstring = ""+month+"";
-            var monthlength = monthstring.length;
-            if(monthlength <= 1){
-                monthstring = "0"+monthstring;
-            }
-        document.location.href = "<?php $_SERVER['PHP_SELF'];?>?month="+monthstring+"&year="+year;
-        }
-    </script>
     <body class="hold-transition skin-blue sidebar-mini">
 
         <?php include_once('header.php')?>
@@ -51,10 +32,11 @@ session_start();
             <section class="content-header">
                 <h1>
                     Calendar
+                    <small>Manage</small>
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="dashboard.php"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li class="active">Calendar</li>
+                    <li class="active">Calendar Manage</li>
                 </ol>
             </section>
 
@@ -72,128 +54,57 @@ session_start();
                         <div class="box box-primary">
                             <div class="box-header">
                                 <i class="fa fa-calendar"></i>        
-                                <h3 class="box-title">Calendar</h3>                   
+                                <h3 class="box-title">Calendar Manage</h3>                   
                             </div>
                             <!-- /.box-header -->
                             <div class="box-body">
-                                <?php
-                                    //Hoofdstuk 2
-                                    //check if day has passing variable
-                                    if (isset ($_GET['day'])){
-                                        $day = $_GET['day'];
-                                    }else{
-                                        $day = date ("d");
+                                <?php if(!empty($calendarlist)): ?>
+                                <table id="student_in_course" class="table table-bordered table-hover calendarlist">
+                                    <thead>
+                                        <tr>
+                                            <th width="5">#</th>
+                                            <th width="20">Title</th>
+                                            <th width="45">Detail</th>
+                                            <th width="10">Date</th>
+                                            <th width="10">Created</th>
+                                            <th width="10">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <?php foreach($calendarlist as $calendar): 
+                                    {
+                                        $counter++;
                                     }
 
-                                    if (isset ($_GET['month'])){
-                                        $month = $_GET['month'];
-                                    }else{
-                                        $month = date ("n");
-                                    }
-
-                                    if (isset ($_GET['year'])){
-                                        $year = $_GET['year'];
-                                    }else{
-                                        $year = date ("Y");
-                                    }
-
-                                    //calender valiable
-                                    $currentTimeStamp = strtotime("$year-$month-$day");
-                                    //get current month name
-                                    $monthName = date ("F", $currentTimeStamp);
-                                    //Determine how many day there are in this month
-                                    $numDays = date("t", $currentTimeStamp);
-                                    //variable to count cell in the loop later
-                                    $counter = 0;
-                                ?>
-                                <?php
-                                    if(isset($_GET['add'])){
-                                        $title = $_POST['title'];
-                                        $detail = $_POST['detail'];
-                                        $user_id = $_POST['user_id'];
-                                        $date = $month."/".$day."/".$year;
-
-                                        $sql = "insert into events (title,detail,date,created,user_id) values ('".$title."','".$detail."','".$date."',now(),'".$user_id."')";
-                                        $result = mysql_query($sql);
-                                        if($result){
-                                        ?>
-                                            <script>
-                                            alert('successfully uploaded');
-                                            window.location.href='calendar.php?success';
-                                            </script>
-                                            <?php
-                                        }
-                                        else
-                                        {
-                                            ?>
-                                            <script>
-                                            alert('error while uploading file');
-                                            window.location.href='calendar.php?fail';
-                                            </script>
-                                            <?php
-                                        }
-                                    }  
-                                ?>
-                                <table border='2' width='100%' height='150px'>
-                                    <tr>
-                                        <td align='center'><input style='width:50px;' type='button' value='<' name='previousbutton' onClick="goPreviousMonth (<?php echo $month.",".$year?>)"></td>
-                                        <td colspan='5' align='center'><strong><?php echo $monthName.", ".$year; ?></strong></td>
-                                        <td align='center'><input style='width:50px;' type='button' value='>' name='nextbutton' onClick="goNextMonth (<?php echo $month.",".$year?>)"></td>
-                                    </tr>
-                                    <tr>
-                                        <th width='50px'>Sunday</th>
-                                        <th width='50px'>Monday</th>
-                                        <th width='50px'>Tuesday</th>
-                                        <th width='50px'>Wednesday</th>
-                                        <th width='50px'>Thursday</th>
-                                        <th width='50px'>Friday</th>
-                                        <th width='50px'>Saturday</th>
-                                    </tr>
-                                    <?php
-                                        echo "<tr>";
-
-                                        for ($i = 1; $i < $numDays+1; $i++, $counter++) { 
-                                            $timeStamp = strtotime ("$year-$month-$i");
-                                                if($i == 1){ 
-                                                    $firstDay = date ("w", $timeStamp);
-                                                    for ($j = 0; $j < $firstDay; $j++, $counter++){ 
-                                                        //blank space
-                                                        echo "<td>&nbsp;</td>";
-                                                    }
-                                                } 
-
-                                                if($counter % 7 == 0 ){ 
-                                                    echo "<tr></tr>";
-                                                }
-
-                                                $monthstring = $month;
-                                                $monthlength = strlen($monthstring);
-                                                $daystring = $i;
-                                                $daylength = strlen($daystring);
-
-                                                if($monthlength <=1 ){
-                                                    $monthstring = "0".$monthstring;
-                                                }
-                                                if($daylength <=1 ){
-                                                    $daystring = "0".$daystring;
-                                                }
-                                            $todaysDate = date("m/d/Y");
-                                            $dateToCompare = $monthstring.'/'.$daystring.'/'.$year;
-                                            echo "<td align='center' ";
-                                            if($todaysDate == $dateToCompare){
-                                                echo "class='today'";
-                                            }else{
-                                                $sqlCount = "select * from events where date='".$dateToCompare."' and user_id='".$_SESSION['user_id']."'";
-                                                $noOfEvent = mysql_num_rows(mysql_query($sqlCount));
-                                                if($noOfEvent >= 1){
-                                                    echo "class='event'";
-                                                }
-                                            }
-                                            echo "><h4><a href='".$_SERVER['PHP_SELF']."?month=".$monthstring."&day=".$daystring."&year=".$year."&v=true'>".$i."</td></h4>";
-                                        }
-                                        echo "</tr>";
                                     ?>
+                                    <tbody class="calendar">
+                                        <tr>
+                                            <td><?php echo $counter ?></td>
+                                            <td><?php echo $calendar['title']; ?></td>
+                                            <td><?php echo $calendar['detail']; ?></td>
+                                            <td><?php echo $calendar['date']; ?></td>
+                                            <td><?php echo $calendar['created']; ?></td>
+                                            <td>
+                                                <a href="#" class="upload" data-toggle="modal" data-target="#update-calendar" data-id="<?php echo $calendar['id'] ?>"><i class="fa fa-check-square-o"></i></a>
+
+                                                <a href="calendar/remove.php?id=<?php echo $calendar['id'] ?>"><i class="fa fa-trash-o"></i></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <?php endforeach; ?>
+                                    <tfoot>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Title</th>
+                                            <th>Detail</th>
+                                            <th>Date</th>
+                                            <th>Created</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </tfoot>
                                 </table>
+                                <?php else: ?>
+                                    <p>There is no units to display.</p>
+                                <?php endif; ?>
                             </div>                    
                         </div>
                     <!-- /.box -->
@@ -201,47 +112,37 @@ session_start();
                 </div>
             <!-- /.content-wrapper -->
             </section>
-            <section class="content">
-            <!-- /.row -->
-            <!-- Main row -->
-                <div class="row">
-                <!-- Left col -->
-                    <section class="col-lg-12">
-                    <!-- Custom tabs (Charts with tabs)-->
-
-
-                    <!-- Course List -->
-                        <div class="box box-primary">
-                            <div class="box-header">
-                                <i class="fa fa-calendar"></i>        
-                                <h3 class="box-title">Calendar</h3>                   
+        </div>
+                <div class="modal fade" id="update-calendar" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form action="calendar/update.php" method="post" enctype="multipart/form-data">
+                        <div class="modal-header">
+                            <h4 class="modal-title custom_align" id="Heading">Calendar Update</h4>
+                        </div>
+                    
+                        <div class="modal-body">
+                            
+                            <div class="form-group">
+                                <input type="text" name="id" id="id" class="form-control" value=""/>
                             </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
-                                <?php
-                                if(isset($_GET['v'])){
-                                    echo "<a href='".$_SERVER['PHP_SELF']."?month=".$month."&day=".$day."&year=".$year."&v=true&f=true'><h3>Add Event</h3></a>";
-                                    if(isset($_GET['f'])){
-                                        include("insert.php");
-                                    }
-                                    $sqlEvent = "select * from events where date='".$month."/".$day."/".$year."'";
-                                    $resultEvents = mysql_query($sqlEvent);
-                                    echo "<hr />";
-                                    while($events=mysql_fetch_array($resultEvents)){
-                                        echo "Title : ".$events['title']."<br />";
-                                        echo "Detail : ".$events['detail']."<br />";
-                                        echo "<hr />";
-                                    }
-                                }
-                            ?>
-                            </div>                    
-                        </div>
-                    <!-- /.box -->
-                    </section>
-                </div>
-            <!-- /.content-wrapper -->
-            </section>
+                            <div class="form-group">
+                                <input type="text" name="title" id="title" class="form-control" value="" placeholder="Title"/>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="detail" id="title" class="form-control" value="" placeholder="Detail"/>
+                            </div>
 
+                        </div>
+                        <div class="modal-footer ">
+                            <button type="submit" class="btn btn-success" name="file-update" ><span class="glyphicon glyphicon-upload"></span> Update</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            	<!-- /.modal-content --> 
+            </div>
+        	<!-- /.modal-dialog --> 
         </div>
         <?php include_once('footer.php') ?>
         <?php include_once('script.php') ?>
